@@ -1,0 +1,283 @@
+html, body{
+    width : 100%;
+    height : 100%;
+    padding : 0;
+    margin : 0px;
+    overflow: auto;
+    background-color: #f4f4f4;
+}
+
+/* Global */
+
+.dropdown-menu{
+    width : 100%;
+    background-color : #343A40;
+    border : none;
+    text-align: center;
+}
+
+
+.dropdown-item{
+    color : white;
+    background: none; 
+    transition:500ms;
+}
+
+.dropdown-item:hover{
+    color : #EF3054;
+    background: none; 
+    transition:500ms;
+}
+
+header{
+    position: relative;
+    z-index: 1;
+}
+
+a {
+    font-family : 'Quicksand', sans-serif; 
+    color : white;
+    transition : 500ms;
+    text-decoration:none;
+    font-weight: 500;
+    font-size : 16px;
+}
+
+/* Header */
+
+header li{
+    text-align:center;
+    padding : 8px;
+    margin : 0 25px 0 0;
+}
+
+
+header a:hover{
+    color : #EF3054;
+    text-decoration: none;
+}
+
+header a:active{
+    color : #EF3054;
+    text-decoration: none;
+}
+
+
+header #logo{
+    position: sticky;
+    float: left;
+    height: 28px;
+    width:153px;
+    top : 2%;
+    left : 2%;
+}
+
+
+header ul{
+    text-align: center;
+}
+
+.fa-shopping-cart{
+    margin-left : 10px;
+}
+
+header nav{
+    position: fixed;
+}
+/* span selected */
+
+.active{
+    font-family : 'Quicksand', sans-serif; 
+    color : #EF3054;;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    font-size : 16px;
+    background: none;
+}
+
+/* footer */
+
+footer {
+    position: absolute;
+    height : 40px;
+    background-color: rgba(255, 255, 255, 0);
+    bottom : 0;
+    width : 100%;
+    height: 9%;
+    transition : 500ms;
+    z-index: 1;
+}
+
+footer:hover{
+    background-color: #ffffffa6;
+}
+
+footer p{
+    text-align: center;
+    margin-top : 1.5%;
+    padding : 0;
+    font-family: 'Quicksand' , sans-serif;
+    font-weight: 600;
+}
+
+/* sign in css */
+
+#bg-modal{
+    width : 100%;
+    height : 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top : 0;
+    justify-content: center;
+    align-items : center;
+    z-index: 1;
+    overflow: auto;
+    display: none;
+}
+
+/* signin css */
+
+
+.form-container{
+    position: relative;
+    text-align: center;
+    background-color: #fff;
+    padding : 30px;
+    top : 5vh;
+    border-radius: 10px; 
+    box-shadow: 0 0 10px 0 #000;
+    margin-top : 70%;
+    margin-bottom : 1%;
+}
+
+form .form-group .logofull{
+    height :200px;
+    width : 200px;
+}
+
+.submit-btn{
+    background-color : pink;
+    border-color: pink;
+    transition: 500ms;
+}
+
+.new-btn{
+    background-color: turquoise;
+    border-color: turquoise;
+    transition: 500ms;
+}
+
+.submit-btn:hover{
+    background-color :transparent;
+    border-color: pink;
+    color: pink;
+}
+
+.new-btn:hover{
+    background-color: transparent;
+    border-color: turquoise;
+    color : turquoise;
+}
+
+.submit-btn:active{
+    background-color :transparent;
+    border-color: pink;
+    color: pink;
+}
+
+.new-btn:active{
+    background-color: transparent;
+    border-color: turquoise;
+    color : turquoise;
+}
+
+
+#close{
+    position: absolute;
+    top : 5px;
+    right : 15px;
+    font-size: 32px;
+    transform : rotate(45deg);
+    cursor: pointer;
+}
+
+.normal{
+    color : black;
+    text-decoration: underline;
+}
+
+/* About us */
+
+#bg-modal-about{
+    width : 100%;
+    height : 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top : 0;
+    /*justify-content: center;
+    align-items : center;*/
+    z-index: 1;
+    overflow: auto;
+    display: none;
+}
+
+div .form-container{
+    margin-top : 8%;
+    height : 100%;
+}
+
+.left-side{
+    float : left;
+    text-align: left;
+    padding: 0;
+    display: inline-block;
+    margin : 0;
+}
+
+.right-side{
+    float: right;
+    top : 4%;
+    padding: 0;
+    margin:0;
+    display: inline-block;
+    margin-bottom : 15%;
+}
+
+/* zoom effects */
+
+@keyframes zoomin {
+    0% {
+        transform: scale(0,0);
+    }
+    100% {
+        transform: scale(1,1);
+    }
+}
+
+#zoom-in-effect{
+	animation: zoomin 500ms forwards;
+}
+
+@keyframes zoomout {
+    0% {
+        transform: scale(1,1);
+    }
+    100% {
+        transform: scale(0,0);
+    }
+}
+
+#zoom-out-effect{
+	animation: zoomout 500ms backwards;
+}
+
+/* about page */
+
+.container{
+    position: relative;
+    top: 60px;
+    width : 90%;
+    margin-top : 2em;
+}
+
