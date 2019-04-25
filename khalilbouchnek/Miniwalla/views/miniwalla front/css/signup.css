@@ -1,0 +1,80 @@
+body{
+    background-image: url('../images/bgSignup.png');
+    overflow: hidden;
+
+}
+
+/*form{
+
+    display: inline-block;
+    background-color : #fff;
+    border-radius: 5px;
+    width : 40%;
+    margin-top:60px;
+    margin-bottom : auto;
+    
+}
+
+form .form-group{
+    padding : 0px 10%;
+}
+
+form .form-group .logofull{
+    height :30%;
+    width : 30%;
+}
+
+form .form-group:first-child{
+    padding-top : 50px;
+}
+
+form button{
+    margin-top : 20px;
+    margin-bottom: 10px;
+}
+
+hr{
+    padding : 0;
+    margin: 10px 5%;
+}
+
+form .form-check
+{
+    text-align: left;
+    margin-left:4%;
+    margin-bottom : 5px;
+}
+
+.create-new{
+    margin-top : 10px;
+    margin-bottom : 20px;
+}*/
+
+/* sss */
+#bg-modal{
+    width : 100%;
+    height : 100%;
+    position: absolute;
+    top : 0;
+    justify-content: center;
+    align-items : center;
+    overflow: auto;
+}
+.form-container{
+    
+    /*height : 100%;*/
+    text-align: center;
+    background-color: #fff;
+    padding : 30px;
+    border-radius: 10px; 
+    box-shadow: 0 0 10px 0 #000;
+    opacity: 0.97;
+
+}
+
+form .form-group .logofull{
+    height :200px;
+    width : 200px;
+}  
+
+
