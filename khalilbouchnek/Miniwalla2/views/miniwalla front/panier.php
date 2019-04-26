@@ -1,8 +1,13 @@
 <?PHP
 include "../../core/Panier2C.php";
 $panier1C = new PanierC();
-$listePanier = $panier1C->afficherPanier();
-
+$listePanier = $panier1C->afficherPanier(); 
+//var_dump($listeEmployes->fetchAll());
+?> 
+<?PHP
+include "../../core/serviceC.php";
+$service1C=new ServiceC();
+$listeServices=$service1C->afficherServices(); 
 //var_dump($listeEmployes->fetchAll());
 ?>
 <!DOCTYPE html>
@@ -42,12 +47,12 @@ $listePanier = $panier1C->afficherPanier();
         width: 25%;
     }
 
-    .card{
-    position : absolute;
-    width : 25%;
-    height : 25%;
-    background-color:#f4f4f400;
-    border :none;
+    .card {
+        position: absolute;
+        width: 25%;
+        height: 25%;
+        background-color: #f4f4f400;
+        border: none;
     }
 </style>
 
@@ -82,6 +87,7 @@ $listePanier = $panier1C->afficherPanier();
             </div>
         </nav>
     </header>
+    <!--Sign in-->
     <div id="bg-modal">
         <section class="container-fluid">
             <section class="row justify-content-center">
@@ -113,7 +119,46 @@ $listePanier = $panier1C->afficherPanier();
             </section>
         </section>
     </div>
-    <!--About-->
+    <!--Service-->
+    <div id="bg-modalS">
+        <section class="container-fluid">
+            <section class="row justify-content-center">
+                <section class="col-12 col-sm-6 col-md-6 col-lg-4">
+                    <form id="zoom-in-effect" class="form-container">
+                        <div id="close" onclick="closePopUpS()">+</div>
+                        <div class="form-group">
+                        <div class="table-responsive advance-table"> 
+                              <table id="button_datatables_example" class="table display table-striped table-bordered">
+                                 <thead>
+                                    <tr>
+                                       <th>ID</th>
+                                       <th>Type</th>
+                                       <th>Numero</th> 
+                                    </tr>
+                                 </thead>
+                                 <tbody> 
+                                 <?PHP
+                                 foreach($listeServices as $row){
+                                 ?>
+                                    <tr>
+                                    <td><?PHP echo $row['service_id'];  ?></td>
+                                    <td><?PHP echo $row['service_type']; ?></td>
+                                    <td><?PHP echo $row['service_numero']; ?></td> 
+                                    </tr>
+                                    <?PHP 
+                                 } 
+                                 ?>
+                                 </tbody>
+                              </table> 
+                            </form>  
+                           </div>
+                        </div>
+                    </form>
+                </section>
+            </section>
+        </section>
+    </div>
+
     <div class="container mb-4">
         <div class="row">
             <div class="col-12">
@@ -128,9 +173,10 @@ $listePanier = $panier1C->afficherPanier();
                                 <th> </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody> 
 
                             <?PHP
+                          
                             foreach ($listePanier as $row) {
                                 $produit = $panier1C->recupererDonneesProduit($row['product_id']);
                                 foreach ($produit as $data) {
@@ -176,21 +222,50 @@ $listePanier = $panier1C->afficherPanier();
 
                                 <?php
                             }
-                        } ?>
+                        } ?> 
+
                             <tr>
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>Sub-Total</td>
-                                <td class="text-right"><?php echo $m ?> DT</td>
+                                <td>Sub-Total</td> 
+                                <?php 
+                                if(!empty($m))
+                                {
+                                echo "<td class=\"text-right\">";
+                                    if($m==0){
+                                        echo "0"; 
+                                    }else{
+                                        echo $m;
+                                    } 
+                                    echo " DT</td>";
+                                }else{
+                                    echo "<td class=\"text-right\">VIDE</td>";
+                                    
+                                }
+                                ?>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td><strong>Total</strong></td>
-                                <td class="text-right"><strong><?php echo $m ?> DT</strong></td>
-                            </tr>
+                                <?php 
+                                if(!empty($m))
+                                {
+                                echo "<td class=\"text-right\">";
+                                    if($m==0){
+                                        echo "0"; 
+                                    }else{
+                                        echo $m;
+                                    } 
+                                    echo " DT</td>";
+                                }else{
+                                    echo "<td class=\"text-right\">VIDE</td>";
+                                    
+                                }
+                                ?>                            
+                                </tr>
                         </tbody>
                     </table>
                 </div>
@@ -198,47 +273,31 @@ $listePanier = $panier1C->afficherPanier();
             <div class="col mb-2">
                 <div class="row">
                     <div class="col-sm-12  col-md-6">
-                    <a href="index.html"> <button class="btn btn-block btn-light">Continue Shopping</button></a>
+                        <a href="index.html"> <button class="btn btn-block btn-light">Continue Shopping</button></a>
                     </div>
                     <div class="col-sm-12 col-md-6 text-right">
-                       <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button> 
+                        <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
                     </div>
                 </div>
-            </div>  
-           
+            </div>
 
-        </div>  
-        <div class="col mb-2" > 
-                        
-                <div class="row" >
-                    <div class="col-sm-12  col-md-6"> 
-                    <a href="#" id="pop-up-button" onclick="popUp1()">Service Client</a>
-                    </div>
-                </div> 
-                
-            </div> 
+
+        </div> 
+        <center>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6 btn btn-warning" style="left:25%; ">
+                    <a href="#" id="pop-up-button" onclick="popUpS()">Service Client</a>
+                </div>
+            </div>
+        </div> 
+        </center>
     </div>
     <script src="src/bootstrap-input-spinner.js">
     </script>
     <script>
         $("input[type='number']").inputSpinner()
-    </script> 
-    <div id="bg-modal1">
-                <section class="container-fluid"> 
-                        <section class="row justify-content-center">
-                            <section class="col-12 col-sm-6 col-md-6 col-lg-4">
-                                <form id="zoom-in-effect" class="form-container">
-                                        <div id="close" onclick="closePopUp1()">+</div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                    </div>
-                                </form>
-                            </section>
-                        </section>
-                </section>
-    </div>
+    </script>
 
 
 </body>
