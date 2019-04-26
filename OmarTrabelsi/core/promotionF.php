@@ -64,7 +64,7 @@ class PromotionF{
 	}
 	function afficherIDP(){
 		
-		$sql="SELECT * From produits";
+		$sql="SELECT * From product";
 		$db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);
@@ -77,7 +77,7 @@ class PromotionF{
 	
 	function afficherIDC(){
 		
-		$sql="SELECT * From categories";
+		$sql="SELECT * From category";
 		$db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);

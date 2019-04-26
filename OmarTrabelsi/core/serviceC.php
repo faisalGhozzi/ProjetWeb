@@ -1,6 +1,7 @@
 <?PHP
 include "../config.php";
-class ServiceC {
+class ServiceC 
+{
 function afficherService ($service){
 		echo "Id: ".$service->getservice_id()."<br>";
 		echo "Type: ".$service->getservice_type()."<br>";
@@ -73,8 +74,7 @@ try{
 		
             $s=$req->execute();
 			
-           // header('Location: index.php');
-        }
+       }
         catch (Exception $e){
             echo " Erreur ! ".$e->getMessage();
    echo " Les datas : " ;
@@ -83,7 +83,7 @@ try{
 		
 	}
 	function recupererService($id){
-		$sql="SELECT * from serviceclient where service_id=$id";
+		$sql="SELECT * from serviceclient where service_id='".$id."' ";
 		$db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);
@@ -94,17 +94,23 @@ try{
         }
 	}
 	
-	function rechercherListeServices($tarif){
-		$sql="SELECT * from employe where tarifHoraire=$tarif";
-		$db = config::getConnexion();
-		try{
-		$liste=$db->query($sql);
-		return $liste;
-		}
-        catch (Exception $e){
-            die('Erreur: '.$e->getMessage());
-        }
+	
+
+
+function afficheserviceparid($id)
+{
+	$req="SELECT service_id,service_type,service_numero from serviceclient where service_id= '".$id."'";
+	$db = config::getConnexion();
+	try{
+	$liste=$db->query($req);
+	return $liste->fetchAll();
 	}
+	catch (Exception $e){
+		die('Erreur: '.$e->getMessage());
+	}	  
+	
+}
+
 }
 
 ?>

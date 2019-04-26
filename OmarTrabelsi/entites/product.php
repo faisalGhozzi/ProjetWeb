@@ -1,7 +1,7 @@
 <?PHP
 
 class Product{
-    private $product_id;
+   
     private $product_imgFace;
     private $product_imgTail;
     private $product_price;
@@ -11,8 +11,8 @@ class Product{
 
     //constructor
 
-    function __construct($product_id,$product_imgFace,$product_imgTail,$product_price,$product_promotion,$category_id,$elastic_id){
-        $this->product_id=$product_id;
+    function __construct($product_imgFace,$product_imgTail,$product_price,$product_promotion,$category_id,$elastic_id){
+      
         $this->product_imgFace=$product_imgFace;
         $this->product_imgTail=$product_imgTail;
         $this->product_price=$product_price;
@@ -23,9 +23,7 @@ class Product{
 
     //Getters
 
-    function getproduct_id(){
-        return $this->product_id;
-    }
+   
     function getproduct_imgFace(){
         return $this->product_imgFace;
     }
@@ -47,9 +45,7 @@ class Product{
 
     //Setters
 
-    function setproduct_id($product_id){
-        $this->product_id=$product_id;
-    }
+    
     function setproduct_imgFace($product_imgFace){
         $this->product_imgFace=$product_imgFace;
     }

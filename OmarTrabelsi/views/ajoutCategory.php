@@ -1,13 +1,13 @@
 <?PHP
-include "../entites/category.php";
-include "../core/categoryC.php";
+include_once "../entites/category.php";
+include_once "../core/categoryC.php";
 
 if (isset($_POST['id']) and isset($_POST['nom'])){
-$categoryTmp=new Category($_POST['id'],$_POST['nom']);
+$categoryTmp=new Category($_POST['nom']);
 
 $categoryTmpC=new CategoryC();
 $categoryTmpC->ajouterCategorie($categoryTmp);
-header('Location: add-category.html');
+header('Location: table.category.php');
 	
 }else{
 	echo "vérifier les champs";

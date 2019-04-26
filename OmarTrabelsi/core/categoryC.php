@@ -1,5 +1,5 @@
 <?PHP
-include "../config.php";
+include_once "../config.php";
 class CategoryC {
 
 	function afficherCategorie($category){
@@ -8,14 +8,12 @@ class CategoryC {
 	}
 
 	function ajouterCategorie($category){
-		$sql="INSERT INTO CATEGORY (category_id,category_name) VALUES (:id, :nom)";
+		$sql="INSERT INTO `category` (`category_name`) VALUES (:nom)";
 		$db = config::getConnexion();
 		try{
         $req=$db->prepare($sql);
 		
-        $id=$category->getcategory_id();
         $nom=$category->getcategory_name();
-		$req->bindValue(':id',$id);
 		$req->bindValue(':nom',$nom);
 
 		$req->execute();           
@@ -51,22 +49,19 @@ class CategoryC {
         }
 	}
 	function modifierCategorie($category,$id){
-		$sql="UPDATE CATEGORY SET category_id=:id, category_name=:nom WHERE category_id=:id";
+		$sql="UPDATE CATEGORY SET category_name=:nom WHERE category_id=:id";
 		
 		$db = config::getConnexion();
 		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 try{		
 		$req=$db->prepare($sql);
-		$id=$category->getcategory_id();
         $nom=$category->getcategory_name();
-		$datas = array(':id'=>$id, ':nom'=>$nom);
 		$req->bindValue(':id',$id);
 		$req->bindValue(':nom',$nom);
 		
 		
-            $s=$req->execute();
+        $s=$req->execute();
 			
-           // header('Location: index.php');
         }
         catch (Exception $e){
             echo " Erreur ! ".$e->getMessage();

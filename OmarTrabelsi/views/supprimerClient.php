@@ -7,16 +7,9 @@ if(isset($_POST['supprimer']))
 {
 
 	
-	if(isset($_POST['firstName']) and isset($_POST['lastName']) and isset($_POST['password']) and isset($_POST['userMail']) and isset($_POST['adress']) and isset($_POST['gender']))
+	if(isset($_POST['pid']))
 	{
 		
-	 $first_name=$_POST['firstName'];
-	 $last_name=$_POST['lastName'];
-	 $password=$_POST['password'];
-	 $mail=$_POST['userMail'];
-	 $adress=$_POST['adress'];
-	 $gender=$_POST['gender'];
-	 $status="Inactive";
 	 
 	 
 	 $clientF->supprimerClient($_POST['pid']);
@@ -398,7 +391,7 @@ if(isset($_GET['idc']))
                   <ul class="list-unstyled components">
                      <li class="active">
                         <a href="index-2.html">
-                        <i class="fa fa-dashboard"></i>
+                        <i class="fas fa-tachometer-alt"></i>
                         Dashboard
                         </a>
                      </li>
@@ -423,7 +416,7 @@ if(isset($_GET['idc']))
                      </li>
                      <li>
                         <a href="#createpage" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-file-text-o"></i>
+                        <i class="fa fa-file"></i>
                         pages
                         </a>
                         <ul class="collapse list-unstyled" id="createpage">
@@ -492,6 +485,8 @@ if(isset($_GET['idc']))
 						   <li><a href="modifierClient.php">Modifier Client</a></li>
 						   <li><a href="supprimerClient.php">Supprimer Client</a></li>
 						   <li><a href="AfficherClients.php">Afficher la liste des Clients</a></li>
+						   <li><a href="RechercheClients.php">Recherchers des Clients</a></li>
+
                         </ul>
                      </li>
 					 <!--  FIN MENU Gestion des Clients --> 
@@ -506,6 +501,8 @@ if(isset($_GET['idc']))
 						   <li><a href="modifierAdmin.php">Modifier Admin</a></li>
 						   <li><a href="supprimerAdmin.php">Supprimer Admin</a></li>
 						   <li><a href="AfficherAdmins.php">Afficher la liste des Admins</a></li>
+						   	<li><a href="RechercheAdmins.php">Recherchers des Admins</a></li>
+
                         </ul>
                      </li>
 					 <!--  FIN MENU Gestion des Admins --> 
@@ -522,11 +519,11 @@ if(isset($_GET['idc']))
 						   <li><a href="AfficherPromotions.php">List All Promos</a></li>
                         </ul>
                      </li>
-					 <!--  FIN MENU Gestion des Promotion -->  
+					 <!--  FIN MENU Gestion des Promotion -->
 					 <!-- MENU Gestion des Coupons --> 
 					 <li>
                         <a href="#gestionCoupon" data-toggle="collapse" aria-expanded="false">
-						<i class="fas fa-users"></i>
+						<i class="fa fa-gift"></i>
                         Gestion des Coupons
                         </a>
                         <ul class="collapse list-unstyled" id="gestionCoupon">
@@ -537,6 +534,80 @@ if(isset($_GET['idc']))
                         </ul>
                      </li>
 					 <!--  FIN MENU Gestion des Coupons -->
+					  <!-- MENU Newsletters--> 
+					 <li>
+                        <a href="#newsletter" data-toggle="collapse" aria-expanded="false">
+						<i class="fas fa-newspaper"></i>
+                        Newsletters
+                        </a>
+                        <ul class="collapse list-unstyled" id="newsletter">
+                           <li><a href="Newsletters.php">Envoyer un Newsletter</a></li>
+                        </ul>
+                     </li>
+					 <!--  FIN MENU Newsletters -->
+					 	 <!--menuLivreur -->
+					  <li>
+                        <a href="#menu_livreur" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-laptop"></i>
+                        Gestion des livreurs
+                        </a>
+                        <ul class="collapse list-unstyled" id="menu_livreur">
+                           <li><a href="add-livreur.php">Ajouter un livreur</a></li>
+                           <li><a href="modify-livreur.php">Modifier un livreur</a></li>
+                           <li><a href="delete-livreur.php">Supprimer un livreur</a></li>
+                           <li><a href="afficher-livreur.php">Afficher les livreurs</a></li>
+                        </ul>
+                     </li>
+					 <!--menuLivreurFin --> 
+					 <!--Menu Produit -->
+					  <li>
+                        <a href="#product" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-shopping-cart"></i>
+                        Gestion Produits
+                        </a>
+                        <ul class="collapse list-unstyled" id="product">
+                           <li><a href="add-product.php">add new product</a></li>
+                           <li><a href="edit-product.html">Edit product</a></li>
+                           <li><a href="add-service.php">add New Service</a></li> 
+                           <li><a href="add-category.php">add New Category</a></li> 
+                           <li><a href="add-elastic.php">add New Elastic</a></li>
+                           <li><a href="table.product.php">Products List</a></li>
+                           <li><a href="table.category.php">Category List</a></li>
+                           <li><a href="table.elastic.php">Elastic List</a></li>
+                           <li><a href="table.service.php">Services List</a></li>
+						   
+                        </ul>
+                     </li>
+					 <!--Fin Menu Produit -->
+					 
+					 
+					 <!--Menu Commande -->
+					  <li>
+                        <a href="#commande" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-shopping-cart"></i>
+                        Commande
+                        </a>
+                        <ul class="collapse list-unstyled" id="commande">
+                           <li><a href="commandeB.php">Commande</a></li>
+                           
+						   
+                        </ul>
+                     </li>
+					 <!--Fin Menu Commande -->
+					 
+					 		 <!--Menu Reclamation -->
+					  <li>
+                        <a href="#reclamation" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-laptop"></i>
+                        Reclamation
+                        </a>
+                        <ul class="collapse list-unstyled" id="reclamation">
+                           <li><a href="reclamation.php">Reclamation</a></li>
+                           
+						   
+                        </ul>
+                     </li>
+					 <!--Fin Menu Reclamation -->
 					 
 					 
 					 
@@ -556,7 +627,7 @@ if(isset($_GET['idc']))
                      </li>
                      <li>
                         <a href="#charts" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-pie-chart"></i>
+                        <i class="fas fa-chart-pie"></i>
                         Charts
                         </a>
                         <ul class="collapse list-unstyled" id="charts">
@@ -736,6 +807,27 @@ if(isset($_GET['idc']))
                                              </p>
                                           </div>
                                        </div>
+									   
+									   <div class="row">
+                                          <div class="col-md-6">
+                                             <p>
+                                                <label>Gouvernorat </label>
+                                              <input readonly name="gov" value="<?php echo  $row['Gouvernorat'];?>">  
+                                             </p>
+                                          </div>
+                                       </div>
+									   
+									   
+									   <div class="row">
+                                          <div class="col-md-12">
+                                             <p>
+                                                <label>Numéro du téléphone</label>
+                                                <input type="text" value="<?php echo  $row['Num_Tel'];?>" placeholder="Entrez le numéro du téléphone composé de 8 chiffres " name="Num_Tel" maxlength=8 size=8 required pattern="[0-9]{8}">
+                                             </p>
+                                          </div>
+                                       </div>
+									   
+									   
 									    <div class="row">
                                           <div class="col-md-12">
                                              <p>

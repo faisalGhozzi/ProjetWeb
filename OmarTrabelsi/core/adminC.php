@@ -20,7 +20,7 @@ class adminF{
 		
 		$req->bindValue(':first_name',$first_name);
 		$req->bindValue(':last_name',$last_name);
-		$req->bindValue(':password',$password);
+		$req->bindValue(':password',md5($password));
 		$req->bindValue(':mail',$mail);
 		$req->bindValue(':adress',$adress);
 		$req->bindValue(':gender',$gender);

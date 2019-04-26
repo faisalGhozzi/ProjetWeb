@@ -4,21 +4,27 @@
 
 
 
+	
 if(isset($_POST['ajouter']))
 {
 
-	
-	if(isset($_POST['firstName']) and isset($_POST['lastName']) and isset($_POST['password']) and isset($_POST['userMail']) and isset($_POST['adress']) and isset($_POST['gender']))
+	var_dump($_POST);
+	if(isset($_POST['firstName']) and isset($_POST['gov']) and isset($_POST['Num_Tel']) and isset($_POST['lastName']) and isset($_POST['password']) and isset($_POST['userMail']) and isset($_POST['adress']) and isset($_POST['gender']))
 	{
 		
 	 $first_name=$_POST['firstName'];
 	 $last_name=$_POST['lastName'];
 	 $password=$_POST['password'];
 	 $mail=$_POST['userMail'];
-	 $adress=$_POST['adress'];
+	 $tel=$_POST['Num_Tel'];
 	 $gender=$_POST['gender'];
+	 $gov=$_POST['gov'];
+	 $adress=$_POST['adress'];
+	 
+	 
+	 
 	 $status="Inactive";
-	 $client = new Client($first_name,$last_name,$password,$mail,$adress,$gender,$status);
+	 $client = new Client($first_name,$last_name,$password,$mail,$gov,$adress,$tel,$gender,$status);
 	 $clientF = new ClientF();
 	 
 	 $clientF->ajouterClient($client);
@@ -349,7 +355,7 @@ if(isset($_POST['ajouter']))
                   <ul class="list-unstyled components">
                      <li class="active">
                         <a href="index-2.html">
-                        <i class="fa fa-dashboard"></i>
+                        <i class="fas fa-tachometer-alt"></i>
                         Dashboard
                         </a>
                      </li>
@@ -374,7 +380,7 @@ if(isset($_POST['ajouter']))
                      </li>
                      <li>
                         <a href="#createpage" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-file-text-o"></i>
+                        <i class="fa fa-file"></i>
                         pages
                         </a>
                         <ul class="collapse list-unstyled" id="createpage">
@@ -443,6 +449,8 @@ if(isset($_POST['ajouter']))
 						   <li><a href="modifierClient.php">Modifier Client</a></li>
 						   <li><a href="supprimerClient.php">Supprimer Client</a></li>
 						   <li><a href="AfficherClients.php">Afficher la liste des Clients</a></li>
+						   <li><a href="RechercheClients.php">Recherchers des Clients</a></li>
+
                         </ul>
                      </li>
 					 <!--  FIN MENU Gestion des Clients --> 
@@ -457,6 +465,8 @@ if(isset($_POST['ajouter']))
 						   <li><a href="modifierAdmin.php">Modifier Admin</a></li>
 						   <li><a href="supprimerAdmin.php">Supprimer Admin</a></li>
 						   <li><a href="AfficherAdmins.php">Afficher la liste des Admins</a></li>
+						   	<li><a href="RechercheAdmins.php">Recherchers des Admins</a></li>
+
                         </ul>
                      </li>
 					 <!--  FIN MENU Gestion des Admins --> 
@@ -473,11 +483,11 @@ if(isset($_POST['ajouter']))
 						   <li><a href="AfficherPromotions.php">List All Promos</a></li>
                         </ul>
                      </li>
-					 <!--  FIN MENU Gestion des Promotion --> 
+					 <!--  FIN MENU Gestion des Promotion -->
 					 <!-- MENU Gestion des Coupons --> 
 					 <li>
                         <a href="#gestionCoupon" data-toggle="collapse" aria-expanded="false">
-						<i class="fas fa-users"></i>
+						<i class="fa fa-gift"></i>
                         Gestion des Coupons
                         </a>
                         <ul class="collapse list-unstyled" id="gestionCoupon">
@@ -488,6 +498,80 @@ if(isset($_POST['ajouter']))
                         </ul>
                      </li>
 					 <!--  FIN MENU Gestion des Coupons -->
+					  <!-- MENU Newsletters--> 
+					 <li>
+                        <a href="#newsletter" data-toggle="collapse" aria-expanded="false">
+						<i class="fas fa-newspaper"></i>
+                        Newsletters
+                        </a>
+                        <ul class="collapse list-unstyled" id="newsletter">
+                           <li><a href="Newsletters.php">Envoyer un Newsletter</a></li>
+                        </ul>
+                     </li>
+					 <!--  FIN MENU Newsletters -->
+					 	 <!--menuLivreur -->
+					  <li>
+                        <a href="#menu_livreur" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-laptop"></i>
+                        Gestion des livreurs
+                        </a>
+                        <ul class="collapse list-unstyled" id="menu_livreur">
+                           <li><a href="add-livreur.php">Ajouter un livreur</a></li>
+                           <li><a href="modify-livreur.php">Modifier un livreur</a></li>
+                           <li><a href="delete-livreur.php">Supprimer un livreur</a></li>
+                           <li><a href="afficher-livreur.php">Afficher les livreurs</a></li>
+                        </ul>
+                     </li>
+					 <!--menuLivreurFin --> 
+					 <!--Menu Produit -->
+					  <li>
+                        <a href="#product" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-shopping-cart"></i>
+                        Gestion Produits
+                        </a>
+                        <ul class="collapse list-unstyled" id="product">
+                           <li><a href="add-product.php">add new product</a></li>
+                           <li><a href="edit-product.html">Edit product</a></li>
+                           <li><a href="add-service.php">add New Service</a></li> 
+                           <li><a href="add-category.php">add New Category</a></li> 
+                           <li><a href="add-elastic.php">add New Elastic</a></li>
+                           <li><a href="table.product.php">Products List</a></li>
+                           <li><a href="table.category.php">Category List</a></li>
+                           <li><a href="table.elastic.php">Elastic List</a></li>
+                           <li><a href="table.service.php">Services List</a></li>
+						   
+                        </ul>
+                     </li>
+					 <!--Fin Menu Produit -->
+					 
+					 
+					 <!--Menu Commande -->
+					  <li>
+                        <a href="#commande" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-shopping-cart"></i>
+                        Commande
+                        </a>
+                        <ul class="collapse list-unstyled" id="commande">
+                           <li><a href="commandeB.php">Commande</a></li>
+                           
+						   
+                        </ul>
+                     </li>
+					 <!--Fin Menu Commande -->
+					 
+					 		 <!--Menu Reclamation -->
+					  <li>
+                        <a href="#reclamation" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-laptop"></i>
+                        Reclamation
+                        </a>
+                        <ul class="collapse list-unstyled" id="reclamation">
+                           <li><a href="reclamation.php">Reclamation</a></li>
+                           
+						   
+                        </ul>
+                     </li>
+					 <!--Fin Menu Reclamation -->
 					 
 					 
                   </ul>
@@ -506,7 +590,7 @@ if(isset($_POST['ajouter']))
                      </li>
                      <li>
                         <a href="#charts" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-pie-chart"></i>
+                        <i class="fas fa-chart-pie"></i>
                         Charts
                         </a>
                         <ul class="collapse list-unstyled" id="charts">
@@ -621,69 +705,7 @@ if(isset($_POST['ajouter']))
          <section id="content" class="seipkon-content-wrapper">
             <div class="page-content">
 					 <!-- Changer toute Page Content par --> 
-				 <?php
-if(count($_POST)>0) {
-	/* Form Required Field Validation */
-	foreach($_POST as $key=>$value) {
-	if(empty($_POST[$key])) {
-	$message = ucwords($key) . " field is required";
-	$type = "error";
-	break;
-	}
-	}
-	/* Password Matching Validation */
-	if($_POST['password'] != $_POST['confirm_password']){ 
-	$message = 'Passwords should be same<br>'; 
-	$type = "error";
-	}
-
-	/* Email Validation */
-	if(!isset($message)) {
-	if (!filter_var($_POST["userEmail"], FILTER_VALIDATE_EMAIL)) {
-	$message = "Invalid UserEmail";
-	$type = "error";
-	}
-	}
-
-	/* Validation to check if gender is selected */
-	if(!isset($message)) {
-	if(!isset($_POST["gender"])) {
-	$message = " Gender field is required";
-	$type = "error";
-	}
-	}
-
-	if(!isset($message)) {
-		require_once("dbcontroller.php");
-		$db_handle = new DBController();
-		$query = "SELECT * FROM clients where email = '" . $_POST["userEmail"] . "'";
-		$count = $db_handle->numRows($query);
-		
-		if($count==0) {
-			$query = "INSERT INTO clients ( first_name, last_name, password, email, adress, gender) VALUES
-			('" . $_POST["firstName"] . "', '" . $_POST["lastName"] . "', '" . $_POST["password"] . "','" . $_POST["userEmail"] . "', '" . $_POST["adress"] . "', '" . $_POST["gender"] . "')";
-			$current_id = $db_handle->insertQuery($query);
-			if(!empty($current_id)) {
-				$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"."activate.php?id=" . $current_id;
-				$toEmail = $_POST["userEmail"];
-				$subject = "User Registration Activation Email";
-				$content = "Click this link to activate your account. <a href='" . $actual_link . "'>" . $actual_link . "</a>";
-				$mailHeaders = "From: Admin\r\n";
-				if(mail($toEmail, $subject, $content, $mailHeaders)) {
-					$message = "You have registered and the activation mail is sent to your email. Click the activation link to activate you account.";	
-					$type = "success";
-				}
-				unset($_POST);
-			} else {
-				$message = "Problem in registration. Try Again!";	
-			}
-		} else {
-			$message = "User Email is already in use.";	
-			$type = "error";
-		}
-	}
-}
-?>
+				 
 <div class="row">
                      <div class="col-md-12">
                         <div class="page-box">
@@ -734,6 +756,51 @@ if(count($_POST)>0) {
                                        </div>
 									   
 									    <div class="row">
+                                          <div class="col-md-6">
+                                             <p>
+                                                <label>Gouvernorat </label>
+                                              <select name="gov">
+												<option>Tunis</option>
+												<option>Bizerte</option>
+												<option>Ariana</option>
+												<option>Mennouba</option>
+												<option>Ben Arous</option>
+												<option>Jendouba</option>
+												<option>Béja</option>
+												<option>Le Kef</option>
+												<option>Sidi Bouzid</option>
+												<option>Mahdia</option>
+												<option>Kasserine</option>
+												<option>Kairouan</option>
+												<option>Gafsa</option>
+												<option>Nabeul</option>
+												<option>Sousse</option>
+												<option>Monastir</option>
+												<option>Mahdia</option>
+												<option>Medenine</option>
+												<option>Tataouine</option>
+												<option>Tozeur</option>
+												<option>Kebili</option>
+												<option>Zaghouan</option>
+												<option>Sfax</option>
+												<option>Gabes</option>
+											</select>
+											  
+                                             </p>
+                                          </div>
+                                       </div>
+									   
+									   
+									   <div class="row">
+                                          <div class="col-md-12">
+                                             <p>
+                                                <label>Numéro du téléphone</label>
+                                                <input type="text" placeholder="Entrez le numéro du téléphone composé de 8 chiffres " name="Num_Tel" maxlength=8 size=8 required pattern="[0-9]{8}">
+                                             </p>
+                                          </div>
+                                       </div>
+									   
+									    <div class="row">
                                           <div class="col-md-12">
                                              <p>
                                                 <label>Gender</label><br>
@@ -744,6 +811,9 @@ if(count($_POST)>0) {
                                              </p>
                                           </div>
                                        </div>
+									   
+									  
+									   
                                        <div class="row">
                                           <div class="col-md-12">
                                              <p>

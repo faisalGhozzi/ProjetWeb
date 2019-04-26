@@ -322,15 +322,11 @@
                         e-Commerce
                         </a>
                         <ul class="collapse list-unstyled" id="ecommerce">
-                           <li><a href="product.html">all products</a></li>
-                           <li><a href="add-product.html">add new product</a></li>
-                           <li><a href="edit-product.html">Edit product</a></li>
-                           <li><a href="order-list-product.html">product order list</a></li> 
-                           <li><a href="add-service.html">add New Service</a></li> 
-                           <li><a href="add-elastic.html">add New Elastic</a></li>
-                           <li class="active"><a href="add-category.html">add New Category</a></li>  
-                           
-
+                           <li><a href="add-product.php">add new product</a></li>
+                           <li><a href="order-list-product.html">product order list</a></li>
+                           <li><a href="add-service.html">add New Service</a></li>
+                           <li class="active"><a href="add-category.html">add New Category</a></li>
+                           <li><a href="add-elastic.html">add New Elastic</a></li>  
                         </ul>
                      </li> 
                      <li>
@@ -557,22 +553,20 @@
                               <div class="col-md-6 col-sm-6">
                                  <div class="add-product-form-group">
                                     <h3>Category Info</h3>
-                                    <form method="POST" action="ajoutCategory.php">
-                                       <div class="row">
-                                          <div class="col-md-12">
-                                             <p>
-                                                <label>Category ID</label>
-                                                <input type="text" placeholder="Enter Category ID"  name="id" >
-                                             </p>
-                                          </div>
-                                       </div>
-                                       <div class="row">
+                                    <form method="POST" onsubmit="return validate_category()" action="ajoutCategory.php" name="myForm">
+                                       <div class="row" style="display:none">
+                                             <div class="col-md-6">
+                                                   <p>
+                                                      <label>Category ID</label>
+                                                      <input type="number" placeholder="Enter Category ID"  name="id" >
+                                                   </p>
+                                                </div>
                                        </div>
                                        <div class="row">
                                           <div class="col-md-6">
                                              <p>
                                                 <label>Category Name</label>
-                                                <input type="text" placeholder="Enter Category Name"  name="nom" >
+                                                <input type="text" placeholder="Enter Category Name"  name="nom" id="nom">
                                              </p>
                                           </div>
                                        </div>
@@ -627,6 +621,8 @@
       <script src="assets/plugins/bootstrap-select/js/custom-select.js"></script>
       <!-- Custom JS -->
       <script src="assets/js/seipkon.js"></script>
+
+      <script src="assets/js/form-validator.js"></script>
    </body>
 
 <!-- Mirrored from themescare.com/demos/seipkon-admin-template/add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 Feb 2019 17:02:49 GMT -->

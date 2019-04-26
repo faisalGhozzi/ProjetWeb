@@ -8,8 +8,10 @@ class Client{
 	private $adress;
 	private $gender;
 	private $status;
+	private $Num_Tel;
+	private $Gouvernorat;
 
-	function __construct($first_name,$last_name,$password,$mail,$adress,$gender,$status){
+	function __construct($first_name,$last_name,$password,$mail,$Gouvernorat,$adress,$Num_Tel,$gender,$status){
 		$this->first_name=$first_name;
 		$this->last_name=$last_name;
 		$this->password=$password;
@@ -17,6 +19,8 @@ class Client{
 		$this->adress=$adress;
 		$this->gender=$gender;
 		$this->status=$status;
+		$this->Num_Tel=$Num_Tel;
+		$this->Gouvernorat=$Gouvernorat;
 		
 	}
 	
@@ -46,6 +50,12 @@ class Client{
 	function getstatus(){
 		return $this->status;
 	}
+		function getNum_Tel(){
+		return $this->Num_Tel;
+	}
+		function getGouvernorat(){
+		return $this->Gouvernorat;
+	}
 	
 	//Getters
 	
@@ -59,6 +69,7 @@ class Client{
 	function setpassword($password){
 		$this->password=$password;
 	}
+	
 	
 	
 	function setmail($mail){
