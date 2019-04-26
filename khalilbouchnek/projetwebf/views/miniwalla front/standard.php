@@ -165,8 +165,7 @@ $listeProducts = $product1C->afficherProduits();
         <section class="row justify-content-center">  
 
             <?PHP
-            foreach ($listeProducts as $row) {
-            ?>
+            foreach ($listeProducts as $row) :?>
             
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3">
                     <div class="card">
@@ -183,9 +182,7 @@ $listeProducts = $product1C->afficherProduits();
                     </form>   
                 </div> 
                 
-            <?PHP
-            }
-            ?>
+            <?PHP endforeach ?>
         </section>
     </section> 
     

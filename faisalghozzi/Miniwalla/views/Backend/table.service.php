@@ -1,10 +1,29 @@
 <?PHP
-include_once "../../core/serviceC.php";
-$service1C=new ServiceC();
-$listeServices=$service1C->afficherServices();
 
+if (isset($_GET['id']))
+{
+   $idS=$_GET['id'];
+
+}
+else
+{
+   $idS=-1;
+}
+include "../../core/serviceC.php";
+$service1C=new ServiceC();
+if($idS==-1)
+{
+   $listeServices=$service1C->afficherServices();
+
+}
+else
+{
+   $listeServices=$service1C->recupererService($idS);
+
+}
 //var_dump($listeEmployes->fetchAll());
-?>
+?> 
+
 <!DOCTYPE html>
 <html lang="en">
    
@@ -335,11 +354,12 @@ $listeServices=$service1C->afficherServices();
                         e-Commerce
                         </a>
                         <ul class="collapse list-unstyled" id="ecommerce">
-                        <li><a href="add-product.php">add new product</a></li>
-                           <li><a href="order-list-product.html">product order list</a></li>
-                           <li><a href="add-service.html">add New Service</a></li>
-                           <li><a href="add-category.html">add New Category</a></li>
-                           <li><a href="add-elastic.html">add New Elastic</a></li>
+                           <li><a href="product.html">all products</a></li>
+                           <li><a href="add-product.html">add new product</a></li>
+                           <li><a href="edit-product.php">Edit product</a></li>
+                           <li><a href="order-list-product.html">product order list</a></li> 
+                           <li><a href="#">add New Service</a></li> 
+
                         </ul>
                      </li>
                      <li>
@@ -558,32 +578,21 @@ $listeServices=$service1C->afficherServices();
                   </div>
                   <!-- End Breadcromb Row -->
                    
-                  <!-- Selector -->
-                  
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="dropdown">
-                           <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown">
-                              Select a table
-                              <span class="caret"></span>
-                           </button>
-                           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuLink">
-                               <li role="presentation"><a role="menuitem" tabindex="1" href="table.service.php">Services</a></li>
-                               <li role="presentation"><a role="menuitem" tabindex="2" href="table.product.php">Produits</a></li>
-                               <li role="presentation"><a role="menuitem" tabindex="3" href="table.category.php">Categories</a></li>
-                               <li role="presentation"><a role="menuitem" tabindex="4" href="table.elastic.php">Elastiques</a></li>
-                               </ul>
-                       </div>
-                     </div>
-                  </div>
-
-                  <!-- End Selector --> 
+                  <!-- Advance Table Row Start -->
+                  <!-- End Advance Table Row -->
                    
                   <!-- Advance Table Row Start -->
                   <div class="row">
+                 
                      <div class="col-md-12">
-                        <div class="page-box">
-                           <div class="table-responsive advance-table">
+                        <div class="page-box"> 
+                        <form method="post" action="RechercheService.php">
+                      <input name="searchS" type="text" placeholder="search">
+                      <input type="submit" name="submitSearch" value="Search">
+                      <input type="submit" name="submitAll" value="All">
+
+                  </form>
+                           <div class="table-responsive advance-table"> 
                               <table id="button_datatables_example" class="table display table-striped table-bordered">
                                  <thead>
                                     <tr>
@@ -593,7 +602,7 @@ $listeServices=$service1C->afficherServices();
                                        <th>Action</th> 
                                     </tr>
                                  </thead>
-                                 <tbody>
+                                 <tbody> 
                                  <?PHP
                                  foreach($listeServices as $row){
                                  ?>
@@ -612,7 +621,8 @@ $listeServices=$service1C->afficherServices();
                                  } 
                                  ?>
                                  </tbody>
-                              </table>
+                              </table> 
+                            </form>  
                            </div>
                         </div>
                      </div>

@@ -13,6 +13,8 @@ body{
     cursor:pointer;
     width : 200px;
     height : 200px;
+    background-color:#f4f4f400;
+    border : none;
 }
 
 .front, .back{

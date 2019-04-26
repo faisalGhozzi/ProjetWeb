@@ -1,5 +1,5 @@
 <?PHP
-include_once "../../config.php";
+include_once "C:/xampp/htdocs/Miniwalla/config.php";
 class ElasticC{
 
     function ajouterElastique($elastic){

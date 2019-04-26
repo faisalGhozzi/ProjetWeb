@@ -322,11 +322,15 @@
                         e-Commerce
                         </a>
                         <ul class="collapse list-unstyled" id="ecommerce">
-                        <li><a href="add-product.php">add new product</a></li>
-                           <li><a href="order-list-product.html">product order list</a></li>
-                           <li><a href="add-service.html">add New Service</a></li>
-                           <li><a href="add-category.html">add New Category</a></li>
+                           <li><a href="product.html">all products</a></li>
+                           <li><a href="add-product.html">add new product</a></li>
+                           <li><a href="edit-product.html">Edit product</a></li>
+                           <li><a href="order-list-product.html">product order list</a></li> 
+                           <li><a href="add-service.html">add New Service</a></li> 
+                           <li><a href="add-service.html">add New Service</a></li> 
+                           <li><a href="add-category.html">add New Category</a></li> 
                            <li><a href="add-elastic.html">add New Elastic</a></li>
+
                         </ul>
                      </li> 
                      <li>
@@ -527,7 +531,7 @@
                            <div class="row">
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-left">
-                                    <h3>Add Service</h3>
+                                    <h3>Edit Service</h3>
                                  </div>
                               </div>
                               <div class="col-md-6 col-sm-6">
@@ -535,7 +539,7 @@
                                     <ul>
                                        <li><a href="index-2.html">home</a></li>
                                        <li>e-Commerce</li>
-                                       <li>Add Service</li>
+                                       <li>Edit Service</li>
                                     </ul>
                                  </div>
                               </div>
@@ -554,8 +558,8 @@
                                  <div class="add-product-form-group">
                                     <h3>Service Info</h3> 
                                     <?PHP
-                                       include_once "../../entities/service.php";
-                                       include_once "../../core/serviceC.php";
+                                       include "../../entities/service.php";
+                                       include "../../core/serviceC.php";
                                        if (isset($_GET['id'])){
                                           $serviceC=new ServiceC();
                                           $result=$serviceC->recupererService($_GET['id']);
@@ -618,7 +622,6 @@
                                           $service=new service($_POST['id'],$_POST['type'],$_POST['numero']);
                                           $serviceC->modifierService($service,$_POST['id_ini']);
                                           echo $_POST['id_ini'];
-                                          header('Location: index-2.html');
                                        }
                                        ?>
                                  </div>

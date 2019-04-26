@@ -39,7 +39,7 @@ $listeProducts = $product1C->afficherProduitAvecElastic();
                         <li class="nav-item"><a href="#" id="pop-up-button" onclick="popUp()">Sign in</a></li>
                         <li class="nav-item">
                             <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portefeuilles </a>
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wallets </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <span class="dropdown-item active">Standard</span>
                                     <a class="dropdown-item" href="ethnic.php">Ethnic</a>
@@ -51,7 +51,7 @@ $listeProducts = $product1C->afficherProduitAvecElastic();
                         <li class="nav-item"><a href="Phonecase.html">Phone Case</a></li>
                         <li class="nav-item"><a href="contact.html">Contact</a></li>
                         <li class="nav-item"><a href="about.html">About Us</a></li>
-                        <li class="nav-item"><a href="panier.html">Panier<i class="fas fa-shopping-cart"></i></a></li>
+                        <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -97,8 +97,7 @@ $listeProducts = $product1C->afficherProduitAvecElastic();
                 if ($row['category_id'] == 1) {
                     ?>
             <form method="POST" action="buyPage.php?id=<?php echo $row['product_id']?>">
-                <input type="text" name="id" value=<?php echo $row['product_id']?> style="display:none">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3">
                     <div class="card">
                         <div class="front">
                             <?PHP echo "<img src=\"../Backend/image/{$row['product_imgFace']}\" class=\"image1\">" ?>

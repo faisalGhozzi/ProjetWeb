@@ -1,29 +1,22 @@
 <?php
 include_once "../../core/productC.php";
 include_once "../../core/elasticC.php";
-session_start();
+
 $product1C = new ProductC();
-if(isset($_SESSION['id'])){
-    $id = $_SESSION['id'];
-    $prod = $product1C->recupererProduitsAvecElastique($id);
-}
-else if(isset($_GET['id'])){
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $_SESSION['id']=$id;
     $prod = $product1C->recupererProduitsAvecElastique($id);
 }
 
-if(isset($_GET['name'])){
+if (isset($_GET['name'])) {
     $color = $_GET['name'];
-}
-else{
+} else {
     $color = -1;
 }
 $elastic1C = new ElasticC();
-if($color == -1){
+if ($color == -1) {
     $listeElastique = $elastic1C->afficherElastiques();
-}
-else{
+} else {
     $listeElastique = $elastic1C->chercherNom($color);
 }
 
@@ -40,14 +33,16 @@ else{
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script src="javaScript/popUpSignup.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/otherPages.css">
     <link rel="stylesheet" href="css/buy-page.css">
+    <link rel="stylesheet" type="text/css" href="css/color-change.php">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700|Poiret+One|Quicksand:300,400,500,700|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <title>miniWalla | Phone case</title>
+
+    <title>miniWalla | Buy Page</title>
 </head>
 
 <body>
@@ -63,7 +58,7 @@ else{
                         <li class="nav-item"><a href="#" id="pop-up-button" onclick="popUp()">Sign in</a></li>
                         <li class="nav-item">
                             <div class="dropdown">
-                                <a class="dropdown-toggle" href="wallets.html" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portefeuilles </a>
+                                <a class="dropdown-toggle" href="wallets.html" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wallets </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="standard.php">Standard</a>
                                     <a class="dropdown-item" href="ethnic.php">Ethnic</a>
@@ -75,12 +70,15 @@ else{
                         <li class="nav-item"><a href="Phonecase.html">Phone Case</a></li>
                         <li class="nav-item"><a href="contact.html">Contact</a></li>
                         <li class="nav-item"><a href="about.html">About Us</a></li>
-                        <li class="nav-item"><a href="panier.html">Panier<i class="fas fa-shopping-cart"></i></a></li>
+                        <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+    <div class="left-column">
+        <img data-image="pink" class="active" src="images/pink.png" alt="">
+    </div>
     <div id="bg-modal">
         <section class="container-fluid">
             <section class="row justify-content-center">
@@ -113,47 +111,100 @@ else{
         </section>
     </div>
     <div class="container">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                           
-                        <aside class="right-side col-lg-5 col-xl-5 col-md-5 col-sm-12 col-xs-12">
-                            <h2>Choose your elastic</h2>
-                            <form method="POST" action="searchColor.php">
-                            <input type="text" placeholder="Color .." name="search">
-                            <input type="submit" name="searchB" value="search" >
-                            <input type="submit" name="searchAll" value="Show all" >
-                            <?php foreach($listeElastique as $row){
-
-                                ?>
-                                <form method="POST">
-                                <div class="picker">
-                                <?PHP echo "<input class=\"btn btn-primary\" style=\"width:30px\" type=\"submit\" name=\"changer\" value={$row['elastic_id']}><img src=\"../Backend/image/{$row['elastic_img']}\" class=\"mini\" ><a>" ?> 
-                                <?php
-                                    if(isset($_POST["changer"])){
-                                        $prod = $product1C->changerElastique($_SESSION['id'],$row['elastic_id']);
-                                    }
-                                ?>
-                                </div>
-                                </form>
-                            <?php 
-                            }
-                            ?>
-                            </form>
-                        </aside>
-                        <div class="left-side col-lg-8 col-xl-8 col-md-8 col-sm-12 col-xs-12">
-                        <div class="product">
-                    <?php foreach ($prod as $row) {
-                        ?>
+        <div class="right-column">
+            <div class="row">
+                <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                    <!-- Product Goes Here-->
                     <div class="card">
-                        <?PHP echo "<img src=\"../Backend/image/{$row['product_imgFace']}\" class=\"image1\">" ?>
-                        <?PHP echo "<img src=\"../Backend/image/{$row['elastic_img']}\" class=\"image2\" >" ?>
+                        <?php foreach($prod as $row){ 
+                        echo "<img src=\"../Backend/image/{$row['product_imgFace']}\" class=\"image1\">";
+                        echo "<img src=\"../Backend/image/{$row['elastic_img']}\" class=\"image2\" >";
+                        }?>
                     </div>
-                    <?php
-
-                }
-                ?>
-                </div>    
-                        </div>                                
+                    <div class="card" id="result">
+                    
+                    </div>
                 </div>
+                <div class="col-12 col-lg-6 col-md-6 col-sm-12 tools">
+                    <!-- Search and modifications Goes Here-->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="input-group flex-nowrap">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="addon-wrapping">Search Color</span>
+                                </div>
+                                <input type="text" name="search" class="form-control" placeholder="Search for color" aria-label="Color" aria-describedby="addon-wrapping" onkeyup="searchq()">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <br>
+                            <!--<div class="input-group-prepend">
+                                <span class="input-group-text" id="addon-wrapping">Select Color</span>
+                            </div>-->
+                            <div class="product-color">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="addon-wrapping">Select Color</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 color-choose">
+                            <div id="output">
+
+                            </div>
+                        </div>
+                        <!--<div class="col-12 color-choose">
+                            <?php foreach ($listeElastique as $rowE) : ?>
+                                <div>
+                                    <input type="radio" id="<?php echo substr($rowE['elastic_img'], 0, -4); ?>" class="color-color" name="color" value="<?php echo $rowE['elastic_id']; ?>">
+                                    <label for="<?php echo substr($rowE['elastic_img'], 0, -4); ?>"><span></span></label>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>-->
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-12">
+                            <div>
+                                <a href="#collapseExample" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                    Make your Walla unique
+                                </a>
+                            </div>
+                            <div class="collapse" id="collapseExample">
+                                <div class="spacer">
+                                    <br>
+                                    <center>
+                                        <div class="col-6">
+                                            <label><span class="input-group-text" id="addon-wrapping">Write Something</span></label>
+                                            <input type="text" name="perso-text">
+                                        </div>
+                                        <br>
+                                        <div class="col-6">
+                                            <label><span class="input-group-text" id="addon-wrapping">Or send an image</span></label>
+                                            <input type="file" name="perso-image">
+                                        </div>
+                                    </center>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-12 buy-button">
+                            <div>
+                                <form method="POST" action="AjouterPanier.php?id=<?php echo $_GET['id'] ;?>">
+                                    <input hidden type="number" name="qte" value="1">
+                                    <button class="btn btn-success btn-lg btn-block" type="submit" name="ajouter" value="ajouter">Buy me</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script src="javaScript/change-elastic.js"></script>
+    <script src="javaScript/live-search.js"></script>
 </body>
 
-</html> 
+</html>

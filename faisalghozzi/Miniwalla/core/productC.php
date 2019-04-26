@@ -29,6 +29,17 @@ class productC{
         }
     }
 
+    function afficherNomCategorie($idp){
+        $sql="SELECT category_name from category inner join product on category.category_id = product.category_id where product.product_id=$idp";
+        $db= config::getConnexion();
+        try{
+            $liste=$db->query($sql);
+            return $liste;
+        }catch(Exception $e){
+            die('Erreru : '.$e->getMessage());
+        }
+    }
+
     function afficherProduits(){
         $sql="SELECT PRODUCT.product_id, PRODUCT.product_imgFace, PRODUCT.product_imgTail, PRODUCT.product_price, PRODUCT.product_promotion, category.category_name, ELASTIC.elastic_img From Category Inner join product on category.category_id=Product.category_id inner join elastic on product.elastic_id=elastic.elastic_id";
         $db = config::getConnexion();
@@ -64,11 +75,11 @@ class productC{
     }
 
     function modifierProduit($product,$id){
-        $sql="UPDATE PRODUCT SET product_id=:id, product_imgFace=:imgFace, product_imgTail=:imgTail, product_price=:price, product_promotion=:promotion, category_id=:cid, elastic_id=:eid WHERE product_id=:id";
+        $sql="UPDATE PRODUCT SET product_imgFace=:imgFace, product_imgTail=:imgTail, product_price=:price, product_promotion=:promotion, category_id=:cid, elastic_id=:eid WHERE product_id=:id";
         $db = config::getConnexion();
+        var_dump($id);
         try{
             $req=$db->prepare($sql);
-            $id=$product->getproduct_id();
             $imgFace=$product->getproduct_imgFace();
             $imgTail=$product->getproduct_imgTail();
             $price=$product->getproduct_price();
@@ -76,7 +87,7 @@ class productC{
             $cid=$product->getcategory_id();
             $eid=$product->getelastic_id();
 
-            $datas = array(':id'=>$id,':imgFace'=>$imgFace,':imgTail'=>$imgTail,':price'=>$price,':promotion'=>$promotion,':cid'=>$cid,':eid'=>$eid);
+            //$datas = array(':id'=>$id,':imgFace'=>$imgFace,':imgTail'=>$imgTail,':price'=>$price,':promotion'=>$promotion,':cid'=>$cid,':eid'=>$eid);
 
             $req->bindValue(':id',$id);
             $req->bindValue(':imgFace',$imgFace);
@@ -89,8 +100,6 @@ class productC{
             $req->execute();
         }catch(Exception $e){
             echo "Erreur: ".$e->getMessage();
-            echo "Les Datas : " ;
-            print_r($datas);
         }
     }
 

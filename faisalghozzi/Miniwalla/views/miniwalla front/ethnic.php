@@ -49,7 +49,7 @@ $listeProducts = $product1C->afficherProduitAvecElastic();
                         <li class="nav-item"><a href="#" id="pop-up-button" onclick="popUp()">Sign in</a></li>
                         <li class="nav-item">
                                 <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portefeuilles   </a>
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wallets   </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="standard.php">Standard</a>
                                         <span class="dropdown-item active">Ethnic</span>
@@ -108,7 +108,7 @@ $listeProducts = $product1C->afficherProduitAvecElastic();
             foreach ($listeProducts as $row) {
                 if($row['category_id'] == 2) {
                         ?>
-                        <form action="buyPage.php?id=lol">
+                        <form method="POST" action="buyPage.php?id=<?php echo $row['product_id']?>">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-4">
                         <div class="card">
                             <div class="front">

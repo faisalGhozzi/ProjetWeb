@@ -643,7 +643,6 @@ $result2 = mysqli_query($connect, $query2);
                                                                     <img src="" style="display:none;" height="200" id="Face">
                                                                     <!-- preview Trigger -->
                                                                     <input class="btn btn-success" type="file" name="imgFace" onchange="showImage.call(this)">
-
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -659,7 +658,6 @@ $result2 = mysqli_query($connect, $query2);
                                                                     <img src="" style="display:none;padding:0 25px;" height="200" id="Tail">
                                                                     <!-- preview Trigger -->
                                                                     <input class="btn btn-success" type="file" name="imgTail" onchange="showImage2.call(this)">
-
                                                                 </div>
                                                             </div>
                                                         </div>
