@@ -15,12 +15,14 @@ $(document).ready(function(){
     }
 
     $('.color-color').click(function (){
+       
         var ide = $(this).val();
         if(ide != "")
         {
             load_data(ide);
         }
         else{
+           
             load_data();
         }
     });
