@@ -8,17 +8,10 @@ if (isset($_GET['id'])) {
     $prod = $product1C->recupererProduitsAvecElastique($id);
 }
 
-if (isset($_GET['name'])) {
-    $color = $_GET['name'];
-} else {
-    $color = -1;
-}
+
 $elastic1C = new ElasticC();
-if ($color == -1) {
-    $listeElastique = $elastic1C->afficherElastiques();
-} else {
-    $listeElastique = $elastic1C->chercherNom($color);
-}
+$listeElastique = $elastic1C->afficherElastiques();
+
 
 
 
@@ -116,13 +109,13 @@ if ($color == -1) {
                 <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                     <!-- Product Goes Here-->
                     <div class="card">
-                        <?php foreach($prod as $row){ 
-                        echo "<img src=\"../Backend/image/{$row['product_imgFace']}\" class=\"image1\">";
-                        echo "<img src=\"../Backend/image/{$row['elastic_img']}\" class=\"image2\" >";
-                        }?>
+                        <?php foreach ($prod as $row) {
+                            echo "<img src=\"../Backend/image/{$row['product_imgFace']}\" class=\"image1\">";
+                            echo "<img src=\"../Backend/image/{$row['elastic_img']}\" class=\"image2\" >";
+                        } ?>
                     </div>
                     <div class="card" id="result">
-                    
+
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 col-md-6 col-sm-12 tools">
@@ -133,7 +126,17 @@ if ($color == -1) {
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="addon-wrapping">Search Color</span>
                                 </div>
-                                <input type="text" name="search" class="form-control" placeholder="Search for color" aria-label="Color" aria-describedby="addon-wrapping" onkeyup="searchq()">
+                                <input type="text" name="search" id="search" class="form-control" placeholder="Search for color" aria-label="Color" aria-describedby="addon-wrapping" onkeyup="">
+                            </div>
+                            <!-- Search suggestions with json -->
+                            <!--<div id="match-list"></div>-->
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-12">
+                            <div id="output" class="color-choose">
+                        
                             </div>
                         </div>
                         <div class="col-12">
@@ -147,19 +150,15 @@ if ($color == -1) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 color-choose">
-                            <div id="output">
 
-                            </div>
-                        </div>
-                        <!--<div class="col-12 color-choose">
+                        <div class="col-12 color-choose">
                             <?php foreach ($listeElastique as $rowE) : ?>
                                 <div>
                                     <input type="radio" id="<?php echo substr($rowE['elastic_img'], 0, -4); ?>" class="color-color" name="color" value="<?php echo $rowE['elastic_id']; ?>">
                                     <label for="<?php echo substr($rowE['elastic_img'], 0, -4); ?>"><span></span></label>
                                 </div>
                             <?php endforeach; ?>
-                        </div>-->
+                        </div>
                         <br>
                         <br>
                         <br>
@@ -192,7 +191,7 @@ if ($color == -1) {
                         <br>
                         <div class="col-12 buy-button">
                             <div>
-                                <form method="POST" action="AjouterPanier.php?id=<?php echo $_GET['id'] ;?>">
+                                <form method="POST" action="AjouterPanier.php?id=<?php echo $_GET['id']; ?>">
                                     <input hidden type="number" name="qte" value="1">
                                     <button class="btn btn-success btn-lg btn-block" type="submit" name="ajouter" value="ajouter">Buy me</button>
                                 </form>
@@ -205,6 +204,7 @@ if ($color == -1) {
     </div>
     <script src="javaScript/change-elastic.js"></script>
     <script src="javaScript/live-search.js"></script>
+    <script src="javaScript/search-suggest.js"></script>
 </body>
 
 </html>

@@ -77,7 +77,7 @@ class ElasticC{
 	}
 
     function chercherNom($color){
-        $sql="SELECT * from elastic where elastic_name like '%$color%'";
+        $sql="SELECT * from elastic where elastic_name like '%".$color."%'";
         $db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);

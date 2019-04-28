@@ -8,7 +8,7 @@ if(isset($_POST['searchVal'])) {
     $searchq = $_POST['searchVal'];
     //$searchq = preg_replace("#[^0-9a-z]#i","",$searchq);
 
-    $sql = "SELECT * FROM elastic where elastic_name like '%".$searchq."%'";
+    $sql = "SELECT * FROM elastic where elastic_name like '".$searchq."%'";
     try{
         $req=$db->query($sql);
         $req->execute();
@@ -22,17 +22,19 @@ if(isset($_POST['searchVal'])) {
     if($count == 0){
         $output = 'No results';
     }else{
-        while($row = $req->fetch(PDO::FETCH_ASSOC)){
+        foreach($req as $row){
             
             $elstc_id = $row['elastic_id'];
             $elstc_img = substr($row['elastic_img'],0,-4);
 
-            $output .= '<input type="radio" id="'.$elstc_img.'" class="color-color" name="color" value="'.$elstc_id.'">';
-            $next .= '<label for="'.$elstc_img.'"><span></span></label>';
-
+            $output .= '<input  type="radio" id="'.$elstc_img.'" class="color-color" name="color" value="'.$row['elastic_id'].'">';
+            $next .= '<label  class="color-color" for="'.$elstc_img.'"><span></span></label>';
+            
+            echo ($output);
+            echo($next);
         }
     }
-}else if(empty($_POST['searchVal'])){
+}/*else {
 
     $sql = "SELECT * FROM elastic";
     try{
@@ -48,17 +50,18 @@ if(isset($_POST['searchVal'])) {
     if($count == 0){
         $output = 'No results';
     }else{
-        while($row = $req->fetch(PDO::FETCH_ASSOC)){
+       foreach($req as $row){
             
             $elstc_id = $row['elastic_id'];
             $elstc_img = substr($row['elastic_img'],0,-4);
 
-            $output .= '<input type="radio" id="'.$elstc_img.'" class="color-color" name="color" value="'.$elstc_id.'">';
+            $output .= '<input  type="radio" id="'.$elstc_img.'" class="color-color" name="color" value="'.$elstc_id.'">';
             $next .= '<label for="'.$elstc_img.'"><span></span></label>';
+            echo ($output);
+            echo($next);
         }
     }
-}
-echo ($output);
-echo($next);
+}*/
+
 
 ?>

@@ -42,3 +42,4 @@
     background-repeat : no-repeat;
     backgroun-position : center;
 }
+.color-color {}
