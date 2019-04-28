@@ -1,0 +1,359 @@
+html, body{
+    width : 100%;
+    height : 100%;
+    padding : 0;
+    margin : 0px;
+    overflow: hidden;
+}
+
+/* Global */
+.dropdown-menu{
+    border : none;
+    text-align: center;
+}
+
+.dropdown-item{
+    transition: 500ms;
+}
+
+.dropdown-item:hover{
+    color: tomato;
+    transition: 500ms;
+    
+}
+
+.dropdown-item:active{
+    background: none;
+    color: tomato;
+}
+
+header{
+    position: relative;
+    z-index: 1;
+}
+
+a {
+    font-family : 'Quicksand', sans-serif; 
+    color : black;
+    transition : 500ms;
+    text-decoration:none;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+li{
+    text-align: center;
+}
+
+/* Header */
+
+header li{
+    text-align:center;
+    padding : 8px;
+    margin : 0 25px 0 0;
+}
+
+
+header a:hover{
+    color : tomato;
+    text-decoration: none;
+}
+
+header a:active{
+    color : tomato;
+    text-decoration: none;
+}
+
+
+header #logo{
+    position: sticky;
+    float: left;
+    height: 28px;
+    width:153px;
+    top : 2%;
+    left : 2%;
+}
+
+
+header ul{
+    text-align: center;
+}
+
+.fa-shopping-cart{
+    margin-left : 10px;
+}
+
+/* Slide Show */
+
+slider{
+    display : block;
+    width : 100%;
+    height : 100%;
+    background-color: #1f1f1f;
+    overflow:hidden;
+    position: absolute;
+    z-index: 0;
+    top : 0;
+}
+
+slider > * {
+    position : absolute;
+    display : block;
+    width : 100%;
+    height : 100%;
+    animation : slide 12s infinite;
+    overflow: hidden;
+}
+
+slide:nth-child(1){
+    left:0%;
+    animation-delay: -1s;
+    background-image : url('../images/bg1.jpg');
+    background-size : cover;
+    background-position: center;
+}
+
+slide:nth-child(2){
+    animation-delay: 2s;
+    background-image : url('../images/bg2.jpg');
+    background-size : cover;
+    background-position: center;
+}
+
+slide:nth-child(3){
+    animation-delay: 5s;
+    background-image : url('../images/bg3.jpg');
+    background-size : cover;
+    background-position: center;
+}
+
+slide:nth-child(4){
+    left:0%;
+    animation-delay: 8s;
+    background-image : url('../images/bg2.jpg');
+    background-size : cover;
+    background-position: center;
+}
+
+slide p{
+    position:relative;
+    font-family: 'Quicksand',sans-serif;
+    font-size : 70px;
+    text-align : center;
+    display: inline-block;
+    width : 100%;
+    top : 45%;
+    bottom : auto;
+    margin : auto;
+    padding : 0;
+    color : #fff;
+}
+
+
+@keyframes slide{
+    0% {left: 100%; width:100%;}
+    5% {left: 0%;}
+    25% {left: 0%;}
+    30% {left: -100%; width: 100%;}
+    30.0001% { left: -100%; width: 0%;}
+    100% {left: 100%; width: 0%;}
+}
+
+.active{
+    font-family : 'Quicksand', sans-serif; 
+    color : tomato;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* footer */
+
+footer {
+    position: absolute;
+    height : 40px;
+    background-color: rgba(255, 255, 255, 0);
+    bottom : 0;
+    width : 100%;
+    height: 9%;
+    transition : 500ms;
+    z-index: 1;
+}
+
+footer:hover{
+    background-color: #ffffff;
+}
+
+footer p{
+    text-align: center;
+    margin-top : 1.5%;
+    padding : 0;
+    font-family: 'Quicksand' , sans-serif;
+    font-weight: 600;
+}
+
+/* modal */
+
+#bg-modal{
+    width : 100%;
+    height : 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top : 0;
+    justify-content: center;
+    align-items : center;
+    z-index: 1;
+    overflow: auto;
+    display: none;
+}
+
+/* signin css */
+
+
+.form-container{
+    position: relative;
+    text-align: center;
+    background-color: #fff;
+    padding : 30px;
+    top : 5vh;
+    border-radius: 10px; 
+    box-shadow: 0 0 10px 0 #000;
+    margin-top : 70%;
+    margin-bottom : 1%;
+}
+
+form .form-group .logofull{
+    height :200px;
+    width : 200px;
+}
+
+.submit-btn{
+    background-color : pink;
+    border-color: pink;
+    transition: 500ms;
+}
+
+.new-btn{
+    background-color: turquoise;
+    border-color: turquoise;
+    transition: 500ms;
+}
+
+.submit-btn:hover{
+    background-color :transparent;
+    border-color: pink;
+    color: pink;
+}
+
+.new-btn:hover{
+    background-color: transparent;
+    border-color: turquoise;
+    color : turquoise;
+}
+
+.submit-btn:active{
+    background-color :transparent;
+    border-color: pink;
+    color: pink;
+}
+
+.new-btn:active{
+    background-color: transparent;
+    border-color: turquoise;
+    color : turquoise;
+}
+
+
+#close{
+    position: absolute;
+    top : 5px;
+    right : 15px;
+    font-size: 32px;
+    transform : rotate(45deg);
+    cursor: pointer;
+}
+
+.normal{
+    text-decoration: underline;
+}
+
+/* About us */
+
+#bg-modal-about{
+    width : 100%;
+    height : 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top : 0;
+    /*justify-content: center;
+    align-items : center;*/
+    z-index: 1;
+    overflow: auto;
+    display: none;
+}
+
+div .form-container{
+    margin-top : 8%;
+    height : 100%;
+}
+
+.left-side{
+    float : left;
+    text-align: left;
+    padding: 0;
+    display: inline-block;
+    margin : 0;
+}
+
+.right-side{
+    float: right;
+    top : 4%;
+    padding: 0;
+    margin:0;
+    display: inline-block;
+    margin-bottom : 15%;
+}
+
+/* reveal effect */
+
+@keyframes reveal {
+    0% {
+        transform: scale(1,0);
+    }
+    100%{
+        transform: scale(1,1);
+    }
+}
+
+#bottom-top-reveal{
+    animation: reveal 500ms forwards;
+}
+
+/* zoom effects */
+
+@keyframes zoomin {
+    0% {
+        transform: scale(0,0);
+    }
+    100% {
+        transform: scale(1,1);
+    }
+}
+
+#zoom-in-effect{
+	animation: zoomin 500ms forwards;
+}
+
+@keyframes zoomout {
+    0% {
+        transform: scale(1,1);
+    }
+    100% {
+        transform: scale(0,0);
+    }
+}
+
+#zoom-out-effect{
+	animation: zoomout 500ms backwards;
+} 
+
