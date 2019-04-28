@@ -2,6 +2,9 @@
 include_once "../../core/productC.php";
 include_once "../../core/elasticC.php";
 
+session_start();
+
+
 $product1C = new ProductC();
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -31,8 +34,11 @@ $listeElastique = $elastic1C->afficherElastiques();
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/otherPages.css">
     <link rel="stylesheet" href="css/buy-page.css">
+    <link rel="stylesheet" href="css/canvas-trick.css">
     <link rel="stylesheet" type="text/css" href="css/color-change.php">
+    <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700|Poiret+One|Quicksand:300,400,500,700|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lalezar|Rakkas" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <title>miniWalla | Buy Page</title>
@@ -42,16 +48,23 @@ $listeElastique = $elastic1C->afficherElastiques();
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.html"><img id="logo" src="images/logoWhite.png"></a>
+                <a class="navbar-brand" href="index.php"><img id="logo" src="images/logoWhite.png"></a>
+                <?php if (isset($_SESSION['login'])) : ?>
+                    <center><span class="welcome">Welcome <?php echo $_SESSION['name']; ?></span></center>
+                <?php endif ?>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a href="#" id="pop-up-button" onclick="popUp()">Sign in</a></li>
-                        <li class="nav-item">
+                        <?php if (isset($_SESSION['login'])) : ?>
+                            <li class="nav-item"><a href="signout.php" id="pop-up-button">Sign out</a></li>
+                        <?php endif ?>
+                        <?php if (!isset($_SESSION['login'])) : ?>
+                            <li class="nav-item"><a href="#" id="pop-up-button" onclick="popUp()">Sign in</a></li>
+                        <?php endif ?> <li class="nav-item">
                             <div class="dropdown">
-                                <a class="dropdown-toggle" href="wallets.html" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wallets </a>
+                                <a class="dropdown-toggle" href="wallets.php" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wallets </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="standard.php">Standard</a>
                                     <a class="dropdown-item" href="ethnic.php">Ethnic</a>
@@ -60,9 +73,9 @@ $listeElastique = $elastic1C->afficherElastiques();
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item"><a href="Phonecase.html">Phone Case</a></li>
-                        <li class="nav-item"><a href="contact.html">Contact</a></li>
-                        <li class="nav-item"><a href="about.html">About Us</a></li>
+                        <li class="nav-item"><a href="Phonecase.php">Phone Case</a></li>
+                        <li class="nav-item"><a href="contact.php">Contact</a></li>
+                        <li class="nav-item"><a href="about.php">About Us</a></li>
                         <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
@@ -76,26 +89,26 @@ $listeElastique = $elastic1C->afficherElastiques();
         <section class="container-fluid">
             <section class="row justify-content-center">
                 <section class="col-12 col-sm-6 col-md-6 col-lg-4">
-                    <form id="zoom-in-effect" class="form-container">
+                    <form id="zoom-in-effect" class="form-container" method="POST" action="login.php">
                         <div id="close" onclick="closePopUp()">+</div>
                         <div class="form-group">
                             <img class="logofull" src="images/logo-full.png">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pass">
                             <a href="#" class="normal"><small id="passwordHelp">Forgot password?</small></a>
                         </div>
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Stay connected</label>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block submit-btn">Submit</button>
+                        <button type="submit" name="submit" class="btn btn-primary btn-block submit-btn">Submit</button>
                         <hr>
                         <a class="btn btn-primary btn-block new-btn" href="signup.html">Create new account</a>
                     </form>
@@ -108,11 +121,14 @@ $listeElastique = $elastic1C->afficherElastiques();
             <div class="row">
                 <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                     <!-- Product Goes Here-->
-                    <div class="card">
-                        <?php foreach ($prod as $row) {
-                            echo "<img src=\"../Backend/image/{$row['product_imgFace']}\" class=\"image1\">";
-                            echo "<img src=\"../Backend/image/{$row['elastic_img']}\" class=\"image2\" >";
-                        } ?>
+                    <div class="container">
+                        <div class="card">
+                            <?php foreach ($prod as $row) {
+                                echo "<img src=\"../Backend/image/{$row['product_imgFace']}\" class=\"image1 img\">";
+                                echo "<img src=\"../Backend/image/{$row['elastic_img']}\" class=\"image2 img\" >";
+                            } ?>
+                            <canvas id="gameCanvas" width="320" height="480"></canvas>
+                        </div>
                     </div>
                     <div class="card" id="result">
 
@@ -136,7 +152,7 @@ $listeElastique = $elastic1C->afficherElastiques();
                         <br>
                         <div class="col-12">
                             <div id="output" class="color-choose">
-                        
+
                             </div>
                         </div>
                         <div class="col-12">
@@ -174,7 +190,7 @@ $listeElastique = $elastic1C->afficherElastiques();
                                     <center>
                                         <div class="col-6">
                                             <label><span class="input-group-text" id="addon-wrapping">Write Something</span></label>
-                                            <input type="text" name="perso-text">
+                                            <input type="text" id="your-words" onkeyup="inputText()">
                                         </div>
                                         <br>
                                         <div class="col-6">
@@ -191,10 +207,15 @@ $listeElastique = $elastic1C->afficherElastiques();
                         <br>
                         <div class="col-12 buy-button">
                             <div>
-                                <form method="POST" action="AjouterPanier.php?id=<?php echo $_GET['id']; ?>">
-                                    <input hidden type="number" name="qte" value="1">
-                                    <button class="btn btn-success btn-lg btn-block" type="submit" name="ajouter" value="ajouter">Buy me</button>
-                                </form>
+                                <?php if (isset($_SESSION['login'])) : ?>
+                                    <form method="POST" action="AjouterPanier.php?id=<?php echo $_GET['id']; ?>">
+                                        <input hidden type="number" name="qte" value="1">
+                                        <button class="btn btn-success btn-lg btn-block" type="submit" name="ajouter" value="ajouter">Buy me</button>
+                                    </form>
+                                <?php endif ?>
+                                <?php if (!isset($_SESSION['login'])) : ?>
+                                    <button class="btn btn-success btn-lg btn-block" name="ajouter" value="ajouter" onclick="popUp()">Buy me</button>
+                                <?php endif ?>
                             </div>
                         </div>
                     </div>
@@ -205,6 +226,30 @@ $listeElastique = $elastic1C->afficherElastiques();
     <script src="javaScript/change-elastic.js"></script>
     <script src="javaScript/live-search.js"></script>
     <script src="javaScript/search-suggest.js"></script>
+    <script type="text/javaScript">
+        window.onload = function (){
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        // adding text in canvas
+        
+        }
+
+        function inputText(){
+            var canvas = document.getElementById("gameCanvas");
+            var ctx = canvas.getContext("2d");
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            var font = "Aref Ruqaa";
+            var pixels = "50px";
+            var txt = document.getElementById("your-words").value;
+            var color = "brown";
+
+            ctx.font = pixels+" "+font;
+            ctx.fillStyle = color;
+            ctx.textAlign = "center";
+            ctx.fillText(txt, canvas.width/2,50);
+
+        }
+    </script>
 </body>
 
 </html>
