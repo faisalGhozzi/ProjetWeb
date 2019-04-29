@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if(!isset($_SESSION['login_id'])){
+		 header('Location: index.php');
+
+}
 	include "entites/client.php";
 	include "core/clientC.php";
 	 $clientF = new ClientF();
@@ -7,7 +12,6 @@ unset($_SESSION['Mpass']);
 
 if(isset($_POST['modifier']))
 {
-		
 	if(isset($_POST['oldpass']) and isset($_POST['newpass']))
 	{
 	 $oldpass = $_POST['oldpass'];
@@ -186,19 +190,6 @@ if(isset($_POST['modifier']))
                                                 <input type="password"  class="form-control"  name="newpass" id="newpass">
                                              </p>
                                           </div>
-										  
-										  <div class="col-md-12">
-                                             <p>
-                                                <label>Confirm New Password :</label>
-                                                <input type="password"  class="form-control"  name="newpassC" id="newpassC">
-                                             </p>
-                                          </div>
-                                       
-                                       
-                                       
-                                          
-                                       
-									   
 									    
                                           <div class="col-md-12">
                                              <p>

@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!isset($_SESSION['login_id'])){
+		 header('Location: index.php');
+
+}
 	include "entites/client.php";
 	include "core/clientC.php";
 	 $clientF = new ClientF();
