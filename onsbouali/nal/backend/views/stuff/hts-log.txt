@@ -1,0 +1,17 @@
+HTTrack3.49-2+htsswf+htsjava launched on Mon, 25 Feb 2019 18:01:18 at http://themescare.com/demos/seipkon-admin-template/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar +*http://themescare.com/demos/seipkon-admin-template/*
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f0#f -F  -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" http://themescare.com/demos/seipkon-admin-template/ -O1 "C:\Users\wejdene\Documents\admin\baby" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar +*http://themescare.com/demos/seipkon-admin-template/* )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+18:05:13	Warning: 	Retry after error -4 (No data (connection closed)) at link themescare.com/demos/seipkon-admin-template/assets/plugins/fonts/fontawesome-webfont3e6e.ttf?v=4.7.0 (from themescare.com/demos/seipkon-admin-template/assets/plugins/font-awesome/font-awesome.min.css)
+18:05:14	Warning: 	Retry after error -4 (No data (connection closed)) at link themescare.com/demos/seipkon-admin-template/assets/plugins/themify-icons/fonts/themify.svg?-fvbane (from themescare.com/demos/seipkon-admin-template/assets/plugins/themify-icons/themify-icons.css)
+18:05:14	Warning: 	Retry after error -4 (No data (connection closed)) at link themescare.com/demos/seipkon-admin-template/assets/plugins/summernote/css/font/summernote.woff?e557617934c52ea068954af79ed7c221 (from themescare.com/demos/seipkon-admin-template/assets/plugins/summernote/css/summernote.css)
+18:05:16	Warning: 	Retry after error -4 (No data (connection closed)) at link themescare.com/demos/seipkon-admin-template/assets/img/product/pro-4.png (from themescare.com/demos/seipkon-admin-template/product.html)
+18:05:18	Warning: 	Retry after error -4 (No data (connection closed)) at link themescare.com/demos/seipkon-admin-template/assets/img/mail_attachment.jpg (from themescare.com/demos/seipkon-admin-template/mail-read.html)
+18:05:33	Warning: 	Retry after error -4 (No data (connection closed)) at link themescare.com/demos/seipkon-admin-template/assets/img/gallery/gallery-6.jpeg (from themescare.com/demos/seipkon-admin-template/gallery.html)
+
+HTTrack Website Copier/3.49-2 mirror complete in 4 minutes 25 seconds : 193 links scanned, 186 files written (12203465 bytes overall) [6564641 bytes received at 24772 bytes/sec], 8074149 bytes transferred using HTTP compression in 122 files, ratio 29%, 6.4 requests per connection
+(No errors, 6 warnings, 0 messages)
