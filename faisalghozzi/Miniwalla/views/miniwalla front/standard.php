@@ -1,6 +1,8 @@
 <?PHP
 include_once "../../core/productC.php";
 
+session_start();
+
 $product1C = new ProductC();
 $listeProducts = $product1C->afficherProduitAvecElastic();
 ?>
@@ -30,14 +32,21 @@ $listeProducts = $product1C->afficherProduitAvecElastic();
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="index.html"><img id="logo" src="images/logoWhite.png"></a>
+                <a class="navbar-brand" href="index.php"><img id="logo" src="images/logoWhite.png"></a>
+                <?php if (isset($_SESSION['login'])) : ?>
+                    <center><span class="welcome">Welcome <?php echo $_SESSION['name']; ?></span></center>
+                <?php endif ?>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a href="#" id="pop-up-button" onclick="popUp()">Sign in</a></li>
-                        <li class="nav-item">
+                        <?php if (isset($_SESSION['login'])) : ?>
+                            <li class="nav-item"><a href="signout.php" id="pop-up-button">Sign out</a></li>
+                        <?php endif ?>
+                        <?php if (!isset($_SESSION['login'])) : ?>
+                            <li class="nav-item"><a href="#" id="pop-up-button" onclick="popUp()">Sign in</a></li>
+                        <?php endif ?> <li class="nav-item">
                             <div class="dropdown">
                                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wallets </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -48,9 +57,9 @@ $listeProducts = $product1C->afficherProduitAvecElastic();
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item"><a href="Phonecase.html">Phone Case</a></li>
-                        <li class="nav-item"><a href="contact.html">Contact</a></li>
-                        <li class="nav-item"><a href="about.html">About Us</a></li>
+                        <li class="nav-item"><a href="Phonecase.php">Phone Case</a></li>
+                        <li class="nav-item"><a href="contact.php">Contact</a></li>
+                        <li class="nav-item"><a href="about.php">About Us</a></li>
                         <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
@@ -62,27 +71,27 @@ $listeProducts = $product1C->afficherProduitAvecElastic();
         <section class="container-fluid">
             <section class="row justify-content-center">
                 <section class="col-12 col-sm-6 col-md-6 col-lg-4">
-                    <form id="zoom-in-effect" class="form-container">
+                    <form id="zoom-in-effect" class="form-container" method="POST" action="login.php">
                         <div id="close" onclick="closePopUp()">+</div>
                         <div class="form-group">
                             <img class="logofull" src="images/logo-full.png">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                                 else.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pass">
                             <a href="#" class="normal"><small id="passwordHelp">Forgot password?</small></a>
                         </div>
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Stay connected</label>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block submit-btn">Submit</button>
+                        <button type="submit" name="submit" class="btn btn-primary btn-block submit-btn">Submit</button>
                         <hr>
                         <a class="btn btn-primary btn-block new-btn" href="signup.html">Create new account</a>
                     </form>
@@ -96,28 +105,28 @@ $listeProducts = $product1C->afficherProduitAvecElastic();
             foreach ($listeProducts as $row) {
                 if ($row['category_id'] == 1) {
                     ?>
-            <form method="POST" action="buyPage.php?id=<?php echo $row['product_id']?>">
-                <div class="col-12 col-sm-12 col-md-6 col-lg-3">
-                    <div class="card">
-                        <div class="front">
-                            <?PHP echo "<img src=\"../Backend/image/{$row['product_imgFace']}\" class=\"image1\">" ?>
-                            <?PHP echo "<img src=\"../Backend/image/{$row['elastic_img']}\" class=\"image2\" >" ?>
+                    <form method="POST" action="buyPage.php?id=<?php echo $row['product_id'] ?>">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+                            <div class="card">
+                                <div class="front">
+                                    <?PHP echo "<img src=\"../Backend/image/{$row['product_imgFace']}\" class=\"image1\">" ?>
+                                    <?PHP echo "<img src=\"../Backend/image/{$row['elastic_img']}\" class=\"image2\" >" ?>
+                                </div>
+                                <div class="back">
+                                    <?PHP echo "<img src=\"../Backend/image/{$row['product_imgTail']}\" class=\"image1\">" ?>
+                                    <?PHP echo "<img src=\"../Backend/image/{$row['elastic_img']}\" class=\"image2\">" ?>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary pick-me" value="submit">Pick Me</button>
                         </div>
-                        <div class="back">
-                            <?PHP echo "<img src=\"../Backend/image/{$row['product_imgTail']}\" class=\"image1\">" ?>
-                            <?PHP echo "<img src=\"../Backend/image/{$row['elastic_img']}\" class=\"image2\">" ?>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary pick-me" value="submit">Pick Me</button>
-                </div>
-            </form>
-        <?PHP 
-    }
-}
-?>
-    </div>
+                    </form>
+                <?PHP
+            }
+        }
+        ?>
+        </div>
     </div>
 
 </body>
 
-</html> 
+</html>
