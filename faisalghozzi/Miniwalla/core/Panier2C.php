@@ -1,6 +1,6 @@
 <?PHP
 include_once "../../config.php";
-include_once "../../entities/Panier2.php"; 
+include_once "../../entites/Panier2.php"; 
 
 class PanierC{
 

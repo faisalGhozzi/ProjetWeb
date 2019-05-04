@@ -25,16 +25,24 @@ session_start();
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.php"><img id="logo" src="images/logoWhite.png"></a>
-                <?php if (isset($_SESSION['login'])) : ?>
-                    <center><span class="welcome">Welcome <?php echo $_SESSION['name']; ?></span></center>
-                <?php endif ?>
+                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <?php if (isset($_SESSION['login'])) : ?>
-                            <li class="nav-item"><a href="signout.php" id="pop-up-button">Sign out</a></li>
+                            <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['name'];?>'s Settings   </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="standard.php">Profile</a>
+                                <a class="dropdown-item" href="ethnic.php">Order</a>
+                                <a class="dropdown-item" href="secret message.php">Delivery</a>
+                                <a class="dropdown-item" href="signout.php">Sign out</a>
+                            </div>
+                        </div>
+                    </li>
                         <?php endif ?>
                         <?php if (!isset($_SESSION['login'])) : ?>
                             <li class="nav-item"><a href="#" id="pop-up-button" onclick="popUp()">Sign in</a></li>

@@ -3,11 +3,10 @@ include_once "../../config.php";
 class productC{
 
     function ajouterProduit($product){
-        $sql="INSERT INTO PRODUCT (product_id,product_imgFace,product_imgTail,product_price,product_promotion,category_id,elastic_id) VALUES(:id, :imgFace, :imgTail, :price, :promotion, :cid, :eid)";
+        $sql="INSERT INTO PRODUCT (product_imgFace,product_imgTail,product_price,product_promotion,category_id,elastic_id) VALUES(:imgFace, :imgTail, :price, :promotion, :cid, :eid)";
         $db = config::getConnexion();
         try{
             $req=$db->prepare($sql);
-            $id=$product->getproduct_id();
             $imgFace=$product->getproduct_imgFace();
             $imgTail=$product->getproduct_imgTail();
             $price=$product->getproduct_price();
@@ -15,7 +14,6 @@ class productC{
             $cid=$product->getcategory_id();
             $eid=$product->getelastic_id();
 
-            $req->bindValue(':id',$id);
             $req->bindValue(':imgFace',$imgFace);
             $req->bindValue(':imgTail',$imgTail);
             $req->bindValue(':price',$price);
@@ -104,7 +102,7 @@ class productC{
     }
 
     function recupererProduits($id){
-		$sql="SELECT * from PRODUCTS where product_id=$id";
+		$sql="SELECT * from PRODUCT where product_id=$id";
 		$db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);

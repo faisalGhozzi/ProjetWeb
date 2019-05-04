@@ -1,7 +1,10 @@
 <?PHP
-include_once "../../entities/service.php";
-include_once "../../core/serviceC.php"; 
-
+include "../../entites/service.php";
+include "../../core/serviceC.php";
+session_start();
+if (!isset($_SESSION['user_id'])) {
+	header('Location: login.php');
+ }
 
 if (isset($_POST['id']) and isset($_POST['type']) and isset($_POST['numero']))
 {  

@@ -3,14 +3,12 @@ include_once "C:/xampp/htdocs/Miniwalla/config.php";
 class ElasticC{
 
     function ajouterElastique($elastic){
-        $sql="INSERT INTO ELASTIC (elastic_id,elastic_img,elastic_name) VALUES (:id, :img, :nom)";
+        $sql="INSERT INTO ELASTIC (elastic_img,elastic_name) VALUES (:img, :nom)";
         $db = config::getConnexion();
         try{
             $req=$db->prepare($sql);
-            $id=$elastic->getelastic_id();
             $img=$elastic->getelastic_img();
             $nom=$elastic->getelastic_name();
-            $req->bindValue(':id',$id);
             $req->bindValue(':img',$img);
             $req->bindValue(':nom',$nom);
 
@@ -44,12 +42,11 @@ class ElasticC{
     }
 
     function modifierElastique($elastic,$id){
-        $sql="UPDATE ELASTIC SET elastic_id=:id, elastic_img=:img, elastic_name=:nom WHERE elastic_id=:id";
+        $sql="UPDATE ELASTIC SET elastic_img=:img, elastic_name=:nom WHERE elastic_id=:id";
         $db = config::getConnexion();
 
         try{
             $req=$db->prepare($sql);
-            $id=$elastic->getelastic_id();
             $img=$elastic->getelastic_img();
             $nom=$elastic->getelastic_name();
             $datas = array(':id'=>$id,':img'=>$img, ':nom'=>$nom);
