@@ -20,28 +20,85 @@
     <section class="container-fluid">
         <section class="row justify-content-center">
             <section class="col-12 col-sm-6 col-md-6 col-lg-4">
-                <form name="myForm" class="form-container">
+                <form name="myForm" class="form-container" action="signup.php" method="POST">
                     <div class="form-group">
                         <a href="index.php"><img class="logofull" src="images/logo-full.png"></a>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputName1">Full Name</label>
-                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Enter name" name="nom" required>
+					
+					<div class="form-group">
+                        <label for="exampleInputName2">First Name</label>
+                        <input type="text" class="form-control" id="exampleInputName2" placeholder="Enter First Name" name="firstName" required>
                     </div>
+					
+					<div class="form-group">
+                        <label for="exampleInputName3">Last Name</label>
+                        <input type="text" class="form-control" id="exampleInputName3" placeholder="Enter Last Name" name="lastName" required>
+                    </div>
+					
                     <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" required>
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pwd" required>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" required>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Confirm password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" name="pwdchk" required>
+					
+					<div class="form-group">
+                        <label for="exampleInputName4">Adress</label>
+                        <input type="text" class="form-control" id="exampleInputName4" placeholder="Enter Adress" name="adress" required>
                     </div>
-                    <button type="button" class="btn btn-primary btn-block" onclick="validateForm()">Submit</button>
+					
+					<div class="form-group">
+						<label for="exampleInputName6">Gouvernorat </label>
+                                              <select class="browser-default custom-select" id="exampleInputName6" name="gov">
+												<option>Tunis</option>
+												<option>Bizerte</option>
+												<option>Ariana</option>
+												<option>Mennouba</option>
+												<option>Ben Arous</option>
+												<option>Jendouba</option>
+												<option>Béja</option>
+												<option>Le Kef</option>
+												<option>Sidi Bouzid</option>
+												<option>Mahdia</option>
+												<option>Kasserine</option>
+												<option>Kairouan</option>
+												<option>Gafsa</option>
+												<option>Nabeul</option>
+												<option>Sousse</option>
+												<option>Monastir</option>
+												<option>Mahdia</option>
+												<option>Medenine</option>
+												<option>Tataouine</option>
+												<option>Tozeur</option>
+												<option>Kebili</option>
+												<option>Zaghouan</option>
+												<option>Sfax</option>
+												<option>Gabes</option>
+											</select>
+                    </div>
+					
+					<div class="form-group">
+                        <label for="exampleInputName7">Phone Number</label>
+                        <input type="text" class="form-control" id="exampleInputName7" placeholder="Enter Phone number" name="Num_Tel" required>
+                    </div>
+					
+					
+					
+					<div class="form-group">
+                        <label for="exampleInputName8">Gender</label>
+						<select class="browser-default custom-select" name="gender" id="exampleInputName8" style="width: 200px;">
+												<option selected>Male</option>
+												<option>Female</option>
+												</select>
+                    </div>
+					
+					
+					
+                    <!--<button name="add" type="button" class="btn btn-primary btn-block">Submit</button>-->
+					<input type="submit" name="add" value="Ajouter" class="btn btn-primary btn-block">
                 </form>
             </section>
         </section>

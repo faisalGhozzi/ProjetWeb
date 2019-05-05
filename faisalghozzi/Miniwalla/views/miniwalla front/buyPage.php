@@ -60,7 +60,8 @@ $listeElastique = $elastic1C->afficherElastiques();
                         <div class="dropdown">
                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['name'];?>'s Settings   </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="standard.php">Profile</a>
+                                  <a class="dropdown-item" href="Profile.php">Profile</a>
+                                        <a class="dropdown-item" href="ModifyPass.php">Change Password</a>
                                 <a class="dropdown-item" href="ethnic.php">Order</a>
                                 <a class="dropdown-item" href="secret message.php">Delivery</a>
                                 <a class="dropdown-item" href="signout.php">Sign out</a>

@@ -5,19 +5,22 @@ include_once "../../entites/Panier2.php";
 class PanierC{
 
     function ajouterPanier($Panier){
-        $sql="INSERT INTO panier (id_panier,qte,product_id) VALUES(:id_panier, :qte, :id_pro)";
+        $sql="INSERT INTO panier (id_panier,qte,product_id,product_img,product_second_img) VALUES(:id_panier, :qte, :id_pro, :product_img, :product_sec)";
         $db = config::getConnexion();
         try{
             $req=$db->prepare($sql);
             $id_panier=$Panier->getid_panier();
             $qte=$Panier->getqte();
             $id_pro=$Panier->getproduct_id();
-          
+            $product_img=$Panier->getProduct_img();
+            $product_sec=$Panier->getProduct_second_img();
 
             $req->bindValue(':id_panier',$id_panier);
             $req->bindValue(':qte',$qte);
             $req->bindValue(':id_pro',$id_pro);
-         
+            $req->bindValue(':product_img',$product_img);
+            $req->bindValue(':product_sec',$product_sec);
+
             $req->execute();
         }catch(Exception $e){
             echo 'Erreur: '.$e->getMessage();
