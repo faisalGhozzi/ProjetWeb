@@ -14,6 +14,8 @@ header("location:  acceuil.php"); // Redirecting To Profile Page
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="js/connexion.js"></script>
+ <script src="js/vsignup.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -39,16 +41,16 @@ header("location:  acceuil.php"); // Redirecting To Profile Page
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName1">Username</label>
-                        <input  type="text" name="username" placeholder="Enter name" name="nom" >
+                        <input  type="text" name="username" class="form-control"  placeholder="Enter name"  >
                     </div>
                     
                     <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input  type="password" name="password" class="form-control"  placeholder="Password" name="pwd" >
+                    <input  type="password" name="password" class="form-control"  placeholder="Password"  >
                     </div>
                     
                     
-                    <input name="submit" type="submit" value="login" class="btn btn-primary btn-block">
+                    <input name="submit" type="submit" value="login" class="btn btn-primary btn-block" onclick="test()">
                
                 </form>
             </section>

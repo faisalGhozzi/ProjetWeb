@@ -19,7 +19,7 @@ if(isset($_SESSION['user']) and $_SESSION['user']=="sarra"){
       <meta name="keywords" content="admin template, admin, admin dashboard, cms, Seipkon Admin, premium admin templates, responsive admin, panel, software, ui, web app, application" />
       <meta name="author" content="Themescare">
       <!-- Title -->
-      <title>Seipkon - Bootstrap Admin Template</title>
+      <title>MiniWalla - Admin Template</title>
       <!-- Favicon -->
       <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
       <!-- Animate CSS -->
@@ -65,7 +65,7 @@ if(isset($_SESSION['user']) and $_SESSION['user']=="sarra"){
             <!-- Logo Start -->
             <div class="seipkon-logo">
                <a href="index-2.html">
-               <img src="assets/img/logo.png" alt="logo">
+               <img src="assets/img/miniwalla.png" alt="logo">
                </a>
             </div>
             <!-- Logo End -->
@@ -285,9 +285,9 @@ if(isset($_SESSION['user']) and $_SESSION['user']=="sarra"){
                            <!-- Profile Toggle Start -->
                            <li class="dropdown">
                               <a class="dropdown-toggle profile-toggle" href="#" data-toggle="dropdown">
-                                 <img src="assets/img/avatar.jpg" class="profile-avator" alt="admin profile" />
+                                 <img src="assets/img/karim.jpg" class="profile-avator" alt="admin profile" />
                                  <div class="profile-avatar-txt">
-                                    <p>Jhon Doe</p>
+                                    <p>Karim ben tarjem</p>
                                     <i class="fa fa-angle-down"></i>
                                  </div>
                               </a>
@@ -558,9 +558,11 @@ if(isset($_SESSION['user']) and $_SESSION['user']=="sarra"){
                      <div class="col-md-12">
                         <div class="page-box">
                            <div class="datatables-example-heading">
-                              <h3>Liste des commandes. .</h3>
+                              <h3>Liste des commandes</h3>
                            </div>
-                           <p></p>
+                          <form action="pdff.php" method="post">  
+                          <input type="submit" name="create_pdf" class="btn btn-danger" value="Create PDF" />  
+                     </form>  
                            <form id="d" action="afficherReclamation.php" method="POST">
                            <div class="table-responsive advance-table">
                               <table id="datatables_example_1" class="table display table-bordered">
@@ -629,7 +631,7 @@ foreach($listeEmployes as $row){
          </section>
             <!-- Footer Area Start -->
             <footer class="seipkon-footer-area">
-               <p>Seipkon - Bootstrap Admin Template by <a href="#">Themescare</a></p>
+               <p>Miniwalla - Bootstrap Admin Template by <a href="#">Themescare</a></p>
             </footer>
             <!-- End Footer Area -->
              

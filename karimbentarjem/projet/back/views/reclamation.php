@@ -20,7 +20,7 @@ if(isset($_SESSION['user']) and $_SESSION['user']=="sarra"){
       <meta name="keywords" content="admin template, admin, admin dashboard, cms, Seipkon Admin, premium admin templates, responsive admin, panel, software, ui, web app, application" />
       <meta name="author" content="Themescare">
       <!-- Title -->
-      <title>Seipkon - Bootstrap Admin Template</title>
+      <title>MiniWalla - Admin Template</title>
       <!-- Favicon -->
       <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
       <!-- Animate CSS -->
@@ -66,7 +66,7 @@ if(isset($_SESSION['user']) and $_SESSION['user']=="sarra"){
             <!-- Logo Start -->
             <div class="seipkon-logo">
                <a href="index-2.html">
-               <img src="assets/img/logo.png" alt="logo">
+               <img src="assets/img/miniwalla.png" alt="logo">
                </a>
             </div>
             <!-- Logo End -->
@@ -124,7 +124,7 @@ if(isset($_SESSION['user']) and $_SESSION['user']=="sarra"){
                                                 <span class="online-message"></span>
                                              </div>
                                              <div class="message-txt">
-                                                <h4>Dkarim ben tarjem</h4>
+                                                <h4>karim ben tarjem</h4>
                                                 <p>I like your portfolio, let's start.</p>
                                                 <span>56 seconds ago</span>
                                              </div>
@@ -280,7 +280,7 @@ if(isset($_SESSION['user']) and $_SESSION['user']=="sarra"){
                            <!-- Profile Toggle Start -->
                            <li class="dropdown">
                               <a class="dropdown-toggle profile-toggle" href="#" data-toggle="dropdown">
-                                 <img src="assets/img/avatar.jpg" class="profile-avator" alt="admin profile" />
+                                 <img src="assets/img/karim.jpg" class="profile-avator" alt="admin profile" />
                                  <div class="profile-avatar-txt">
                                     <p>Karim ben tarjem</p>
                                     <i class="fa fa-angle-down"></i>
@@ -315,7 +315,7 @@ if(isset($_SESSION['user']) and $_SESSION['user']=="sarra"){
                <!-- Sidebar Profile Start -->
                <div class="sidebar-profile clearfix">
                   <div class="profile-avatar">
-                     <img src="assets/img/avatar.jpg" alt="profile" />
+                     <img src="assets/img/karim.jpg" alt="profile" />
                   </div>
                   <div class="profile-info">
                      <h3>karim ben tarjem</h3>
@@ -532,7 +532,7 @@ if(isset($_SESSION['user']) and $_SESSION['user']=="sarra"){
                            <div class="row">
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-left">
-                                    <h3>Liste des reclamations!!</h3>
+                                    <h3>Liste des reclamations</h3>
                                  </div>
                               </div>
                               <div class="col-md-6 col-sm-6">
@@ -553,7 +553,7 @@ if(isset($_SESSION['user']) and $_SESSION['user']=="sarra"){
                      <div class="col-md-12">
                         <div class="page-box">
                            <div class="datatables-example-heading">
-                              <h3>Liste des client qui ont passé une reclamation .</h3>
+                              <h3>Liste des client qui ont passé une reclamation </h3>
                            </div>
                            <p></p>
                            <form id="d" action="afficherReclamation.php" method="POST">
@@ -621,7 +621,7 @@ foreach($listeReclamations as $row){
          </section>
             <!-- Footer Area Start -->
             <footer class="seipkon-footer-area">
-               <p>Seipkon - Bootstrap Admin Template by <a href="#">Themescare</a></p>
+               <p>MiniWalla - Bootstrap Admin Template by <a href="#">Themescare</a></p>
             </footer>
             <!-- End Footer Area -->
              

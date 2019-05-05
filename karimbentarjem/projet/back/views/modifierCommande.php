@@ -29,8 +29,11 @@
       <link rel="stylesheet" href="assets/css/seipkon.css">
       <!-- Responsive CSS -->
       <link rel="stylesheet" href="assets/css/responsive.css">
+
    </head>
+
 <body data-background="images/image1.jpg">
+
 	<!-- Add Product Area Start -->
                   <div class="row">
                      <div class="col-md-12">
@@ -64,19 +67,19 @@ if (isset($_GET['reference'])){
 <caption>Modifier Commande</caption>
 <tr>
 <td>Reference</td>
-<td><input type="number" name="reference" value="<?PHP echo $reference ?>"></td>
+<td><input type="number" name="reference" required value="<?PHP echo $reference ?>"></td>
 </tr>
 <tr>
 <td>Nom</td>
-<td><input type="text" name="nom" value="<?PHP echo $nom ?>"></td>
+<td><input type="text" name="nom" required value="<?PHP echo $nom ?>"></td>
 </tr>
 <tr>
 <td>mail</td>
-<td><input type="text" name="mail" value="<?PHP echo $mail ?>"></td>
+<td><input type="mail" name="mail" required placeholder="server@exemple.com" value="<?PHP echo $mail ?>"></td>
 </tr>
 <tr>
 <td>telephone</td>
-<td><input type="number" name="telephone" value="<?PHP echo $telephone ?>"></td>
+<td><input type="number" name="telephone" required value="<?PHP echo $telephone ?>"></td>
 </tr>
 <tr>
 <td>date</td>
@@ -120,70 +123,7 @@ if (isset($_POST['modifier'])){
                   <!-- End Add Product Area -->
                    
 </body>
-<footer class="ps-footer">
-      <div class="ps-footer__content">
-        <div class="ps-container">
-          <div class="row">
-            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 ">
-              <div class="ps-site-info"><a class="ps-logo" href="index-2.html"></a>
-               
-                <ul class="ps-list--social">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 ">
-              <form class="ps-form--subscribe-offer" action="http://warethemes.com/html/bready/do_action" method="post">
-                <h4>Get news & offer</h4>
-                <div class="form-group">
-                  <input class="form-control" type="text" placeholder="Your Email...">
-                  <button>Subscribe</button>
-                </div>
-                <p>* Don't worry, we never spam</p>
-              </form>
-              <div class="ps-footer__contact">
-                <h4>Contact with me</h4>
-                <p>PO Box 16122 Collins Street West,Victoria 8007 Australia</p>
-                <P>(+84 ) 7534 9773, (+84 ) 874 548</P>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 ">
-              <div class="ps-footer__open">
-                <h4>Time to Open</h4>
-                <p>
-                  Lundi - Vendredi: <br>08h00  - 20h30 <br>
-                  Samedi - Dimanche:<br>
-                  10h00 - 16h30
-                </p>
-              </div>
-              <ul class="ps-list--payment">
-                <li><a href="#"><img src="images/payment/1.png" alt=""></a></li>
-                <li><a href="#"><img src="images/payment/2.png" alt=""></a></li>
-                <li><a href="#"><img src="images/payment/3.png" alt=""></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="ps-footer__copyright">
-        <div class="container">
-          <p>
-            ©  Copyright by <strong>MinniWalla Store</strong>. </p>
-        </div>
-      </div>
-    </footer>
-    <div id="back2top"><i class="fa fa-angle-up"></i></div>
-    <div class="ps-loading">
-      <div class="rectangle-bounce">
-        <div class="rect1"></div>
-        <div class="rect2"></div>
-        <div class="rect3"></div>
-        <div class="rect4"></div>
-        <div class="rect5"></div>
-      </div>
-    </div>
+
     <!-- Plugins-->
     <script src="plugins/jquery/dist/jquery.min.js"></script>
     <script src="plugins/bootstrap/dist/js/bootstrap.min.js"></script>

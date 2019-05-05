@@ -12,7 +12,7 @@ var_dump($employe1);
 //Partie3
 $reclamation1R=new ReclamationR();
 $reclamation1R->ajouterReclamation($reclamation1);
-header('Location: ajouterReclamation.php');
+header('Location: verifierajout.php');
 	
 }else{
 	echo "vérifier les champs";

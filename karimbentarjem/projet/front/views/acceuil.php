@@ -34,7 +34,6 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="logout.php" id="pop-up-button" onclick="popUp()">Logout</a></li>
                     <li class="nav-item">
                         <div class="dropdown">
                             <a class="dropdown-toggle" href="wallets.html" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portefeuilles   </a>
@@ -56,8 +55,9 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
                             </div>
                         </li>
                     <li class="nav-item"><a href="about.html" >About Us</a></li>
-                    <li class="nav-item"><a href="panier.html">Panier<i class="fas fa-shopping-cart"></i></a></li>
-                    <li class="nav-item"><a href="ajouterCommande.php">Commande<i class="fas fa-shopping-cart"></i></a></li>
+                    <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
+                    <li class="nav-item"><a href="logout.php" id="pop-up-button" onclick="popUp()">Logout<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i></a></li>
+
 
 
                 </ul>

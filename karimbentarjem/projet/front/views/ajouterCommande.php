@@ -41,7 +41,6 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="logout.php" id="pop-up-button" onclick="popUp()">Logout</a></li>
                     <li class="nav-item">
                             <div class="dropdown">
                                 <a class="dropdown-toggle" href="wallets.html" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portefeuilles   </a>
@@ -63,8 +62,9 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
                             </div>
                         </li>
                     <li class="nav-item"><a href="about.html">About Us</a></li>
-                    <li class="nav-item"><a href="panier.html">Panier<i class="fas fa-shopping-cart"></i></a></li>
-                    <li class="nav-item"><a href="ajouterCommande.php">Commande<i class="fas fa-shopping-cart"></i></a></li>
+                    <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
+                    <li class="nav-item"><a href="ajouterCommande.php">Commande <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj48ZyBmaWxsPSIjMkQyRDJEIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGwtcnVsZT0ibm9uemVybyIgZD0iTTE4IDQuNjY3TDE2IDJINEwyIDQuNjY3VjE4aDE2VjQuNjY3ek0wIDRsMy00aDE0bDMgNHYxNkgwVjR6Ii8+PHBhdGggZD0iTTAgNGgyMHYySDB6Ii8+PHBhdGggZD0iTTkgMS4xMTFoMnY0SDl6Ii8+PC9nPjwvc3ZnPg==" alt="" class="_3k0M8OWUnx2v2WhFad8EVE Vr0gnVFfT2flBpFI6v5Wa" role="presentation" height="20" width="15"></a></li>
+                    <li class="nav-item"><a href="logout.php" id="pop-up-button" onclick="popUp()">Logout<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i></a></li>
 
                 </ul>
             </div>
@@ -80,22 +80,50 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
                         <div class="page-box">
                            <div class="row">
                               <div class="col-md-6 col-sm-6">
-                                 <div class="add-product-form-group" >
-                                    <h3>Passer une commande !!!</h3>
+                                 <div class="add-product-form-group" >                       
+                                    <h3>Passer une commande</h3><br>
+                                    <div>     <h3>Prix Total De la Commande: <span id="totalPrix">
+                  <?php 	
+                   include("C:\wamp64\www\projet\Front\Entities\Panier2.php");
+                  include ("C:\wamp64\www\projet\Front\core\Panier2C.php");
+                  $m = new PanierC();
+                  echo $m->MontontTotal();?> $</span></h3></div>
+
                                     <form action="ajoutCommande.php" method="POST">
                                        <div class="row">
                                           <div class="col-md-12">
                                              <p>
                                                 <label>*La reference de la commande</label>
-                                                <input  name="reference" type="number" placeholder="Entrer votre reference">
+                                                <div class="form-group__content">
+                                                    <select class="form-control" name="reference" id="exampleSelectGender" >
+  //Il ne manque pas quelque chose dans ton select ? Genre le nom du champs ?
+<?php
+$db = mysql_connect('localhost', 'root', '') or exit(mysql_error());// on sélectionne la base
+mysql_select_db('projet2e',$db) or exit(mysql_error());
+ 
+ 
+$sql = "SELECT id_panier FROM panier";
+$res = mysql_query($sql) or exit(mysql_error());
+while($data=mysql_fetch_array($res)) {
+   echo '<option>'.$data["id_panier"].'</option><br/>'; //Attention à ne pas oublier le . qui sert à concaténer ton expression
+}
+ 
+// on ferme la connexion à mysql
+mysql_close(); //Facultatif, source de bug sur certaines versions de Wamp
+?>
+   
+                                                    </select>
+                                                  </div>
                                              </p>
                                           </div>
                                        </div>
+                                   
                                        <div class="row">
                                           <div class="col-md-12" >
                                              <p>
                                                 <label>*Nom </label>
-                                                <input  name="nom"  type="text" placeholder="Entrer votre nom ">
+                                                <input  name="nom"  type="text" placeholder="Entrer votre nom " required>
+                                                <span id='missPrenom'></span>
                                              </p>
                                           </div>
                                        </div>
@@ -104,7 +132,7 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
                                           <div class="col-md-12">
                                              <p>
                                                 <label>E-Mail</label>
-                                                <textarea  name="mail" type="email" placeholder="Entrer votre adresse email." ></textarea>
+                                                <input type="email" name="mail"  placeholder="Entrer votre adresse email."></input>
                                              </p>
                                           </div>
                                        </div>
@@ -113,7 +141,8 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
                                           <div class="col-md-12" >
                                              <p>
                                                 <label>*Télèphone</label>
-                                                <input  name="telephone" type="number" placeholder="Entrer votre numéro.">
+                                                <input  name="telephone" type="number" placeholder="Entrer votre numéro." required>
+                                                  <span id='missPrenom'></span>
                                              </p>
                                           </div>
                                        </div>
@@ -139,14 +168,13 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
                                        <div class="row">
                                           <div class="col-md-12">
                                              <p>
-                                                <button type="submit" class="btn btn-success" >
+                                                <button type="submit" class="btn btn-success" id="ajouter" >
                                                 <i class="fa fa-check"></i>
                                                 Ajouter
                                                 </button>
-                                                <button type="submit" class="btn btn-danger" >
-                                                <i class="fa fa-times"></i>
-                                                Cancel
-                                                </button>
+
+                                              
+                                                
                                              </p>
                                           </div>
                                        </div>
@@ -158,7 +186,22 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
                         </div>
                      </div>
                   </div>
-               
+               <script>
+            var formValid = document.getElementById('ajouter');
+            var reference = document.getElementById('reference');
+            var nom = document.getElementById('nom');
+            var telephone = document.getElementById('telephone');
+            var missPrenom = document.getElementById('missPrenom');
+            
+            formValid.addEventListener('click', validation);
+            
+            function validation(event){
+                //Si le champ est vide
+                if (((reference.validity.valueMissing)&&(nom.validity.valueMissing)&&(telephone.validity.valueMissing))){
+                    event.preventDefault();
+                }
+            }
+        </script>
                 
                 <!-- End Add Product Area -->
              

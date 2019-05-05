@@ -19,7 +19,7 @@ header("location:  commandeB.php"); // Redirecting To Profile Page
       <meta name="keywords" content="admin template, admin, admin dashboard, cms, Seipkon Admin, premium admin templates, responsive admin, panel, software, ui, web app, application" />
       <meta name="author" content="Themescare">
       <!-- Title -->
-      <title>Seipkon - Bootstrap Admin Template</title>
+      <title>MiniWalla -Admin Template</title>
       <!-- Favicon -->
       <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
       <!-- Animate CSS -->
@@ -54,7 +54,7 @@ header("location:  commandeB.php"); // Redirecting To Profile Page
                <div class="col-md-4 col-sm-4">
                   <div class="login-page-logo">
                      <a href="index-2.html">
-                     <img src="assets/img/logo.png" alt="Seipkon Logo" />
+                     <img src="assets/img/miniwalla.png" alt="Seipkon Logo" />
                      </a>
                   </div>
                </div>

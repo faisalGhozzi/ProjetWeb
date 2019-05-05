@@ -42,7 +42,6 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="logout.php" id="pop-up-button" onclick="popUp()">Logout</a></li>
                     <li class="nav-item">
                             <div class="dropdown">
                                 <a class="dropdown-toggle" href="wallets.html" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portefeuilles   </a>
@@ -64,8 +63,8 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
                             </div>
                         </li>
                     <li class="nav-item"><a href="about.html">About Us</a></li>
-                    <li class="nav-item"><a href="panier.html">Panier<i class="fas fa-shopping-cart"></i></a></li>
-                    <li class="nav-item"><a href="ajouterCommande.php">Commande<i class="fas fa-shopping-cart"></i></a></li>
+                    <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
+                    <li class="nav-item"><a href="logout.php" id="pop-up-button" onclick="popUp()">Logout<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i></a></li>
 
                 </ul>
             </div>
@@ -85,18 +84,39 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
                                  <div class="add-product-form-group" >
                                     <h3>Passer une réclamation</h3>
                                     <form action="ajoutReclamation.php" method="POST">
+                                       
                                        <div class="row">
                                           <div class="col-md-12">
                                              <p>
                                                 <label>*L'identifiant du client</label>
-                                                <input  name="id_client" type="number" placeholder="Entrer votre identifiant" >
+                                                  <div class="form-group__content">
+                                                    <select class="form-control" name="id_client" id="exampleSelectGender" >
+  //Il ne manque pas quelque chose dans ton select ? Genre le nom du champs ?
+<?php
+$db = mysql_connect('localhost', 'root', '') or exit(mysql_error());// on sélectionne la base
+mysql_select_db('projet2e',$db) or exit(mysql_error());
+ 
+ 
+$sql = "SELECT id FROM clients";
+$res = mysql_query($sql) or exit(mysql_error());
+while($data=mysql_fetch_array($res)) {
+   echo '<option>'.$data["id"].'</option><br/>'; //Attention à ne pas oublier le . qui sert à concaténer ton expression
+}
+ 
+// on ferme la connexion à mysql
+mysql_close(); //Facultatif, source de bug sur certaines versions de Wamp
+?>
+   
+                                                    </select>
+                                                  </div>
                                              </p>
                                           </div>
                                        </div>
+                                       
                                        <div class="row">
                                           <div class="col-md-12" >
                                              <p>
-                                                <label>*Nom et Prénomt</label>
+                                                <label>*Nom et Prénom</label>
                                                 <input  name="pseudo"  type="text" placeholder="Entrer votre nom et prénom" required>
                                                 <span id='missPrenom'></span>
                                              </p>
@@ -107,7 +127,8 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
                                           <div class="col-md-12">
                                              <p>
                                                 <label>*Sujet de la réclamation</label>
-                                                <input  name="sujet" type="text" placeholder="Le sujet de votre reclamation.">
+                                                <input  name="sujet" type="text" placeholder="Le sujet de votre reclamation." required>
+                                                <span id='missPrenom'></span>
                                              </p>
                                           </div>
                                        </div>
@@ -116,7 +137,7 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
                                           <div class="col-md-12">
                                              <p>
                                                 <label>Description</label>
-                                                <textarea  name="description" type="text" placeholder="Réclamation" ></textarea>
+                                                <textarea  name="description" type="text" placeholder="Réclamation"  ></textarea>
                                              </p>
                                           </div>
                                        </div>
@@ -127,10 +148,7 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
                                                 <i class="fa fa-check" ></i>
                                                 Ajouter
                                                 </button>
-                                                <button type="submit" class="btn btn-danger" >
-                                                <i class="fa fa-times"></i>
-                                                Cancel
-                                                </button>
+                                                
                                              </p>
                                           </div>
                                        </div>
@@ -145,16 +163,16 @@ if(isset($_SESSION['login_user']) and $_SESSION['login_user']=="karim"){
                   <script>
             var formValid = document.getElementById('ajouter');
             var pseudo = document.getElementById('pseudo');
+            var sujet = document.getElementById('sujet');
+            var description = document.getElementById('description');
             var missPrenom = document.getElementById('missPrenom');
             
             formValid.addEventListener('click', validation);
             
             function validation(event){
                 //Si le champ est vide
-                if (prenom.validity.valueMissing){
+                if (((prenom.validity.valueMissing)&&(prenom.validity.valueMissing)&&(prenom.validity.valueMissing))){
                     event.preventDefault();
-                    missPrenom.textContent = 'pseudo manquant';
-                    missPrenom.style.color = 'red';
                 }
             }
         </script>
