@@ -49,16 +49,24 @@ $listeElastique = $elastic1C->afficherElastiques();
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.php"><img id="logo" src="images/logoWhite.png"></a>
-                <?php if (isset($_SESSION['login'])) : ?>
-                    <center><span class="welcome">Welcome <?php echo $_SESSION['name']; ?></span></center>
-                <?php endif ?>
+                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <?php if (isset($_SESSION['login'])) : ?>
-                            <li class="nav-item"><a href="signout.php" id="pop-up-button">Sign out</a></li>
+                            <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['name'];?>'s Settings   </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="standard.php">Profile</a>
+                                <a class="dropdown-item" href="ethnic.php">Order</a>
+                                <a class="dropdown-item" href="secret message.php">Delivery</a>
+                                <a class="dropdown-item" href="signout.php">Sign out</a>
+                            </div>
+                        </div>
+                    </li>
                         <?php endif ?>
                         <?php if (!isset($_SESSION['login'])) : ?>
                             <li class="nav-item"><a href="#" id="pop-up-button" onclick="popUp()">Sign in</a></li>
@@ -193,9 +201,28 @@ $listeElastique = $elastic1C->afficherElastiques();
                                             <input type="text" id="your-words" onkeyup="inputText()">
                                         </div>
                                         <br>
-                                        <div class="col-6">
+                                        <div class="col-12">
+                                            <input id="b" type="button" value="Save Example As"/>
+                                        </div>
+                                        <div class="col-12">
                                             <label><span class="input-group-text" id="addon-wrapping">Or send an image</span></label>
-                                            <input type="file" name="perso-image">
+                                            <img src="" style="display:none;" height="200" id="image">
+                                            <center><input class="btn btn-success btn-lg btn-block" type="file" name="img" onchange="showImage.call(this)"></center>
+                                                         <script>
+                                                               function showImage()
+                                                               {
+                                                                  if(this.files && this.files[0])
+                                                                  {
+                                                                     var obj = new FileReader();
+                                                                     obj.onload = function(data){
+                                                                           var image = document.getElementById("image");
+                                                                           image.src = data.target.result;
+                                                                           image.style.display = "block";
+                                                                     }
+                                                                     obj.readAsDataURL(this.files[0]);
+                                                                  }
+                                                               }
+                                                         </script> 
                                         </div>
                                     </center>
                                     <br>
@@ -226,13 +253,24 @@ $listeElastique = $elastic1C->afficherElastiques();
     <script src="javaScript/change-elastic.js"></script>
     <script src="javaScript/live-search.js"></script>
     <script src="javaScript/search-suggest.js"></script>
+    <script src="javaScript/canvas-toBlob.js"></script>
+    <script src="javaScript/fabric.min.js"></script>
+    <script src="javaScript/FileSaver.js"></script>
     <script type="text/javaScript">
-        window.onload = function (){
-        var canvas = document.getElementById("myCanvas");
-        var ctx = canvas.getContext("2d");
+        /*window.onload = function (){
+        var canvas = new fabric.Canvas('gameCanvas');
         // adding text in canvas
-        
-        }
+        fabric.image.fromURL('eth2Face.png',function(img){
+            img.setWidth(200);
+            img.setWidth(200);
+            canvas.add(img);
+        })
+        fabric.image.fromURL('brightPink.png',function(img2){
+            img2.setWidth(200);
+            img2.setWidth(200);
+            canvas.add(img2);
+        })
+        }*/
 
         function inputText(){
             var canvas = document.getElementById("gameCanvas");
@@ -241,14 +279,20 @@ $listeElastique = $elastic1C->afficherElastiques();
             var font = "Aref Ruqaa";
             var pixels = "50px";
             var txt = document.getElementById("your-words").value;
-            var color = "brown";
-
+            var color = "#c19a6b";
+            
             ctx.font = pixels+" "+font;
             ctx.fillStyle = color;
             ctx.textAlign = "center";
             ctx.fillText(txt, canvas.width/2,50);
 
         }
+
+        $("#b").click(function(){
+            $("#gameCanvas").get(0).toBlob(function(blob){
+                saveAs(blob, "img.png");
+            });
+        })
     </script>
 </body>
 

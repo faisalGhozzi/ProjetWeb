@@ -33,9 +33,7 @@ $listeProducts = $product1C->afficherProduitAvecElastic();
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.php"><img id="logo" src="images/logoWhite.png"></a>
-                <?php if (isset($_SESSION['login'])) : ?>
-                    <center><span class="welcome">Welcome <?php echo $_SESSION['name']; ?></span></center>
-                <?php endif ?>
+                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
                 </button>

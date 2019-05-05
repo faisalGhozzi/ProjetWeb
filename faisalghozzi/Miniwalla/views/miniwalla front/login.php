@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
 			foreach($liste as $client){
 			
 				$_SESSION['login'] = $client['id'];
-				$_SESSION['name'] = $client['first_name']." ".$client['last_name'];
+				$_SESSION['name'] = $client['last_name'];
 				
 				
 			

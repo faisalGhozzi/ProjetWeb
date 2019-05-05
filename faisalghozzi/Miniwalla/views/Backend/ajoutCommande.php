@@ -1,0 +1,25 @@
+<?PHP
+include "../../entites/commande.php";
+include "../../core/commandeC.php";
+session_start();
+if (!isset($_SESSION['user_id'])) {
+	header('Location: login.php');
+ }
+if (isset($_POST['reference']) and isset($_POST['nom']) and isset($_POST['mail']) and isset($_POST['telephone']) and isset($_POST['date']) and isset($_POST['adresse'])){
+$employe1=new commande($_POST['reference'],$_POST['nom'],$_POST['mail'],$_POST['telephone'],$_POST['date'],$_POST['adresse']);
+//Partie2
+/*
+var_dump($employe1);
+}
+*/
+//Partie3
+$employe1C=new CommandeC();
+$employe1C->ajouterEmploye($employe1);
+header('Location: afficherEmploye.php');
+	
+}else{
+	echo "vérifier les champs";
+}
+//*/
+
+?>

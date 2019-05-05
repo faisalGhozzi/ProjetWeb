@@ -2,20 +2,13 @@
 include_once "../../config.php";
 class CategoryC {
 
-	function afficherCategorie($category){
-		echo "ID Categorie: ".$category->getcategory_id()."<br>";
-		echo "Nom Categorie: ".$category->getcategory_name()."<br>";
-	}
-
 	function ajouterCategorie($category){
-		$sql="INSERT INTO CATEGORY (category_id,category_name) VALUES (:id, :nom)";
+		$sql="INSERT INTO `category` (`category_name`) VALUES (:nom)";
 		$db = config::getConnexion();
 		try{
         $req=$db->prepare($sql);
 		
-        $id=$category->getcategory_id();
         $nom=$category->getcategory_name();
-		$req->bindValue(':id',$id);
 		$req->bindValue(':nom',$nom);
 
 		$req->execute();           
@@ -51,17 +44,13 @@ class CategoryC {
         }
 	}
 	function modifierCategorie($category,$id){
-		$sql="UPDATE CATEGORY SET category_id=:id, category_name=:nom WHERE category_id=:idc";
+		$sql="UPDATE CATEGORY SET category_name=:nom WHERE category_id=:id";
 		
 		$db = config::getConnexion();
 		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 try{		
 		$req=$db->prepare($sql);
-		$id=$category->getcategory_id();
-		$idc=$category->getcategory_id();
         $nom=$category->getcategory_name();
-		$datas = array(':idc'=>$idc,':id'=>$id, ':nom'=>$nom);
-		$req->bindValue(':idc',$idc);
 		$req->bindValue(':id',$id);
 		$req->bindValue(':nom',$nom);
 		
@@ -74,7 +63,6 @@ try{
    echo " Les datas : " ;
   print_r($datas);
         }
-		
 	}
 	function recupererCategorie($id){
 		$sql="SELECT * from CATEGORY where category_id=$id";

@@ -1,8 +1,12 @@
 <?PHP
 include_once "../../core/productC.php";
-$productC=new ProductC();
+session_start();
+if (!isset($_SESSION['user_id'])) {
+   header('Location: login.php');
+}
+$ProductC=new productC();
 if (isset($_POST["id"])){
-	$productC->supprimerProduit($_POST["id"]);
+	$ProductC->supprimerProduit($_POST["id"]);
 	header('Location: table.product.php');
 }
 

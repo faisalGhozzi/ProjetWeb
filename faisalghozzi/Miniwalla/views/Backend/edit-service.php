@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if (!isset($_SESSION['user_id'])) {
+   header('Location: login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
    
@@ -10,7 +16,7 @@
       <meta name="keywords" content="admin template, admin, admin dashboard, cms, Seipkon Admin, premium admin templates, responsive admin, panel, software, ui, web app, application" />
       <meta name="author" content="Themescare">
       <!-- Title -->
-      <title>Seipkon - Bootstrap Admin Template</title>
+      <title>Miniwalla Admin</title>
       <!-- Favicon -->
       <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
       <!-- Animate CSS -->
@@ -18,7 +24,8 @@
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="assets/plugins/bootstrap/bootstrap.min.css">
       <!-- Font awesome CSS -->
-      <link rel="stylesheet" href="assets/plugins/font-awesome/font-awesome.min.css">
+            <link href="fontawesome/css/all.min.css" rel="stylesheet">
+
       <!-- Themify Icon CSS -->
       <link rel="stylesheet" href="assets/plugins/themify-icons/themify-icons.css">
       <!-- Perfect Scrollbar CSS -->
@@ -47,7 +54,7 @@
              
             <!-- Logo Start -->
             <div class="seipkon-logo">
-               <a href="index-2.html">
+               <a href="index.php">
                <img src="assets/img/logo.png" alt="logo">
                </a>
             </div>
@@ -264,7 +271,7 @@
                               <a class="dropdown-toggle profile-toggle" href="#" data-toggle="dropdown">
                                  <img src="assets/img/avatar.jpg" class="profile-avator" alt="admin profile" />
                                  <div class="profile-avatar-txt">
-                                    <p>Jhon Doe</p>
+                                    <p><p><?PHP echo $_SESSION['name']; ?></p></p>
                                     <i class="fa fa-angle-down"></i>
                                  </div>
                               </a>
@@ -274,7 +281,7 @@
                                     <li><a href="#"><i class="fa fa-pencil-square-o"></i> Edit profile</a></li>
                                     <li><a href="#"><i class="fa fa-flash"></i> Activity Log</a></li>
                                     <li><a href="#"><i class="fa fa-wrench"></i> Setting</a></li>
-                                    <li><a href="#"><i class="fa fa-power-off"></i> sign out</a></li>
+                                    <li><a href="signout.php"><i class="fa fa-power-off"></i> sign out</a></li>
                                  </ul>
                               </div>
                            </li>
@@ -300,7 +307,7 @@
                      <img src="assets/img/avatar.jpg" alt="profile" />
                   </div>
                   <div class="profile-info">
-                     <h3>Jhon Doe</h3>
+                     <h3><p><?PHP echo $_SESSION['name']; ?></p></h3>
                      <p>Welcome Admin !</p>
                   </div>
                </div>
@@ -311,8 +318,8 @@
                   <h3>General</h3>
                   <ul class="list-unstyled components">
                      <li>
-                        <a href="index-2.html">
-                        <i class="fa fa-dashboard"></i>
+                        <a href="index.php">
+                        <i class="fas fa-tachometer-alt"></i>
                         Dashboard
                         </a>
                      </li>
@@ -335,7 +342,7 @@
                      </li> 
                      <li>
                         <a href="#createpage" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-file-text-o"></i>
+                        <i class="fa fa-file"></i>
                         pages
                         </a>
                         <ul class="collapse list-unstyled" id="createpage">
@@ -392,6 +399,140 @@
                            <li><a href="ui_pagination.html">pagination</a></li>
                         </ul>
                      </li>
+					 <!-- MENU Gestion des Clients --> 
+					 <li>
+                        <a href="#gestionClients" data-toggle="collapse" aria-expanded="false">
+						<i class="fas fa-users"></i>
+                        Gestion des Clients
+                        </a>
+                        <ul class="collapse list-unstyled" id="gestionClients">
+                           <li><a href="AjoutClient.php">Ajouter Client</a></li>
+						   <li><a href="modifierClient.php">Modifier Client</a></li>
+						   <li><a href="supprimerClient.php">Supprimer Client</a></li>
+						   <li><a href="AfficherClients.php">Afficher la liste des Clients</a></li>
+						   <li><a href="RechercheClients.php">Recherchers des Clients</a></li>
+
+                        </ul>
+                     </li>
+					 <!--  FIN MENU Gestion des Clients --> 
+					 			<!-- MENU Gestion des Admins --> 
+					 <li>
+                        <a href="#gestionAdmins" data-toggle="collapse" aria-expanded="false">
+						<i class="fas fa-users"></i>
+                        Gestion des Adminstrateurs
+                        </a>
+                        <ul class="collapse list-unstyled" id="gestionAdmins">
+                           <li><a href="AjouterAdmin.php">Ajouter Admin</a></li>
+						   <li><a href="modifierAdmin.php">Modifier Admin</a></li>
+						   <li><a href="supprimerAdmin.php">Supprimer Admin</a></li>
+						   <li><a href="AfficherAdmins.php">Afficher la liste des Admins</a></li>
+						   	<li><a href="RechercheAdmins.php">Recherchers des Admins</a></li>
+
+                        </ul>
+                     </li>
+					 <!--  FIN MENU Gestion des Admins --> 
+					 <!-- MENU Gestion des Promotion --> 
+					 <li>
+                        <a href="#gestionPromo" data-toggle="collapse" aria-expanded="false">
+						<i class="fas fa-percent"></i>
+                        Gestion des Promotions
+                        </a>
+                        <ul class="collapse list-unstyled" id="gestionPromo">
+                           <li><a href="ajoutPromotion.php">Add Promo</a></li>
+						   <li><a href="modifierPromotion.php">Modify Promo</a></li>
+						   <li><a href="supprimerPromotion.php">Delete Promo</a></li>
+						   <li><a href="AfficherPromotions.php">List All Promos</a></li>
+                        </ul>
+                     </li>
+					 <!--  FIN MENU Gestion des Promotion -->
+					 <!-- MENU Gestion des Coupons --> 
+					 <li>
+                        <a href="#gestionCoupon" data-toggle="collapse" aria-expanded="false">
+						<i class="fa fa-gift"></i>
+                        Gestion des Coupons
+                        </a>
+                        <ul class="collapse list-unstyled" id="gestionCoupon">
+                           <li><a href="AjouterCoupon.php">Ajouter Coupon</a></li>
+						   <li><a href="modifierCoupon.php">Modifier Coupon</a></li>
+						   <li><a href="supprimerCoupon.php">Supprimer Coupon</a></li>
+						   <li><a href="AfficherCoupons.php">Afficher la liste des Coupon</a></li><li><a href="statistics.php">Coupons Statistics</a></li>
+                        </ul>
+                     </li>
+					 <!--  FIN MENU Gestion des Coupons -->
+					  <!-- MENU Newsletters--> 
+					 <li>
+                        <a href="#newsletter" data-toggle="collapse" aria-expanded="false">
+						<i class="fas fa-newspaper"></i>
+                        Newsletters
+                        </a>
+                        <ul class="collapse list-unstyled" id="newsletter">
+                           <li><a href="Newsletters.php">Envoyer un Newsletter</a></li>
+                        </ul>
+                     </li>
+					 <!--  FIN MENU Newsletters -->
+					 	 <!--menuLivreur -->
+					  <li>
+                        <a href="#menu_livreur" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-laptop"></i>
+                        Gestion des livreurs
+                        </a>
+                        <ul class="collapse list-unstyled" id="menu_livreur">
+                           <li><a href="add-livreur.php">Ajouter un livreur</a></li>
+                           <li><a href="modify-livreur.php">Modifier un livreur</a></li>
+                           <li><a href="delete-livreur.php">Supprimer un livreur</a></li>
+                           <li><a href="afficher-livreur.php">Afficher les livreurs</a></li>
+                        </ul>
+                     </li>
+					 <!--menuLivreurFin --> 
+					 <!--Menu Produit -->
+					  <li>
+                        <a href="#product" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-shopping-cart"></i>
+                        Gestion Produits
+                        </a>
+                        <ul class="collapse list-unstyled" id="product">
+                           <li><a href="add-product.php">add new product</a></li>
+                           <li><a href="edit-product.html">Edit product</a></li>
+                           <li><a href="add-service.php">add New Service</a></li> 
+                           <li><a href="add-category.php">add New Category</a></li> 
+                           <li><a href="add-elastic.php">add New Elastic</a></li>
+                           <li><a href="table.product.php">Products List</a></li>
+                           <li><a href="table.category.php">Category List</a></li>
+                           <li><a href="table.elastic.php">Elastic List</a></li>
+                           <li><a href="table.service.php">Services List</a></li>
+						   
+                        </ul>
+                     </li>
+					 <!--Fin Menu Produit -->
+					 
+					 
+					 <!--Menu Commande -->
+					  <li>
+                        <a href="#commande" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-shopping-cart"></i>
+                        Commande
+                        </a>
+                        <ul class="collapse list-unstyled" id="commande">
+                           <li><a href="commandeB.php">Commande</a></li>
+                           
+						   
+                        </ul>
+                     </li>
+					 <!--Fin Menu Commande -->
+					 
+					 		 <!--Menu Reclamation -->
+					  <li>
+                        <a href="#reclamation" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-laptop"></i>
+                        Reclamation
+                        </a>
+                        <ul class="collapse list-unstyled" id="reclamation">
+                           <li><a href="reclamation.php">Reclamation</a></li>
+                           
+						   
+                        </ul>
+                     </li>
+					 <!--Fin Menu Reclamation -->
                   </ul>
                </div>
                <!-- Menu Section End -->
@@ -408,7 +549,7 @@
                      </li>
                      <li>
                         <a href="#charts" data-toggle="collapse" aria-expanded="false">
-                        <i class="fa fa-pie-chart"></i>
+                        <i class="fas fa-chart-pie"></i>
                         Charts
                         </a>
                         <ul class="collapse list-unstyled" id="charts">
@@ -537,7 +678,7 @@
                               <div class="col-md-6 col-sm-6">
                                  <div class="seipkon-breadcromb-right">
                                     <ul>
-                                       <li><a href="index-2.html">home</a></li>
+                                       <li><a href="index.php">home</a></li>
                                        <li>e-Commerce</li>
                                        <li>Edit Service</li>
                                     </ul>
@@ -558,8 +699,8 @@
                                  <div class="add-product-form-group">
                                     <h3>Service Info</h3> 
                                     <?PHP
-                                       include "../../entities/service.php";
-                                       include "../../core/serviceC.php";
+                                       include "../entites/service.php";
+                                       include "../core/serviceC.php";
                                        if (isset($_GET['id'])){
                                           $serviceC=new ServiceC();
                                           $result=$serviceC->recupererService($_GET['id']);
@@ -568,12 +709,12 @@
                                              $typee=$row['service_type'];
                                              $numero=$row['service_numero'];
                                      ?>
-                                    <form method="POST">
+                                    <form method="POST" action="modifierService.php">
                                        <div class="row">
                                           <div class="col-md-12">
                                              <p>
                                                 <label>Service Name</label>
-                                                <input type="text" name="id" value="<?PHP echo $id ?>">
+                                                <input type="text" name="id"  readonly value="<?PHP echo $id ?>">
                                              </p>
                                           </div>
                                        </div>
@@ -591,7 +732,7 @@
                                           <div class="col-md-6">
                                              <p>
                                                 <label>Numero</label>
-                                                <input type="text" name="numero" value="<?PHP echo $numero ?>">
+                                                <input type="text" name="numero"  value="<?PHP echo $numero ?>">
                                              </p>
                                           </div>
                                           
@@ -603,7 +744,7 @@
                                                 <i class="fa fa-check"></i>
                                                 Save Info
                                                 </button>
-                                                <button type="submit" class="btn btn-danger" >
+                                                <button type="reset" class="btn btn-danger" >
                                                 <i class="fa fa-times"></i>
                                                 Cancel
                                                 </button> 
@@ -616,12 +757,13 @@
                                        </tr>
                                     </form> 
                                     <?PHP
-                                          }
                                        }
                                        if (isset($_POST['modifier'])){
                                           $service=new service($_POST['id'],$_POST['type'],$_POST['numero']);
                                           $serviceC->modifierService($service,$_POST['id_ini']);
-                                          echo $_POST['id_ini'];
+										  	 header('Location: table.product.php');
+
+										  }
                                        }
                                        ?>
                                  </div>
@@ -637,7 +779,7 @@
              
             <!-- Footer Area Start -->
             <footer class="seipkon-footer-area">
-               <p>Seipkon - Bootstrap Admin Template by <a href="#">Themescare</a></p>
+               <p>Miniwalla Admin by <a href="#">Themescare</a></p>
             </footer>
             <!-- End Footer Area -->
              
