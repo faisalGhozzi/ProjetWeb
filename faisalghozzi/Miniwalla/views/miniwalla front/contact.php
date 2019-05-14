@@ -25,7 +25,7 @@ session_start();
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.php"><img id="logo" src="images/logoWhite.png"></a>
-                 
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -33,17 +33,17 @@ session_start();
                     <ul class="navbar-nav ml-auto">
                         <?php if (isset($_SESSION['login'])) : ?>
                             <li class="nav-item">
-                        <div class="dropdown">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['name'];?>'s Settings   </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                  <a class="dropdown-item" href="Profile.php">Profile</a>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['name']; ?>'s Settings </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="Profile.php">Profile</a>
                                         <a class="dropdown-item" href="ModifyPass.php">Change Password</a>
-                                <a class="dropdown-item" href="ethnic.php">Order</a>
-                                <a class="dropdown-item" href="secret message.php">Delivery</a>
-                                <a class="dropdown-item" href="signout.php">Sign out</a>
-                            </div>
-                        </div>
-                    </li>
+                                        <a class="dropdown-item" href="Livraison.php">Delivery</a>
+                                        <a class="dropdown-item" href="secret message.php">Order</a>
+                                        <a class="dropdown-item" href="signout.php">Sign out</a>
+                                    </div>
+                                </div>
+                            </li>
                         <?php endif ?>
                         <?php if (!isset($_SESSION['login'])) : ?>
                             <li class="nav-item"><a href="#" id="pop-up-button" onclick="popUp()">Sign in</a></li>
@@ -58,7 +58,7 @@ session_start();
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item"><a href="Phonecase.php">Phone Case</a></li>
+                        <!--  <li class="nav-item"><a href="Phonecase.php">Phone Case</a></li> -->
                         <li class="nav-item"><span class="active">Contact</span></li>
                         <li class="nav-item"><a href="about.php">About Us</a></li>
                         <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
@@ -98,6 +98,123 @@ session_start();
             </section>
         </section>
     </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+                <center><h2>Follow us on social media</h2> </center>
+                <center><p><a href="https://www.facebook.com/miniwalla/"><i class="fab fa-facebook-square fa-6x face"></i></a><a href="https://www.instagram.com/miniwalla/?hl=en"><i class="fab fa-instagram fa-6x inst"></i></a></p></center>
+                <center>
+                <center><h2>Or</h2></center>
+                <a href="#" class="btn btn-success new-btn" id="pop-up-button" onclick="popUpX()">E-mail Us</a>
+                </center>
+            </div>
+        </div>
+    </div>
+    <div id="bg-modalX">
+        <section class="container-fluid">
+            <section class="row justify-content-center">
+                <section class="col-12 col-sm-6 col-md-6 col-lg-4">
+                    <form id="zoom-in-effect" class="form-container" method="POST">
+                        <div id="close" onclick="closePopUpX()">+</div>
+                        <div class="form-group">
+                            <img class="logofull" src="images/logo-full.png">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Subject</label>
+                            <input type="text" class="form-control" placeholder="Subject" name="subject">                        
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Description</label>
+                            <input type="text" class="form-control" placeholder="Description" name="description">                        
+                        </div>
+                        <button type="submit" name="submit" class="btn btn-primary btn-block submit-btn">Submit</button>
+                        <button name="submit" class="btn btn-danger btn-block new-btn" onclick="closePopUpX()">Cancel</button>
+                    </form>
+                </section>
+            </section>
+        </section>
+    </div>
+    <!--<div class="container-fluid drop-top">
+        <div class="row justify-content-center">
+            <div class="page-box">
+                <div class="add-product-form-group">
+                    <h3>Passer une réclamation</h3>
+                    <form action="ajoutReclamation.php" method="POST">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>
+                                    <label>*L'identifiant du client</label>
+                                    <div class="form-group__content">
+                                        <select class="form-control" name="id_client" id="exampleSelectGender">
+                                            /*<?php/*
+                                            $db = mysqli_connect('localhost', 'root', "", 'projet') or exit(mysql_error()); // on sélectionne la base
+
+
+                                            $sql = "SELECT id FROM clients";
+                                            $res = mysqli_query($db, "SELECT id FROM clients") or exit(mysqli_error());
+                                            while ($data = mysqli_fetch_array($res)) {
+                                                echo '<option>' . $data["id"] . '</option>'; //Attention à ne pas oublier le . qui sert à concaténer ton expression
+                                            }
+
+                                            // on ferme la connexion à mysql
+                                            mysqli_close(); //Facultatif, source de bug sur certaines versions de Wamp
+                                            */?>
+
+                                        </select>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>
+                                    <label>*Nom et Prénom</label>
+                                    <input name="pseudo" type="text" placeholder="Entrer votre nom et prénom" required>
+                                    <span id='missPrenom'></span>
+                                </p>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>
+                                    <label>*Sujet de la réclamation</label>
+                                    <input name="sujet" type="text" placeholder="Le sujet de votre reclamation." required>
+                                    <span id='missPrenom'></span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>
+                                    <label>Description</label>
+                                    <textarea name="description" type="text" placeholder="Réclamation"></textarea>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>
+                                    <button type="submit" class="btn btn-success" id="ajouter">
+                                        <i class="fa fa-check"></i>
+                                        Ajouter
+                                    </button>
+
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>-->
 </body>
 
 </html>

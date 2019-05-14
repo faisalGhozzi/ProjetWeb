@@ -1,35 +1,32 @@
 <?PHP
 class Reclamation{
-	private $id_client;
-	private $pseudo;
-	private $sujet;
+
+	private $email;
+	private $subject;
 	private $description;
-	function __construct($id_client,$pseudo,$sujet,$description){
-		$this->id_client=$id_client;
-		$this->pseudo=$pseudo;
-		$this->sujet=$sujet;
+	function __construct($email,$subject,$description){
+		$this->email=$email;
+		$this->subject=$subject;
 		$this->description=$description;
 	}
 	
-	function getID(){
-		return $this->id_client;
+
+	function getEmail(){
+		return $this->email;
 	}
-	function getPseudo(){
-		return $this->pseudo;
-	}
-	function getSujet(){
-		return $this->sujet;
+	function getSubject(){
+		return $this->subject;
 	}
 	function getDescription(){
 		return $this->description;
 	}
 	
 
-	function setPseudo($pseudo){
-		$this->pseudo;
+	function setEmail($email){
+		$this->email=$email;
 	}
-	function setSujet($sujet){
-		$this->sujet=$sujet;
+	function setSubject($subject){
+		$this->subject=$subject;
 	}
 	function setDescription($description){
 		$this->description=$description;

@@ -5,22 +5,19 @@ include_once "../../entites/Panier2.php";
 class PanierC{
 
     function ajouterPanier($Panier){
-        $sql="INSERT INTO panier (id_panier,qte,product_id,product_img,product_second_img) VALUES(:id_panier, :qte, :id_pro, :product_img, :product_sec)";
+        $sql="INSERT INTO panier (id_panier,qte,product_id) VALUES(:id_panier, :qte, :id_pro)";
         $db = config::getConnexion();
         try{
             $req=$db->prepare($sql);
             $id_panier=$Panier->getid_panier();
             $qte=$Panier->getqte();
             $id_pro=$Panier->getproduct_id();
-            $product_img=$Panier->getProduct_img();
-            $product_sec=$Panier->getProduct_second_img();
+          
 
             $req->bindValue(':id_panier',$id_panier);
             $req->bindValue(':qte',$qte);
             $req->bindValue(':id_pro',$id_pro);
-            $req->bindValue(':product_img',$product_img);
-            $req->bindValue(':product_sec',$product_sec);
-
+         
             $req->execute();
         }catch(Exception $e){
             echo 'Erreur: '.$e->getMessage();
@@ -28,7 +25,7 @@ class PanierC{
     } 
 
     function afficherPanier(){
-        $sql1="SELECT * FROM panier WHERE id_panier=1"; 
+        $sql1="SELECT * FROM panier "; 
         $db = config::getConnexion();
         try{
             $liste=$db->query($sql1);
@@ -51,10 +48,10 @@ class PanierC{
         
     } 
 
-    function MontontTotal() 
+    function MontontTotalSession($id) 
     {
         $sql2="SELECT SUM(PRODUCT.product_price*panier.qte) 
-        product_price FROM PRODUCT right join panier on PRODUCT.product_id=panier.product_id where id_panier=1";  
+        product_price FROM PRODUCT right join panier on PRODUCT.product_id=panier.product_id where id_panier=$id";  
            $db = config::getConnexion();
            try{
                $liste2=$db->query($sql2); 
@@ -66,6 +63,8 @@ class PanierC{
            } 
 
     } 
+
+
     function supprimerPanier($id){
 		$sql="DELETE FROM panier where product_id= :id";
 		$db = config::getConnexion();
@@ -78,7 +77,24 @@ class PanierC{
         catch (Exception $e){
             die('Erreur: '.$e->getMessage());
         }
+    } 
+    function Count($id){
+		$sql="SELECT COUNT(*) FROM panier WHERE id_panier=$id";
+
+		$db = config::getConnexion();
+		
+		try{
+            $liste=$db->query($sql);
+            $l=$liste->fetch(0);
+		return $l[0];
+           
+        }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
 	}
+    
+
 
     function modifierPanier($panier,$id){
 		$sql="UPDATE panier SET qte=:qte WHERE product_id=:id";

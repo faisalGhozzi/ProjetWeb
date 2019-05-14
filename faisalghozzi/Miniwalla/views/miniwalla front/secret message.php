@@ -1,6 +1,13 @@
 <?php
+include_once "../../core/productC.php";
+
 session_start();
+
+$product1C = new ProductC();
+$listeProducts = $product1C->afficherProduitAvecElastic();
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,9 +22,10 @@ session_start();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/otherPages.css">
+    <link rel="stylesheet" href="css/wallets.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700|Poiret+One|Quicksand:300,400,500,700|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <title>miniWalla | Message Secret</title>
+    <title>miniWalla | Secret Message</title>
 </head>
 
 <body>
@@ -38,8 +46,8 @@ session_start();
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                   <a class="dropdown-item" href="Profile.php">Profile</a>
                                         <a class="dropdown-item" href="ModifyPass.php">Change Password</a>
-                                <a class="dropdown-item" href="ethnic.php">Order</a>
-                                <a class="dropdown-item" href="secret message.php">Delivery</a>
+                                <a class="dropdown-item" href="Livraison.php">Delivery</a>
+                                <a class="dropdown-item" href="secret message.php">Order</a>
                                 <a class="dropdown-item" href="signout.php">Sign out</a>
                             </div>
                         </div>
@@ -58,8 +66,7 @@ session_start();
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item"><a href="Phonecase.php">Phone Case</a></li>
-                        <li class="nav-item"><a href="contact.php">Contact</a></li>
+                      <!--  <li class="nav-item"><a href="Phonecase.php">Phone Case</a></li> -->                        <li class="nav-item"><a href="contact.php">Contact</a></li>
                         <li class="nav-item"><a href="about.php">About Us</a></li>
                         <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
                     </ul>
@@ -100,7 +107,34 @@ session_start();
             </section>
         </section>
     </div>
-    <!--About-->
+    <div class="container-fluid drop-top">
+        <div class="row justify-content-center">
+            <?PHP
+            foreach ($listeProducts as $row) {
+                if ($row['category_name'] == 'Secret Message') {
+                    ?>
+                    <form method="POST" action="buyPage.php?id=<?php echo $row['product_id'] ?>">
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                            <div class="card">
+                                <div class="front">
+                                    <?PHP echo "<img src=\"../Backend/image/{$row['product_imgFace']}\" class=\"image1\">" ?>
+                                    <?PHP echo "<img src=\"../Backend/image/{$row['elastic_img']}\" class=\"image2\" >" ?>
+                                </div>
+                                <div class="back">
+                                    <?PHP echo "<img src=\"../Backend/image/{$row['product_imgTail']}\" class=\"image1\">" ?>
+                                    <?PHP echo "<img src=\"../Backend/image/{$row['elastic_img']}\" class=\"image2\">" ?>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary pick-me" value="submit">Pick Me</button>
+                        </div>
+                    </form>
+                <?PHP
+            }
+        }
+        ?>
+        </div>
+    </div>
+    </div>
 </body>
 
 </html>

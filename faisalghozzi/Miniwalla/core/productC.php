@@ -50,7 +50,8 @@ class productC{
     }
 
     function afficherProduitAvecElastic(){
-        $sql="SELECT * FROM PRODUCT Inner join ELASTIC on PRODUCT.elastic_id=ELASTIC.elastic_id";
+        //$sql="SELECT * FROM PRODUCT Inner join ELASTIC on PRODUCT.elastic_id=ELASTIC.elastic_id";
+        $sql="SELECT * FROM ELASTIC Inner join PRODUCT on ELASTIC.elastic_id=PRODUCT.elastic_id inner join CATEGORY on category.category_id = product.category_id";
         $db = config::getConnexion();
         try{
             $liste=$db->query($sql);

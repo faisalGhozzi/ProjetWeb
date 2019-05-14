@@ -1,7 +1,50 @@
 <?PHP
-include "../config.php";
+use PHPMailer\PHPMailer\Exception;
+
+include_once "../../config.php";
 class CommandeC {
-function afficherEmploye ($commande){
+	function afficherCommandes(){
+		$sql="select * from commande";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}catch (Exception $e){
+			die('Erreur: '.$e->getMessage());
+		}	
+	}
+
+	function ajouterCommande($commande){
+		$sql="insert into commande (id_client,prix) values (:idc,:prix)";
+		$db = config::getConnexion();
+		try{
+			$req=$db->prepare($sql);
+
+			$id_client = $commande->getId_client();
+			$prix = $commande->getPrix();
+
+			$req->bindValue(':idc',$id_client);
+			$req->bindValue(':prix',$prix);
+
+			$req->execute();
+		}catch(Exception $e){
+			echo 'Erreur '.$e->getMessage();
+		}
+
+	}
+
+	function recupererCommande($id){
+		$sql="select * from commande where id=$id";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+	}
+/*function afficherEmploye ($commande){
 		echo "Reference: ".$commande->getreference()."<br>";
 		echo "Nom: ".$commande->getNom()."<br>";
 		echo "Mail: ".$commande->getmail()."<br>";
@@ -53,7 +96,7 @@ function afficherEmploye ($commande){
         }	
 	}
 	function supprimerEmploye($reference){
-		$sql="DELETE FROM commande where reference=:reference";
+		$sql="DELETE FROM commande where reference= :reference";
 		$db = config::getConnexion();
         $req=$db->prepare($sql);
 		$req->bindValue(':reference',$reference);
@@ -66,18 +109,21 @@ function afficherEmploye ($commande){
         }
 	}
 	function modifierEmploye($commande,$reference){
-		$sql="UPDATE commande SET nom=:nom,mail=:mail,telephone=:telephone,date=:date,adresse=:adresse WHERE reference=:reference";
+		$sql="UPDATE commande SET reference=:referencee, nom=:nom,mail=:mail,telephone=:telephone,date=:date,adresse=:adresse WHERE reference=:reference";
 		
 		$db = config::getConnexion();
 		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 try{		
         $req=$db->prepare($sql);
+		$referencee=$commande->getreference();
         $nom=$commande->getNom();
         $mail=$commande->getmail();
         $telephone=$commande->gettelephone();
         $date=$commande->getdate();
         $adresse=$commande->getadresse();
 
+		$datas = array(':referencee'=>$referencee, ':reference'=>$reference, ':nom'=>$nom,':mail'=>$mail,':telephone'=>$telephone,':date'=>$date,':adresse'=>$adresse);
+		$req->bindValue(':referencee',$referencee);
 		$req->bindValue(':reference',$reference);
 		$req->bindValue(':nom',$nom);
 		$req->bindValue(':mail',$mail);
@@ -88,7 +134,9 @@ try{
 		
 		
             $s=$req->execute();
-			        }
+			
+           // header('Location: index.php');
+        }
         catch (Exception $e){
             echo " Erreur ! ".$e->getMessage();
    echo " Les datas : " ;
@@ -118,7 +166,7 @@ try{
         catch (Exception $e){
             die('Erreur: '.$e->getMessage());
         }
-	}
+	}*/
 }
 
 ?>

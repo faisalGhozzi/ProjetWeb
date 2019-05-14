@@ -1,7 +1,7 @@
 <?php
 
 function get_data(){
-    $connect = mysqli_connect("localhost", "root","fakamadafaka123","projetweb2a");
+    $connect = mysqli_connect("localhost", "root","","projet");
     $query = "SELECT * FROM elastic";
     $result = mysqli_query($connect,$query);
     $color_data = array();

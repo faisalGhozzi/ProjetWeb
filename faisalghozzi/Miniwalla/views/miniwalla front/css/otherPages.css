@@ -148,6 +148,32 @@ footer p{
     display: none;
 }
 
+#bg-modalS{
+    width : 100%;
+    height : 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top : 0;
+    justify-content: center;
+    align-items : center;
+    z-index: 100;
+    overflow: auto;
+    display: none;
+}
+
+#bg-modalX{
+    width : 100%;
+    height : 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top : 0;
+    justify-content: center;
+    align-items : center;
+    z-index: 100;
+    overflow: auto;
+    display: none;
+}
+
 /* signin css */
 
 
@@ -271,6 +297,7 @@ div .form-container{
 	animation: zoomin 500ms forwards;
 }
 
+
 @keyframes zoomout {
     0% {
         transform: scale(1,1);
@@ -283,6 +310,7 @@ div .form-container{
 #zoom-out-effect{
 	animation: zoomout 500ms backwards;
 }
+
 
 /* about page */
 
@@ -303,3 +331,30 @@ div .form-container{
     overflow: auto;
 }
 
+.face{
+    margin : 20px;
+    color:#3b5998;
+    transition: 500ms;
+}
+
+.inst{
+    margin : 20px;
+    font-size : 72px;
+    background: -webkit-linear-gradient(45deg, #ffdc80 0%,#fcaf45 5%,#f77737 13%,#f56040 21%,#fd1d1d 30%,#e1306c 42%,#c13584 50%,#833ab4 63%,#5851db 82%,#405de6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: 500ms;
+}
+
+.face:hover{
+    /*margin : 20px;*/
+    color:#3b5898ad;
+}
+
+.inst:hover{
+    /*margin : 20px;
+    font-size : 72px;*/
+    background: -webkit-linear-gradient(45deg, #ffdc80ad 0%,#fcaf45ad 5%,#f77737ad 13%,#f56040ad 21%,#fd1d1dad 30%,#e1306cad 42%,#c13584ad 50%,#833ab4ad 63%,#5851dbad 82%,#405de6ad 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

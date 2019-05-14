@@ -37,8 +37,8 @@ session_start();
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                          <a class="dropdown-item" href="Profile.php">Profile</a>
                                         <a class="dropdown-item" href="ModifyPass.php">Change Password</a>
-                                        <a class="dropdown-item" href="ethnic.php">Order</a>
-                                        <a class="dropdown-item" href="secret message.php">Delivery</a>
+                                        <a class="dropdown-item" href="Livraison.php">Delivery</a>
+                                        <a class="dropdown-item" href="secret message.php">Order</a>
                                         <a class="dropdown-item" href="signout.php">Sign out</a>
                                     </div>
                                 </div>
@@ -58,8 +58,7 @@ session_start();
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item"><a href="Phonecase.php">Phone Case</a></li>
-                        <li class="nav-item"><a href="contact.php">Contact</a></li>
+                      <!--  <li class="nav-item"><a href="Phonecase.php">Phone Case</a></li> -->                        <li class="nav-item"><a href="contact.php">Contact</a></li>
                         <li class="nav-item"><a href="about.php">About Us</a></li>
                         <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
                     </ul>
@@ -106,7 +105,7 @@ session_start();
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
                             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="pass">
-                            <a href="#" class="normal"><small id="passwordHelp">Forgot password?</small></a>
+                            <a href="#" onclick="popUpfp()" class="normal"><small id="passwordHelp">Forgot password?</small></a>
                         </div>
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -120,6 +119,30 @@ session_start();
             </section>
         </section>
     </div>
+    <div id="fp-modal">
+        <section class="container-fluid">
+            <section class="row justify-content-center">
+                <section class="col-12 col-sm-6 col-md-6 col-lg-4">
+                    <form id="zoom-in-effect" class="form-container" method="POST" action="forgotpass.php">
+                        <div id="close" onclick="closePopUpfp()">+</div>
+                        <div class="form-group">
+                            <img class="logofull" src="images/logo-full.png">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+                        </div>
+
+                        <button type="submit" name="submit" class="btn btn-info btn-block new-btn">Submit</button>
+						<button onclick="closePopUpfp()" class="btn btn-danger btn-block  center-block">Cancel</button>
+						
+                        
+                    </form>
+                </section>
+            </section>
+        </section>
+    </div>
+	
 </body>
 
 </html>

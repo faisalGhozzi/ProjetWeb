@@ -55,8 +55,7 @@ $listeProducts = $product1C->afficherProduitAvecElastic();
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item"><a href="Phonecase.php">Phone Case</a></li>
-                        <li class="nav-item"><a href="contact.php">Contact</a></li>
+                      <!--  <li class="nav-item"><a href="Phonecase.php">Phone Case</a></li> -->                        <li class="nav-item"><a href="contact.php">Contact</a></li>
                         <li class="nav-item"><a href="about.php">About Us</a></li>
                         <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
                     </ul>
@@ -101,7 +100,7 @@ $listeProducts = $product1C->afficherProduitAvecElastic();
         <div class="row justify-content-center">
             <?PHP
             foreach ($listeProducts as $row) {
-                if ($row['category_id'] == 1) {
+                if ($row['category_name'] == "Standard Wallets") {
                     ?>
                     <form method="POST" action="buyPage.php?id=<?php echo $row['product_id'] ?>">
                         <div class="col-12 col-sm-12 col-md-6 col-lg-3">

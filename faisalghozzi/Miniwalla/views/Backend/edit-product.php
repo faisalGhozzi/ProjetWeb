@@ -1,8 +1,8 @@
 <?PHP
 $hostname = "localhost";
 $username = "root";
-$password = "fakamadafaka123";
-$databaseName = "projetweb2a";
+$password = "";
+$databaseName = "projet";
 session_start();
 if(!isset($_SESSION['user_id'])){
     header('Location: login.php');

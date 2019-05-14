@@ -7,8 +7,8 @@ if(!isset($_SESSION['user_id'])){
 
 $hostname = "localhost";
 $username = "root";
-$password = "fakamadafaka123";
-$databaseName = "projetweb2a";
+$password = "";
+$databaseName = "projet";
 
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 $query = "SELECT * From category";

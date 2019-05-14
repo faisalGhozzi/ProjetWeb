@@ -12,7 +12,7 @@ unset($_SESSION['Mpass']);
 if (isset($_POST['modifier'])) {
     if (isset($_POST['oldpass']) and isset($_POST['newpass'])) {
         $oldpass = $_POST['oldpass'];
-        $connect = mysqli_connect("localhost", "root", "fakamadafaka123", "projetweb2a");
+        $connect = mysqli_connect("localhost", "root", "", "projet");
         $query = "select * from clients where password='$oldpass'";
         $result = mysqli_query($connect, $query);
         if (mysqli_num_rows($result) == 1) {
@@ -82,8 +82,8 @@ if (isset($_POST['modifier'])) {
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" href="Profile.php">Profile</a>
                                         <a class="dropdown-item" href="ModifyPass.php">Change Password</a>
-                                        <a class="dropdown-item" href="ethnic.php">Order</a>
-                                        <a class="dropdown-item" href="secret message.php">Delivery</a>
+                                        <a class="dropdown-item" href="Livraison.php">Delivery</a>
+                                        <a class="dropdown-item" href="secret message.php">Order</a>
                                         <a class="dropdown-item" href="signout.php">Sign out</a>
                                     </div>
                                 </div>
@@ -104,7 +104,7 @@ if (isset($_POST['modifier'])) {
                             </div>
                         </li>
                         <li class="nav-item"><a href="Phonecase.html">Phone Case</a></li>
-                        <li class="nav-item"><a href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a href="contact.php">Contact</a></li>
                         <li class="nav-item"><a href="about.html">About Us</a></li>
                         <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
                     </ul>

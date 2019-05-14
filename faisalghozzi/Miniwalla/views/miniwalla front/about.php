@@ -38,8 +38,8 @@ session_start();
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                   <a class="dropdown-item" href="Profile.php">Profile</a>
                                         <a class="dropdown-item" href="ModifyPass.php">Change Password</a>
-                                <a class="dropdown-item" href="ethnic.php">Order</a>
-                                <a class="dropdown-item" href="secret message.php">Delivery</a>
+                                <a class="dropdown-item" href="Livraison.php">Delivery</a>
+                                <a class="dropdown-item" href="secret message.php">Order</a>
                                 <a class="dropdown-item" href="signout.php">Sign out</a>
                             </div>
                         </div>
@@ -59,8 +59,7 @@ session_start();
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item"><a href="Phonecase.php">Phone Case</a></li>
-                        <li class="nav-item"><a href="contact.php">Contact</a></li>
+                      <!--  <li class="nav-item"><a href="Phonecase.php">Phone Case</a></li> -->                        <li class="nav-item"><a href="contact.php">Contact</a></li>
                         <li class="nav-item"><span class="active">About Us</span></li>
                         <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
                     </ul>

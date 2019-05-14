@@ -10,8 +10,8 @@ use PHPMailer\PHPMailer\Exception;
 
 	if(isset($_POST['add']))
 	{
-		$conn= mysqli_connect("localhost", "root", "fakamadafaka123") or die(mysqli_error()); // Connect to database server(localhost) with username and password.
-		mysqli_select_db($conn,"projetweb2a") or die(mysqli_error()); // Select registrations database.
+		$conn= mysqli_connect("localhost", "root", "") or die(mysqli_error()); // Connect to database server(localhost) with username and password.
+		mysqli_select_db($conn,"projet") or die(mysqli_error()); // Select registrations database.
 		
 	$search = mysqli_query($conn,"SELECT email, status FROM clients WHERE email='".$_POST['email']."' AND status='Inactive'") or die(mysqli_error($conn)); 
 $match  = mysqli_num_rows($search);
@@ -57,7 +57,7 @@ if($match > 0){
                       $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
                       $mail->SMTPAuth = true;                               // Enable SMTP authentication
                       $mail->Username = 'faicel.ghozzi@esprit.tn';                 // SMTP username
-                      $mail->Password = 'fakamadafaka123';                           // SMTP password
+                      $mail->Password = "";                           // SMTP password
                       $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
                       $mail->Port = 587;                                    // TCP port to connect to
                   

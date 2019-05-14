@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
 		
 		$mail = $_POST['email']; 
 		$password = $_POST['pass'];
-		$connect = mysqli_connect("localhost", "root", "fakamadafaka123", "projetweb2a");  
+		$connect = mysqli_connect("localhost", "root", "", "projet");  
 	 $query = "SELECT * From admins where email='$mail' and password='$password' LIMIT 1 ";
 	 $result = mysqli_query($connect, $query); 
 	 if(mysqli_num_rows($result)==1)
