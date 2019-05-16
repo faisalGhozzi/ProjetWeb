@@ -97,7 +97,7 @@ if (isset($_POST['modifier'])) {
                         <li class="nav-item"><a href="Phonecase.html">Phone Case</a></li>
                         <li class="nav-item"><a href="contact.php">Contact</a></li>
                         <li class="nav-item"><a href="about.html">About Us</a></li>
-                        <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
+                        <li class="nav-item"><a href="panier.php">Cart<i class="fas fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
             </div>

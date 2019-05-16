@@ -68,7 +68,7 @@ $listeProducts = $product1C->afficherProduitAvecElastic();
                         </li>
                       <!--  <li class="nav-item"><a href="Phonecase.php">Phone Case</a></li> -->                        <li class="nav-item"><a href="contact.php">Contact</a></li>
                         <li class="nav-item"><a href="about.php">About Us</a></li>
-                        <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
+                        <li class="nav-item"><a href="panier.php">Cart<i class="fas fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
             </div>

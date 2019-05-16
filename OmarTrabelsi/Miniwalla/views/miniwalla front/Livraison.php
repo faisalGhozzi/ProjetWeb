@@ -238,7 +238,7 @@ if($int)
 						 <?PHP if(isset($_SESSION['user_id'])){   ?>
 					<li class="nav-item"><a href="Livraison.php" id="pop-up-button" >Livraison</a></li>
 					<?PHP } ?>
-                    <li class="nav-item"><span class="active">Panier<i class="fas fa-shopping-cart"></i></span></li>
+                    <li class="nav-item"><span class="active">Cart<i class="fas fa-shopping-cart"></i></span></li>
                 </ul>
             </div>
         </div>

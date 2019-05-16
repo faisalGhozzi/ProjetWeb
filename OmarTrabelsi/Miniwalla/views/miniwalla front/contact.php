@@ -61,7 +61,7 @@ session_start();
                         <!--  <li class="nav-item"><a href="Phonecase.php">Phone Case</a></li> -->
                         <li class="nav-item"><span class="active">Contact</span></li>
                         <li class="nav-item"><a href="about.php">About Us</a></li>
-                        <li class="nav-item"><a href="panier.php">Panier<i class="fas fa-shopping-cart"></i></a></li>
+                        <li class="nav-item"><a href="panier.php">Cart<i class="fas fa-shopping-cart"></i></a></li>
                     </ul>
                 </div>
             </div>
