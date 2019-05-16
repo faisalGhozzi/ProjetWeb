@@ -78,10 +78,10 @@ session_start();
                 <p>Standard</p>
             </slide>
             <slide>
-                <p>Phone Case</p>
+                <p>Lovers</p>
             </slide>
             <slide>
-                <p>miniWalla</p>
+                <p>Secret Message</p>
             </slide>
         </slider>
     </section>
