@@ -10,7 +10,7 @@ if (isset($_POST['modifier'])){
     header('Location: panier.php'); 
 } 
 if (isset($_POST["supprimer"])){
-	$panierC->supprimerPanier($_POST["product_id"]);
+	$panierC->supprimerProduit($_POST["product_id"]);
     header('Location: panier.php');	
 
 }

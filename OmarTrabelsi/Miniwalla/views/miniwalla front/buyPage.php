@@ -70,7 +70,7 @@ $promo=mysqli_fetch_assoc($result);
                                   <a class="dropdown-item" href="Profile.php">Profile</a>
                                         <a class="dropdown-item" href="ModifyPass.php">Change Password</a>
                                 <a class="dropdown-item" href="Livraison.php">Delivery</a>
-                                <a class="dropdown-item" href="secret message.php">Order</a>
+                                
                                 <a class="dropdown-item" href="signout.php">Sign out</a>
                             </div>
                         </div>
@@ -152,10 +152,16 @@ $promo=mysqli_fetch_assoc($result);
                         <div class="col-12">
                             <center>
 						<span class="price">Price :</span>
-						
-								<span class="price-old" name="price-old"><?php echo $rowp['product_price']."DT"; ?></span>
-								<?php if(mysqli_num_rows($result)==1){ ?>
+                        <?php if(mysqli_num_rows($result)==1){ ?>
+								<span class="price-old barred " name="price-old"><?php echo $rowp['product_price']."DT"; ?></span>
+								
 								<span class="price-new"><?php echo $rowp['product_price']-($rowp['product_price']*($promo['tauxPromo']/100));  ?>DT</span>
+                                <?php }?>
+
+                                <?php if(mysqli_num_rows($result)==0){ ?>
+								<span class="price-old" name="price-old"><?php echo $rowp['product_price']."DT"; ?></span>
+								
+							
                                 <?php }?>
                                     <center>
                             </div>

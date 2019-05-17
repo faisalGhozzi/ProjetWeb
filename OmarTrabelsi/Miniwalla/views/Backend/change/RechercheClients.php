@@ -93,7 +93,7 @@ $(document).ready(function(){
             <!-- Logo Start -->
             <div class="seipkon-logo">
                <a href="index.php">
-               <img style="filter: invert(100%);" src="assets/img/logo2.png" alt="logo">
+               <img style="filter: invert(100%);" src="assets/img/logo0.png" alt="logo">
                </a>
             </div>
             <!-- Logo End -->

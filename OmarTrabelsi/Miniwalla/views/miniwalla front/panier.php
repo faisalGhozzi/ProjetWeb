@@ -5,7 +5,7 @@ if(!isset($_SESSION['login'])){
 }
 include "../../core/Panier2C.php";
 $panier1C = new PanierC();
-$listePanier = $panier1C->afficherPanier(); 
+$listePanier = $panier1C->afficherPanier($_SESSION['login']); 
 //var_dump($listeEmployes->fetchAll()); 
 if(isset($_SESSION['login']))
 $count=$panier1C->Count($_SESSION['login']);
@@ -15,7 +15,10 @@ else $count=0;
 include "../../core/serviceC.php";
 $service1C=new ServiceC();
 $listeServices=$service1C->afficherServices(); 
-//var_dump($listeEmployes->fetchAll());
+$prix=0;
+$total=0;
+
+
 ?>
 
 <!DOCTYPE html>
@@ -82,7 +85,7 @@ $listeServices=$service1C->afficherServices();
                                          <a class="dropdown-item" href="Profile.php">Profile</a>
                                         <a class="dropdown-item" href="ModifyPass.php">Change Password</a>
                                         <a class="dropdown-item" href="Livraison.php">Delivery</a>
-                                        <a class="dropdown-item" href="secret message.php">Order</a>
+                                        
                                         <a class="dropdown-item" href="signout.php">Sign out</a>
                                     </div>
                                 </div>
@@ -101,10 +104,10 @@ $listeServices=$service1C->afficherServices();
                                 </div>
                             </div>
                         </li>
-                        <li class="nav-item"><a href="Phonecase.html">Phone Case</a></li>
+                        
                         <li class="nav-item"><a href="contact.php">Contact</a></li>
                         <li class="nav-item"><a href="about.html">About Us</a></li>
-                        <li class="nav-item"><span class="active"  class="cart-icon">Panier<i class="fas fa-shopping-cart"></i><span><?php echo $count; ?></span></span></li>
+                        <li class="nav-item"><span class="active"  class="cart-icon">Cart<i class="fas fa-shopping-cart"></i><span><?php echo "(".$count.")"; ?></span></span></li>
                     </ul>
                 </div>
             </div>
@@ -201,10 +204,11 @@ $listeServices=$service1C->afficherServices();
                             foreach ($listePanier as $row) {
                                 $produit = $panier1C->recupererDonneesProduit($row['product_id']);
                                 foreach ($produit as $data) {
-                                    $m = $panier1C->MontontTotalSession($_SESSION['login']); 
+                                    //$total= $panier1C->MontontTotalSession($_SESSION['login']);
+                                   // $prix =$panier1C->MontontTotalSession($_SESSION['login']); 
 
-
-
+                                   
+                                    
                                     ?>
                                     <tr>
                                 <form method="POST" action="ModifierPanier.php">
@@ -219,7 +223,26 @@ $listeServices=$service1C->afficherServices();
                                         <input type="hidden" name="id_panier" value=<?php echo $row['id_panier'] ?>>
 
                                         <td><input id="qte" name="qte" type="number" value="<?php echo $row['qte'] ?>" /></td>
-                                        <td class="text-right"><?php echo (($data['product_price']) * ($row['qte'])) ?> DT</td>
+                                        <?php
+                                        $id=$data['product_id'];
+                                           $connect = mysqli_connect("localhost", "root", "", "projet");
+                                           $query = "select * from promotion where idProduit=$id"; 
+                                           $result = mysqli_query($connect, $query);
+                                           $p = mysqli_fetch_array($result);
+                                           
+                                            $promo=$p['tauxPromo'];
+                                           
+                                            $prix=$data['product_price']*$row['qte'];
+                                            
+                                           if(mysqli_num_rows($result)==1){
+                                            
+                                        ?>
+                                        <td class="text-right"><?php echo $prix-=($prix*$promo)/100; $total+=$prix; ?> DT</td>
+                                           <?php  } ?>
+                                        <?php if(mysqli_num_rows($result)==0): ?>
+
+                                        <td class="text-right"><?php echo $prix ; $total+=$prix; ?> DT</td>
+                                        <?php endif ?>
                                         <td>
                                             <button class="btn btn-sm btn-danger " name="supprimer"><i class="fa fa-trash"></i></button>
                                             
@@ -241,13 +264,13 @@ $listeServices=$service1C->afficherServices();
                                 <td></td>
                                 <td>Sub-Total</td> 
                                 <?php 
-                                if(!empty($m))
+                                if(!empty($total))
                                 {
                                 echo "<td class=\"text-right\">";
-                                    if($m==0){
+                                    if($total==0){
                                         echo "0"; 
                                     }else{
-                                        echo $m;
+                                        echo $total;
                                     } 
                                     echo " DT</td>";
                                 }else{
@@ -262,23 +285,23 @@ $listeServices=$service1C->afficherServices();
                                 <td></td>
                                 <td><strong>Total</strong></td>
                                 <?php 
-                               if(!empty($m))
+                               if(!empty($total))
                                 {
                                 echo "<td class=\"text-right\">";
-                                    if($m==0){
+                                    if($total==0){
                                         echo "0 DT"; 
                                     }else{
 									
 										if(isset($_SESSION['CouponP']))
 										{
-											echo '<strike>'.$m.'</strike> DT -'.$_SESSION['CouponP'].'%';
-										$m-=($m*$_SESSION['CouponP']/100);
-										echo '<p>'.$m.'DT</p>';
-										$_SESSION['total']=$m;
+											echo '<strike>'.$total.'</strike> DT -'.$_SESSION['CouponP'].'%';
+										$total-=($total*$_SESSION['CouponP']/100);
+										echo '<p>'.$total.'DT</p>';
+										$_SESSION['total']=$total;
 											
 										}else{
-											echo $m." DT";
-											$_SESSION['total']=$m;
+											echo $total." DT";
+											$_SESSION['total']=$total;
 										}
                                     } 
                                 }else{
@@ -308,10 +331,12 @@ $listeServices=$service1C->afficherServices();
             <div class="col mb-2">
                 <div class="row">
                     <div class="col-sm-12  col-md-6">
-                        <a href="index.html"> <button class="btn btn-block btn-light">Continue Shopping</button></a>
+                        <a href="index.php"> <button class="btn btn-block btn-light">Continue Shopping</button></a>
                     </div>
                     <div class="col-sm-12 col-md-6 text-right">
+                        <form action="passerCommande.php" method="POST">
                         <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+                        <form>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 <?PHP
-include "../config.php";
+include "../../config.php";
 class CouponC{
 	
 	

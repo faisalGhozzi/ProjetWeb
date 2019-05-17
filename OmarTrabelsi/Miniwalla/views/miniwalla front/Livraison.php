@@ -208,8 +208,8 @@ if($int)
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                          <a class="dropdown-item" href="Profile.php">Profile</a>
                                         <a class="dropdown-item" href="ModifyPass.php">Change Password</a>
-                                        <a class="dropdown-item" href="Livraison.php">Delivery</a>
-                                        <a class="dropdown-item" href="secret message.php">Order</a>
+                                        <span class="dropdown-item">Delivery</span>
+                                        
                                         <a class="dropdown-item" href="signout.php">Sign out</a>
                                     </div>
                                 </div>
@@ -217,7 +217,7 @@ if($int)
                         <?php endif ?>
                     <li class="nav-item">
                             <div class="dropdown">
-                                <a class="dropdown-toggle" href="wallets.html" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Portefeuilles   </a>
+                                <a class="dropdown-toggle" href="wallets.html" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wallets   </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="standard.php">Standard</a>
                                     <a class="dropdown-item" href="ethnic.php">Ethnic</a>
@@ -228,17 +228,8 @@ if($int)
                         </li>
                    
                     <li class="nav-item"><a href="contact.php" >Contact</a></li>
-                    <li class="nav-item"><a href="about.html">About Us</a></li>
-					 <?PHP if(isset($_SESSION['user_id'])){   ?>
-					<li class="nav-item"><a href="signout.php" id="pop-up-button" >Sign out</a></li>
-					<?PHP } ?>
-					<?PHP if(isset($_SESSION['user_id'])){   ?>
-					<li class="nav-item"><a href="tracking.php" id="pop-up-button" >Tracking</a></li>
-					<?PHP } ?>
-						 <?PHP if(isset($_SESSION['user_id'])){   ?>
-					<li class="nav-item"><a href="Livraison.php" id="pop-up-button" >Livraison</a></li>
-					<?PHP } ?>
-                    <li class="nav-item"><span class="active">Cart<i class="fas fa-shopping-cart"></i></span></li>
+                    <li class="nav-item"><a href="about.php">About Us</a></li>
+                    <li class="nav-item"><a href="panier.php">Cart<i class="fas fa-shopping-cart"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -373,10 +364,10 @@ if($int)
 					<tr>
 					<td>
 					<input type="radio" id="radiob" name="mliv" checked><label for="radiob"><strong>Livraison à Domicile</strong></label>
-					<p> Livré entre 3 et 5 jours pour <a style="text-decoration:underline">10 DT</a></p>
-					<p>Sous-Total &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 150DT</p>
+					<p> Livré entre 3 et 5 jours</p>
+					<p>Sous-Total &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <?php echo $_SESSION['total']."DT"?> </p>
 					<p>Montant de la Livraison  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  10DT</p>
-					<p>Total  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  160DT</p>
+					<p>Total  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  <?php echo ($_SESSION['total']+10)."DT"?></p>
 
 					</td>
 					

@@ -41,7 +41,7 @@ session_start();
                                          <a class="dropdown-item" href="Profile.php">Profile</a>
                                         <a class="dropdown-item" href="ModifyPass.php">Change Password</a>
                                         <a class="dropdown-item" href="Livraison.php">Delivery</a>
-                                        <a class="dropdown-item" href="secret message.php">Order</a>
+                                        
                                         <a class="dropdown-item" href="signout.php">Sign out</a>
                                     </div>
                                 </div>
@@ -113,6 +113,10 @@ session_start();
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">Stay connected</label>
+                        </div>
+						<div class="form-group">
+							<p>Are you the website admin?<a href="../Backend/" class="normal"><small> Login Here</small></a></p>
+                            
                         </div>
                         <button type="submit" name="submit" class="btn btn-primary btn-block submit-btn">Submit</button>
                         <hr>

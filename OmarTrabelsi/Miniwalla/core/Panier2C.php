@@ -24,8 +24,8 @@ class PanierC{
         }
     } 
 
-    function afficherPanier(){
-        $sql1="SELECT * FROM panier "; 
+    function afficherPanier($id){
+        $sql1="SELECT * FROM panier where id_panier=$id"; 
         $db = config::getConnexion();
         try{
             $liste=$db->query($sql1);
@@ -51,7 +51,7 @@ class PanierC{
     function MontontTotalSession($id) 
     {
         $sql2="SELECT SUM(PRODUCT.product_price*panier.qte) 
-        product_price FROM PRODUCT right join panier on PRODUCT.product_id=panier.product_id where id_panier=$id";  
+        product_price FROM PRODUCT inner join panier on PRODUCT.product_id=panier.product_id where id_panier=$id";  
            $db = config::getConnexion();
            try{
                $liste2=$db->query($sql2); 
@@ -66,6 +66,20 @@ class PanierC{
 
 
     function supprimerPanier($id){
+		$sql="DELETE FROM panier where id_panier= :id";
+		$db = config::getConnexion();
+        $req=$db->prepare($sql);
+		$req->bindValue(':id',$id);
+		try{
+            $req->execute();
+           // header('Location: index.php');
+        }
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }
+    } 
+
+    function supprimerProduit($id){
 		$sql="DELETE FROM panier where product_id= :id";
 		$db = config::getConnexion();
         $req=$db->prepare($sql);
@@ -78,6 +92,8 @@ class PanierC{
             die('Erreur: '.$e->getMessage());
         }
     } 
+
+
     function Count($id){
 		$sql="SELECT COUNT(*) FROM panier WHERE id_panier=$id";
 

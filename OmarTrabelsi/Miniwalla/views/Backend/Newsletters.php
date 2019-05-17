@@ -59,7 +59,7 @@ if (!isset($_SESSION['user_id'])) {
             <!-- Logo Start -->
             <div class="seipkon-logo">
                <a href="index.php">
-               <img style="filter: invert(100%);" src="assets/img/logo2.png" alt="logo">
+               <img style="filter: invert(100%);" src="assets/img/logo0.png" alt="logo">
                </a>
             </div>
             <!-- Logo End -->
@@ -688,7 +688,7 @@ if (!isset($_SESSION['user_id'])) {
  require 'PHPMailer/Exception.php';
  require 'PHPMailer/PHPMailer.php';
  require 'PHPMailer/SMTP.php';
- include '../settings.php';
+ include '../../settings.php';
   if (!$_POST) {
       //haven't seen the form, so display it
       $display_block = <<<END_OF_BLOCK

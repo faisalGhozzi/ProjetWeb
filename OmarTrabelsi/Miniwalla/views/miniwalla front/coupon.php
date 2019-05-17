@@ -4,8 +4,11 @@ session_start();
 
 if(isset($_POST['submit']))
 {
+	if(isset($_SESSION['CouponV']) and isset($_SESSION['CouponP']))
+	{
 	unset($_SESSION['CouponV']);
 	unset($_SESSION['CouponP']);
+	}
 	
 	$code=$_POST['coupon'];
 	 $connect = mysqli_connect("localhost", "root", "", "projet");  
@@ -24,7 +27,7 @@ if(isset($_POST['submit']))
 		 }else
 		 {	
 
-			$_SESSION['CouponV']="Coupon Valide";
+			$_SESSION['CouponV']="Coupon Valid";
 			$_SESSION['CouponP']=$row['reduction'];
 						header("location: panier.php"); // Redirecting To Profile Page 
 		 }

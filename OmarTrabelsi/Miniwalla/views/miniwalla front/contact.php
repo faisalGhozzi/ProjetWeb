@@ -39,7 +39,7 @@ session_start();
                                         <a class="dropdown-item" href="Profile.php">Profile</a>
                                         <a class="dropdown-item" href="ModifyPass.php">Change Password</a>
                                         <a class="dropdown-item" href="Livraison.php">Delivery</a>
-                                        <a class="dropdown-item" href="secret message.php">Order</a>
+                                        
                                         <a class="dropdown-item" href="signout.php">Sign out</a>
                                     </div>
                                 </div>
@@ -139,82 +139,6 @@ session_start();
             </section>
         </section>
     </div>
-    <!--<div class="container-fluid drop-top">
-        <div class="row justify-content-center">
-            <div class="page-box">
-                <div class="add-product-form-group">
-                    <h3>Passer une réclamation</h3>
-                    <form action="ajoutReclamation.php" method="POST">
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p>
-                                    <label>*L'identifiant du client</label>
-                                    <div class="form-group__content">
-                                        <select class="form-control" name="id_client" id="exampleSelectGender">
-                                            /*<?php/*
-                                            $db = mysqli_connect('localhost', 'root', "", 'projet') or exit(mysql_error()); // on sélectionne la base
-
-
-                                            $sql = "SELECT id FROM clients";
-                                            $res = mysqli_query($db, "SELECT id FROM clients") or exit(mysqli_error());
-                                            while ($data = mysqli_fetch_array($res)) {
-                                                echo '<option>' . $data["id"] . '</option>'; //Attention à ne pas oublier le . qui sert à concaténer ton expression
-                                            }
-
-                                            // on ferme la connexion à mysql
-                                            mysqli_close(); //Facultatif, source de bug sur certaines versions de Wamp
-                                            */?>
-
-                                        </select>
-                                    </div>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p>
-                                    <label>*Nom et Prénom</label>
-                                    <input name="pseudo" type="text" placeholder="Entrer votre nom et prénom" required>
-                                    <span id='missPrenom'></span>
-                                </p>
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p>
-                                    <label>*Sujet de la réclamation</label>
-                                    <input name="sujet" type="text" placeholder="Le sujet de votre reclamation." required>
-                                    <span id='missPrenom'></span>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p>
-                                    <label>Description</label>
-                                    <textarea name="description" type="text" placeholder="Réclamation"></textarea>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p>
-                                    <button type="submit" class="btn btn-success" id="ajouter">
-                                        <i class="fa fa-check"></i>
-                                        Ajouter
-                                    </button>
-
-                                </p>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>-->
 </body>
 
 </html>

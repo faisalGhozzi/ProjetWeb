@@ -152,6 +152,43 @@ class ClientF{
             die('Erreur: '.$e->getMessage());
         }
 	}
+	
+	function rechercherClientPN($numero)
+	{
+		$sql="SElECT * From clients where Num_Tel=$numero";
+		$db = config::getConnexion();
+		try{
+		$liste=$db->query($sql);
+		return $liste;
+		}
+        catch (Exception $e){
+            die('Erreur: '.$e->getMessage());
+        }	
+	}
+	function modifierClientLiv($idc,$adress,$numT,$gov)
+	{
+		var_dump($idc,$adress,$numT,$gov);
+		$sql="UPDATE clients SET Gouvernorat=:Gouvernorat,adress=:adress, Num_Tel=:Num_Tel  WHERE id=:idc";
+		$db = config::getConnexion();
+		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
+  $req=$db->prepare($sql);
+		
+	
+	
+		$req->bindValue(':idc',$idc);
+		$req->bindValue(':adress',$adress);
+		$req->bindValue(':Num_Tel',$numT);
+		$req->bindValue(':Gouvernorat',$gov);
+
+		try{		
+            $req->execute();
+			
+           // header('Location: index.php');
+        }
+        catch (Exception $e){
+            echo " Erreur ! ".$e->getMessage();
+        }
+	}
 }
 
 ?>

@@ -107,7 +107,7 @@ where date_Debut > cast(now() as date) and date_Fin > cast(now() as date)
             <!-- Logo Start -->
             <div class="seipkon-logo">
                <a href="index.php">
-               <img style="filter: invert(100%);" src="assets/img/logo2.png" alt="logo">
+               <img style="filter: invert(100%);" src="assets/img/logo0.png" alt="logo">
                </a>
             </div>
             <!-- Logo End -->

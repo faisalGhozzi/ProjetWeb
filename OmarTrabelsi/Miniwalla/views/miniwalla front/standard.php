@@ -39,8 +39,19 @@ $listeProducts = $product1C->afficherProduitAvecElastic();
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <?php if (isset($_SESSION['login'])) : ?>
-                            <li class="nav-item"><a href="signout.php" id="pop-up-button">Sign out</a></li>
+                    <?php if (isset($_SESSION['login'])) : ?>
+                            <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['name'];?>'s Settings   </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                  <a class="dropdown-item" href="Profile.php">Profile</a>
+                                        <a class="dropdown-item" href="ModifyPass.php">Change Password</a>
+                                <a class="dropdown-item" href="Livraison.php">Delivery</a>
+                                
+                                <a class="dropdown-item" href="signout.php">Sign out</a>
+                            </div>
+                        </div>
+                    </li>
                         <?php endif ?>
                         <?php if (!isset($_SESSION['login'])) : ?>
                             <li class="nav-item"><a href="#" id="pop-up-button" onclick="popUp()">Sign in</a></li>

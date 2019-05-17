@@ -10,23 +10,23 @@ html, body{
 /* Global */
 
 .dropdown-menu{
-    width : 100%;
-    background-color : #343A40;
-    border : none;
-    text-align: center;
+    width : 100% !important;
+    background-color : #343A40 !important;
+    border : none !important;
+    text-align: center !important;
 }
 
 
 .dropdown-item{
-    color : white;
-    background: none; 
-    transition:500ms;
+    color : white !important;
+    background: none !important; 
+    transition:500ms !important;
 }
 
 .dropdown-item:hover{
-    color : #EF3054;
-    background: none; 
-    transition:500ms;
+    color : #EF3054 !important;
+    background: none !important; 
+    transition:500ms !important;
 }
 
 header{
@@ -37,9 +37,9 @@ header{
 
 a {
     font-family : 'Quicksand', sans-serif; 
-    color : white;
-    transition : 500ms;
-    text-decoration:none;
+    color : white !important;
+    transition : 500ms ;
+    text-decoration:none !important;
     font-weight: 500;
     font-size : 16px;
 }
@@ -54,13 +54,13 @@ header li{
 
 
 header a:hover{
-    color : #EF3054;
-    text-decoration: none;
+    color : #EF3054 !important;
+    text-decoration: none !important;
 }
 
 header a:active{
-    color : #EF3054;
-    text-decoration: none;
+    color : #EF3054 !important;
+    text-decoration: none !important;
 }
 
 
