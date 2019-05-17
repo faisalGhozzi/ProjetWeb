@@ -1,16 +1,27 @@
 <?PHP
-include_once "../core/productC.php";
-$product1C = new ProductC();
-$listeProducts = $product1C->afficherProduits();
 
-//var_dump($listeEmployes->fetchAll());
+include "../../core/LivraisonC.php";
 session_start();
+if(isset($_SESSION['user_id'])){
+echo "Welcome ID : ".$_SESSION['user_id'];
+}
+else{
+	header("location: login.php"); 
+}
+$livraisonC=new LivraisonC();
 
+$resultat=$livraisonC->AfficherLivraison();
+if(isset($_POST['modifier']))
+	
+{
+	$livraisonC->ModifierStatutLivraison($_POST['pref'],$_POST['statut']);
+	header ("Location: tracking.php ");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from themescare.com/demos/seipkon-admin-template/advance-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 Feb 2019 17:03:40 GMT -->
+<!-- Mirrored from themescare.com/demos/seipkon-admin-template/add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 Feb 2019 17:02:49 GMT -->
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -34,18 +45,47 @@ session_start();
     <link rel="stylesheet" href="assets/plugins/themify-icons/themify-icons.css">
     <!-- Perfect Scrollbar CSS -->
     <link rel="stylesheet" href="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.css">
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="assets/plugins/datatables/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="assets/plugins/datatables/css/buttons.bootstrap.min.css">
-    <link rel="stylesheet" href="assets/plugins/datatables/css/responsive.bootstrap.min.css">
+    <!-- Bootstrap-select CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap-select/css/bootstrap-select.min.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="assets/css/seipkon.css">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- My StyleSheet -->
     <link rel="stylesheet" href="assets/css/mystyle.css">
+    <!-- jQuery -->
+    <script src="assets/js/jquery-3.1.0.min.js"></script>
+	  <script type="text/javascript">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+$(document).ready(function(){
 
+
+ var id = $('#select').val();
+  load_data(id);
+
+ function load_data(query)
+ {
+  $.ajax({
+   url:"fetchT.php",
+   method:"POST",
+   data:{query:query},
+   success:function(data)
+   {
+    $('#result').html(data);
+   }
+  });
+ }
+ 
+ $('#select').change(function(){
+  var id = $(this).val();
+
+   load_data(id);
+  
+
+ });
+});
+
+</script>
 </head>
 
 <body>
@@ -334,17 +374,18 @@ session_start();
                                 Dashboard
                             </a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="#ecommerce" data-toggle="collapse" aria-expanded="false">
                                 <i class="fa fa-shopping-cart"></i>
                                 e-Commerce
                             </a>
                             <ul class="collapse list-unstyled" id="ecommerce">
-                                <li><a href="add-product.php">add new product</a></li>
+                                <li class="active"><a href="add-product.php">add new product</a></li>
                                 <li><a href="order-list-product.html">product order list</a></li>
                                 <li><a href="add-service.html">add New Service</a></li>
                                 <li><a href="add-category.html">add New Category</a></li>
                                 <li><a href="add-elastic.html">add New Elastic</a></li>
+
                             </ul>
                         </li>
                         <li>
@@ -477,7 +518,15 @@ session_start();
                         </ul>
                      </li>
 					 <!--  FIN MENU Newsletters -->
-					 	<li><a href="#menu_livraison" data-toggle="collapse" aria-expanded="false"><i class="fa fa-laptop"></i>Gestion des Livraisons</a><ul class="collapse list-unstyled" id="menu_livraison"><li><a href="tracking.php">Modifiy Delivery Status</a></li></ul></li>
+                          <li>
+                        <a href="#menu_livraison" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-laptop"></i>
+                        Gestion des Livraisons
+                        </a>
+                        <ul class="collapse list-unstyled" id="menu_livraison">
+                           <li><a href="tracking.php">Modifiy Delivery Status</a></li>
+                        </ul>
+                     </li>
 					  <li>
                         <a href="#menu_livreur" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-laptop"></i>
@@ -490,7 +539,8 @@ session_start();
                            <li><a href="afficher-livreur.php">Afficher les livreurs</a></li>
                         </ul>
                      </li>
-					 <!--menuLivreurFin --> 
+                     <!--menuLivreurFin -->
+                      
 					 <!--Menu Produit -->
 					  <li>
                         <a href="#product" data-toggle="collapse" aria-expanded="false">
@@ -578,14 +628,14 @@ session_start();
                                 <li><a href="form-wizards.html">form wizards</a></li>
                             </ul>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="#table" data-toggle="collapse" aria-expanded="false">
                                 <i class="fa fa-table"></i>
                                 Tables
                             </a>
                             <ul class="collapse list-unstyled" id="table">
                                 <li><a href="basic-table.html">basic table</a></li>
-                                <li class="active"><a href="advance-table.html">table Advance</a></li>
+                                <li><a href="advance-table.html">table Advance</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -679,15 +729,15 @@ session_start();
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
                                         <div class="seipkon-breadcromb-left">
-                                            <h3>Table Product</h3>
+                                            <h3>Modifiy Delivery</h3>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <div class="seipkon-breadcromb-right">
                                             <ul>
                                                 <li><a href="index.php">home</a></li>
-                                                <li>tables</li>
-                                                <li>table Product</li>
+                                                <li>e-Commerce</li>
+                                                <li>Add Product</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -697,92 +747,76 @@ session_start();
                     </div>
                     <!-- End Breadcromb Row -->
 
-                    <!-- Selector -->
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown">
-                                    Select a table
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuLink">
-                                    <li role="presentation"><a role="menuitem" tabindex="1" href="table.service.php">Services</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="2" href="table.product.php">Produits</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="3" href="table.category.php">Categories</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="4" href="table.elastic.php">Elastiques</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- End Selector -->
-
-                    <!-- Advance Table Row Start -->
+                    <!-- Add Product Area Start -->
                     <div class="row">
                         <div class="col-md-12">
                             <div class="page-box">
-                                <div class="table-responsive advance-table">
-                                    <table id="button_datatables_example" class="table display table-striped table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Image Face</th>
-                                                <th>Image Back</th>
-                                                <th>Price</th>
-                                                <th>Promotion</th>
-                                                <th>Category</th>
-                                                <th>Elastic</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?PHP
-                                             foreach ($listeProducts as $row) {
-                                                ?>
-                                            <tr>
-                                                <td>
-                                                    <?PHP echo $row['product_id'];  ?>
-                                                </td>
-                                                <td>
-                                                    <?PHP echo "<img src=\"image/{$row['product_imgFace']}\">" ?>
-                                                </td>
-                                                <td>
-                                                    <?PHP echo "<img src=\"image/{$row['product_imgTail']}\">" ?>
-                                                </td>
-                                                <td>
-                                                    <?PHP echo $row['product_price']; ?>
-                                                </td>
-                                                <td>
-                                                    <?PHP echo $row['product_promotion']; ?>
-                                                </td>
-                                                <td>
-                                                    <?PHP echo $row['category_name']; ?>
-                                                </td>
-                                                <td>
-                                                    <?PHP echo "<img src=\"image/{$row['elastic_img']}\">" ?>
-                                                </td>
-                                                <td>
-                                                    <form method="POST" action="supprimerProduct.php">
-                                                        <input class="product-table-danger" data-toggle="tooltip" title="Delete" type="image" src="39_opt.png" border="0" name="supprimer">
-                                                        <input type="hidden" value="<?PHP echo $row['product_id']; ?>" name="id">
-                                                    </form>   
-                                                    <a href="edit-product.php?id=<?PHP echo $row['product_id']; ?>" class="product-table-info" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a> 
-                                                  </td>
-                                            </tr>
-                                            <?PHP 
-                                          }
-                                          ?>
-                                        </tbody>
-                                    </table>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="add-product-form-group">
+                                            <h3>Modifiy Delivery</h3>
+                                            <div class="table-responsive">
+                                 
+                              <table border="1" class="table table-striped w-auto">
+                                 <tr>
+                                 <td><strong>Réference</strong></td>
+                                 <td><strong>Adresse de la livraison</strong></td>
+                                 <td><strong>Numéro du téléphone</strong></td>
+                                 <td><strong>Gouvernorat</strong></td>
+                                 <td><strong>Statut de la livraison</strong></td>
+
+
+                                 </tr>
+
+                                 <?PHP
+                                 foreach($resultat as $row){
+                                    ?>
+                                    <tr>
+                                    <td><?PHP echo $row['reference']; ?></td>
+                                    <td><?PHP echo $row['Adresse_livraison']; ?></td>
+                                    <td><?PHP echo $row['Num_Tel']; ?></td>
+                                    <td><?PHP echo $row['Gouvernorat']; ?></td>
+                                    <td><?PHP echo $row['statut']; ?></td>
+                                    </tr>
+                                    <?PHP
+                                 }
+                                 ?>
+                                 </table>
+                                       
+                                 </div>
+                                            <form method="POST" >
+							    <label>ID Livraison</label>
+                                               <select name="pref" id="select">
+											   <?PHP
+											   $ids=$livraisonC->getIDs();
+											   foreach ($ids as $id)
+											   {
+												 
+											   ?>
+											   <option><?PHP echo $id['reference'] ?></option>
+											   <?PHP } ?>
+											   </select>
+											   <label>Statut de la Livraison</label>
+                                               <select name="statut" id="statut">
+											   <option value="En cours de verification">En cours de verification</option>
+											   <option value="En cours de preparation">En cours de preparation</option>
+											   <option value="En route">En route</option>
+											   <option value="Livre">Livre</option>
+											 
+											   </select>
+											   <div id="result" >
+											   
+											   </div>
+											   <input type="submit" name="modifier" value="Modifier">
+											   
+							  </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- End Advance Table Row -->
-
-                    <!-- Advance Table Row Start -->
-                    <!-- End Advance Table Row -->
+                    <!-- End Add Product Area -->
 
                 </div>
             </div>
@@ -800,33 +834,47 @@ session_start();
     <!-- End Wrapper -->
 
 
-    <!-- jQuery -->
-    <script src="assets/js/jquery-3.1.0.min.js"></script>
+    
     <!-- Bootstrap JS -->
     <script src="assets/plugins/bootstrap/bootstrap.min.js"></script>
-    <!-- Datatables -->
-    <script src="assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="assets/plugins/datatables/js/dataTables.bootstrap.min.js"></script>
-    <script src="assets/plugins/datatables/js/dataTables.buttons.min.js"></script>
-    <script src="assets/plugins/datatables/js/buttons.bootstrap.min.js"></script>
-    <script src="assets/plugins/datatables/js/buttons.flash.min.js"></script>
-    <script src="assets/plugins/datatables/js/buttons.html5.min.js"></script>
-    <script src="assets/plugins/datatables/js/buttons.print.min.js"></script>
-    <script src="assets/plugins/datatables/js/dataTables.responsive.min.js"></script>
-    <script src="assets/plugins/datatables/js/responsive.bootstrap.min.js"></script>
-    <script src="assets/plugins/datatables/js/jszip.min.js"></script>
-    <script src="assets/plugins/datatables/js/pdfmake.min.js"></script>
-    <script src="assets/plugins/datatables/js/vfs_fonts.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- Bootstrap-select JS -->
+    <script src="assets/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
     <!-- Perfect Scrollbar JS -->
     <script src="assets/plugins/perfect-scrollbar/jquery-perfect-scrollbar.min.js"></script>
-    <!-- Form Wizard Custom JS For Only This Page -->
-    <script src="assets/js/advance_table_custom.js"></script>
+    <!-- Custom Select JS -->
+    <script src="assets/plugins/bootstrap-select/js/custom-select.js"></script>
     <!-- Custom JS -->
     <script src="assets/js/seipkon.js"></script>
+    <!-- Validator -->
+    <script src="assets/js/form-validator.js"></script>
+    <script>
+        function showImage() {
+            if (this.files && this.files[0]) {
+                var obj = new FileReader();
+                obj.onload = function(data) {
+                    var image = document.getElementById("Face");
+                    image.src = data.target.result;
+                    image.style.display = "inline-block";
+                }
+                obj.readAsDataURL(this.files[0]);
+            }
+        }
+    </script>
+    <script>
+        function showImage2() {
+            if (this.files && this.files[0]) {
+                var obj = new FileReader();
+                obj.onload = function(data) {
+                    var image = document.getElementById("Tail");
+                    image.src = data.target.result;
+                    image.style.display = "inline-block";
+                }
+                obj.readAsDataURL(this.files[0]);
+            }
+        }
+    </script>
 </body>
 
-<!-- Mirrored from themescare.com/demos/seipkon-admin-template/advance-table.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 Feb 2019 17:03:49 GMT -->
+<!-- Mirrored from themescare.com/demos/seipkon-admin-template/add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 25 Feb 2019 17:02:49 GMT -->
 
 </html> 

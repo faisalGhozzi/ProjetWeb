@@ -90,7 +90,7 @@ $LivreurC= new LivreurC();
 
 	if(isset($_POST['adress']) and isset($_POST['Gov']) and isset($_POST['num']) )
 	{
-		$livraison=new livraison($_POST['adress'],$_POST['num'],$_POST['Gov'],$_SESSION['login'],0,'en cours de verification');
+		$livraison=new livraison($_POST['adress'],$_POST['num'],$_POST['Gov'],$_SESSION['login'],$_SESSION['login'],'en cours de verification');
 		$livraisonC=new LivraisonC();
 		$livraisonC->AjouterLivraison($livraison);
 		$resultat=$ClientC->rechercherClientPN($_POST['num']);
@@ -126,7 +126,7 @@ if($int)
 	foreach($resultat as $row)
 	{
 	
-	sendMailLivreur($row['Adresse_mail']);
+	//sendMailLivreur($row['Adresse_mail']);
 	break;
 	}
 }else{
@@ -134,13 +134,13 @@ if($int)
 			foreach($resultat as $row)
 		{
 			
-			sendMailLivreur($row['Adresse_mail']);
+		//	sendMailLivreur($row['Adresse_mail']);
 			break;
 		}
 	}
 
 
-	header('Location: PDF.php');	
+	//header('Location: PDF.php');	
 }
 	
 
@@ -159,7 +159,7 @@ if($int)
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/otherPages.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700|Poiret+One|Quicksand:300,400,500,700|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">    <title>miniWalla | About Us</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">    <title>miniWalla | Delivery</title>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -208,7 +208,8 @@ if($int)
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                          <a class="dropdown-item" href="Profile.php">Profile</a>
                                         <a class="dropdown-item" href="ModifyPass.php">Change Password</a>
-                                        <span class="dropdown-item">Delivery</span>
+                                        <a class="dropdown-item" href="Livraison.php">Delivery</a>
+                                        <a class="dropdown-item" href="tracking.php">Track your Orders</a>
                                         
                                         <a class="dropdown-item" href="signout.php">Sign out</a>
                                     </div>

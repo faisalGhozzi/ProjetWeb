@@ -524,7 +524,7 @@ where date_Debut > cast(now() as date) and date_Fin > cast(now() as date)
                         </ul>
                      </li>
 					 <!--  FIN MENU Newsletters -->
-					 	 <!--menuLivreur -->
+					 	<li><a href="#menu_livraison" data-toggle="collapse" aria-expanded="false"><i class="fa fa-laptop"></i>Gestion des Livraisons</a><ul class="collapse list-unstyled" id="menu_livraison"><li><a href="tracking.php">Modifiy Delivery Status</a></li></ul></li>
 					  <li>
                         <a href="#menu_livreur" data-toggle="collapse" aria-expanded="false">
                         <i class="fa fa-laptop"></i>

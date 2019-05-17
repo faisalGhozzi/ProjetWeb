@@ -6,14 +6,14 @@ class livraison
 	private $id_panier;
 	private $id_client;
 	private $Gouvernorat;
-	function __construct($Adresse_livraison,$Num_Tel,$Gouvernorat,$id_client,$id_panier){
+	private $statut;
+	function __construct($Adresse_livraison,$Num_Tel,$Gouvernorat,$id_client,$id_panier,$statut){
 		$this->Adresse_livraison=$Adresse_livraison;
 		$this->Num_Tel=$Num_Tel;
-		$this->Gouvernorat=$Gouvernorat;
-		$this->id_client=$id_client;
 		$this->id_panier=$id_panier;
-		
-
+		$this->id_client=$id_client;
+		$this->Gouvernorat=$Gouvernorat;
+		$this->statut=$statut;
 	}
 	function getAdresse_livraison(){
 		return $this->Adresse_livraison;
@@ -30,6 +30,10 @@ class livraison
 	function getGouvernorat(){
 		return $this->Gouvernorat;
 	}
+		function getStatut(){
+		return $this->statut;
+	}
+
 
 	function setAdresse_livraison($Adresse_livraison)
 	{

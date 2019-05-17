@@ -98,7 +98,7 @@ $pdf->Output("F","details.pdf");
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                          <a class="dropdown-item" href="Profile.php">Profile</a>
                                         <a class="dropdown-item" href="ModifyPass.php">Change Password</a>
-                                        <a class="dropdown-item" href="Livraison.php">Delivery</a>
+                                        <a class="dropdown-item" href="Livraison.php">Delivery</a><a class="dropdown-item" href="tracking.php">Track your Orders</a>
                                         
                                         <a class="dropdown-item" href="signout.php">Sign out</a>
                                     </div>

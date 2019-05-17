@@ -5,7 +5,7 @@ class LivraisonC{
 	
 	function AjouterLivraison($livraison)
 	{
-		$sql="insert into livraison (Adresse_livraison,Num_Tel,Gouvernorat,id_client,id_panier) values (:Adresse_livraison,:Num_Tel,:Gouvernorat,null,null)";
+		$sql="insert into livraison (Adresse_livraison,Num_Tel,Gouvernorat,id_client,id_panier,statut) values (:Adresse_livraison,:Num_Tel,:Gouvernorat,:id_client,:id_panier,'en cours de verification')";
 		$db = config::getConnexion();
 		try{
         $req=$db->prepare($sql);
@@ -16,6 +16,8 @@ class LivraisonC{
 		$req->bindValue(':Adresse_livraison',$Adresse_livraison);
 		$req->bindValue(':Num_Tel',$Num_Tel);
 		$req->bindValue(':Gouvernorat',$Gouvernorat);
+		$req->bindValue(':id_client',$_SESSION['login']);
+		$req->bindValue(':id_panier',$_SESSION['login']);
 
 		
             $req->execute();
@@ -55,7 +57,7 @@ try{
 		
 		function rechercherlivraison($reference)
 	{
-				$sql="SElECT * From livraison where reference=$reference";
+				$sql="SElECT * From livraison where id_client=$reference";
 		$db = config::getConnexion();
 		try{
 		$liste=$db->query($sql);
@@ -109,6 +111,31 @@ function AfficherLivraison()
         catch (Exception $e){
             die('Me1 Erreur: '.$e->getMessage());
         }	
+	}
+function ModifierStatutLivraison($reference,$statut)
+	{
+				$sql="UPDATE livraison SET statut=:statut WHERE reference=$reference";
+		
+		$db = config::getConnexion();
+		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
+try{		
+        $req=$db->prepare($sql);
+		
+
+		
+		$req->bindValue(':statut',$statut);
+
+		
+		
+            $s=$req->execute();
+			
+           // header('Location: index.php');
+        }
+        catch (Exception $e){
+            echo " Erreur ! ".$e->getMessage();
+  
+ 
+        }
 	}	
 	
 }
